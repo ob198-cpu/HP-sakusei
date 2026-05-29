@@ -3,318 +3,687 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>サクッとHP｜15,000円でプロ品質のホームページ制作</title>
-  <meta name="description" content="テンプレートを選ぶだけ！最短3日納品、1件15,000円の格安ホームページ制作。パソコンが苦手でも大丈夫。お店・会社のHP、まずはお気軽にご相談ください。">
+  <title>サクッとHP | AI演出つき格安ホームページ制作</title>
+  <meta name="description" content="テンプレートとAIプロンプトを活用した格安ホームページ制作。最短即日で公開まで対応し、動画風アニメーションやSpline風3D演出、文章作成もサポートします。">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
-<!-- NAV -->
-<nav class="nav" id="nav">
-  <div class="container">
-    <a href="#" class="nav-logo">🚀 サクッとHP<small>かんたんホームページ制作</small></a>
-    <div class="nav-links" id="navLinks">
-      <a href="#how">作り方</a>
-      <a href="#templates">テンプレート</a>
-      <a href="#price">料金</a>
-      <a href="#faq">よくある質問</a>
-      <a href="#contact" class="nav-cta">無料で相談する</a>
-    </div>
-    <button class="hamburger" id="hamburger" aria-label="メニュー">
-      <span></span><span></span><span></span>
+  <header class="site-header">
+    <a class="brand" href="#top" aria-label="サクッとHP トップへ">
+      <span class="brand-mark">S</span>
+      <span>サクッとHP</span>
+    </a>
+    <button class="menu-button" type="button" aria-label="メニューを開く" aria-expanded="false">
+      <span></span>
+      <span></span>
+      <span></span>
     </button>
-  </div>
-</nav>
+    <nav class="nav-links" aria-label="メインメニュー">
+      <a href="#plans">料金</a>
+      <a href="#motion">作り方</a>
+      <a href="#spline">3D演出</a>
+      <a href="#scroll">フレーム演出</a>
+      <a href="#aibuild">AI生成</a>
+      <a href="#templates">テンプレート</a>
+      <a href="#flow">流れ</a>
+      <a class="nav-cta" href="#contact">無料相談</a>
+    </nav>
+  </header>
 
-<!-- HERO -->
-<section class="hero" id="hero">
-  <div class="container">
-    <div class="hero-ribbon">🎉 今だけ初回限定キャンペーン中！</div>
-    <h1>
-      テンプレートを選ぶだけ！<br>
-      <span class="big">プロ品質のHP</span>が<br>
-      <span class="price-tag">¥15,000</span> で完成
-    </h1>
-    <p class="hero-sub">
-      「ホームページ欲しいけど高い…」「パソコン苦手で…」<br>
-      そんなお悩み、<strong>サクッとHP</strong>が解決します！
-    </p>
-    <div class="hero-points">
-      <div class="hero-point"><span class="icon">🔥</span> 最短12時間で完成！</div>
-      <div class="hero-point"><span class="icon">💰</span> 業界最安クラス</div>
-      <div class="hero-point"><span class="icon">✨</span> プロがデザイン</div>
-    </div>
-    <div class="hero-buttons">
-      <a href="#contact" class="btn-main">📞 まずは無料相談 →</a>
-      <a href="#templates" class="btn-sub">テンプレートを見る</a>
-    </div>
-    <p class="hero-note">※ しつこい営業は一切いたしません。お気軽にどうぞ。</p>
-  </div>
-</section>
+  <main id="top">
+    <section class="hero">
+      <div class="hero-backdrop" aria-hidden="true"></div>
+      <div class="motion-orbit" aria-hidden="true">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+      <div class="hero-inner hero-showcase">
+        <div class="hero-copy">
+          <p class="eyebrow">AI animation website studio</p>
+          <h1>
+            <span class="desktop-copy">低予算、短期、<br>ハイクオリティで<br>HPを作成できます！</span>
+            <span class="mobile-copy">低予算、短期、<br>ハイクオリティで<br>HPを作成できます！</span>
+          </h1>
+          <div class="hero-actions">
+            <a class="button secondary" href="#motion">作り方を見る</a>
+          </div>
+          <div class="quick-stats" aria-label="サービスの特徴">
+            <div>
+              <strong>15,000円〜</strong>
+              <span>初期制作</span>
+            </div>
+            <div>
+              <strong>最短即日</strong>
+              <span>公開対応</span>
+            </div>
+            <div>
+              <strong>3D風</strong>
+              <span>演出対応</span>
+            </div>
+          </div>
+        </div>
+        <div class="InteractiveHeroDemo interactive-hero-demo prompt-motion-lab" data-build="idle" aria-label="プロンプトから動きのあるHPが生成されるデモ">
+          <div class="lab-ambient" aria-hidden="true"></div>
+          <div class="lab-topbar">
+            <div class="lab-dots" aria-hidden="true">
+              <span></span>
+              <span></span>
+              <span></span>
+            </div>
+            <strong>Prompt Motion Lab</strong>
+          </div>
 
-<!-- MERITS BAR -->
-<section class="merits">
-  <div class="container">
-    <div class="merits-grid">
-      <div class="merit-item"><div class="num">500+</div><div class="label">制作実績</div></div>
-      <div class="merit-item"><div class="num">98%</div><div class="label">お客様満足度</div></div>
-      <div class="merit-item"><div class="num">最短12h</div><div class="label">驚きのスピード</div></div>
-      <div class="merit-item"><div class="num">¥15,000</div><div class="label">ぽっきり価格</div></div>
-    </div>
-  </div>
-</section>
+          <div class="lab-title">
+            <p>INTERACTIVE DEMO</p>
+            <h2>プロンプトが、動きのあるHPになる</h2>
+            <span>DRAG OR CLICK TO BUILD</span>
+          </div>
 
-<!-- HOW IT WORKS -->
-<section class="how" id="how">
-  <div class="container">
-    <h2 class="section-title animate-on-scroll">
-      ホームページ制作が<br><span class="accent">こんなにカンタン！</span>
-    </h2>
-    <p class="section-sub animate-on-scroll">パソコンが苦手でも大丈夫。3ステップで完成します。</p>
-    <div class="steps">
-      <div class="step-card animate-on-scroll">
-        <div class="step-num">1</div>
-        <h3>テンプレートを選ぶ</h3>
-        <p>お好きなデザインを選ぶだけ。業種別に豊富なテンプレートをご用意。</p>
-      </div>
-      <div class="step-arrow animate-on-scroll">→</div>
-      <div class="step-card animate-on-scroll">
-        <div class="step-num">2</div>
-        <h3>情報をお送りいただく</h3>
-        <p>お店の名前、写真、紹介文など。LINEやメールでOK！</p>
-      </div>
-      <div class="step-arrow animate-on-scroll">→</div>
-      <div class="step-card animate-on-scroll">
-        <div class="step-num">3</div>
-        <h3>プロが仕上げて納品！</h3>
-        <p>デザイナーがキレイに仕上げ。確認後すぐに公開できます。</p>
-      </div>
-    </div>
-  </div>
-</section>
+          <div class="lab-stage">
+            <button class="lab-prompt-pill" type="button" aria-label="HP生成デモを開始">
+              <span class="spark-icon" aria-hidden="true">✦</span>
+              <strong>近未来的で信頼感のあるHP</strong>
+              <em aria-hidden="true"></em>
+            </button>
 
-<!-- TEMPLATES -->
-<section class="templates" id="templates">
-  <div class="container">
-    <h2 class="section-title animate-on-scroll">
-      業種で選べる<span class="accent">テンプレート</span>
-    </h2>
-    <p class="section-sub animate-on-scroll">人気のテンプレートをご紹介。もちろん色やレイアウトの変更もOK！</p>
-    <div class="template-grid">
-      <div class="template-card animate-on-scroll">
-        <div class="template-img">
-          <img src="portfolio1.png" alt="飲食店向けテンプレート">
-          <span class="template-badge">人気No.1</span>
-        </div>
-        <div class="template-info">
-          <h3>飲食店・カフェ向け</h3>
-          <p>メニュー紹介・地図・営業時間がしっかり伝わるデザイン</p>
-          <div class="template-tags"><span>飲食店</span><span>カフェ</span><span>居酒屋</span></div>
-        </div>
-      </div>
-      <div class="template-card animate-on-scroll">
-        <div class="template-img">
-          <img src="portfolio2.png" alt="美容室・サロン向けテンプレート">
-          <span class="template-badge">おしゃれ</span>
-        </div>
-        <div class="template-info">
-          <h3>美容室・サロン向け</h3>
-          <p>スタイリッシュな写真映えデザイン。予約導線もバッチリ</p>
-          <div class="template-tags"><span>美容室</span><span>ネイル</span><span>エステ</span></div>
-        </div>
-      </div>
-      <div class="template-card animate-on-scroll">
-        <div class="template-img">
-          <img src="portfolio3.png" alt="会社・事務所向けテンプレート">
-          <span class="template-badge">信頼感◎</span>
-        </div>
-        <div class="template-info">
-          <h3>会社・事務所向け</h3>
-          <p>信頼感のあるしっかりとしたコーポレートデザイン</p>
-          <div class="template-tags"><span>建設業</span><span>士業</span><span>製造業</span></div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
+            <div class="lab-particle-flow" aria-hidden="true">
+              <span></span>
+              <span></span>
+              <span></span>
+              <span></span>
+              <span></span>
+              <span></span>
+              <span></span>
+              <span></span>
+            </div>
 
-<!-- PRICING -->
-<section class="price-section" id="price">
-  <div class="container">
-    <h2 class="section-title animate-on-scroll">
-      <span class="accent">わかりやすい</span>料金体系
-    </h2>
-    <p class="section-sub animate-on-scroll">追加費用なし。表示価格ですべて込みです。</p>
-    <div class="price-box animate-on-scroll">
-      <div class="ribbon">🔥 地域最安値に挑戦！</div>
-      <p style="font-size:1rem;font-weight:700;margin-top:8px;">ホームページ制作まるっとおまかせ</p>
-      <div class="main-price">¥15,000<small>（税込¥16,500）</small></div>
-      <p class="tax">※ 追加料金は一切かかりません</p>
-      <ul class="price-includes">
-        <li>テンプレートデザイン選択</li>
-        <li>スマホ対応（レスポンシブ）</li>
-        <li>写真・テキストの差し替え</li>
-        <li>お問い合わせフォーム設置</li>
-        <li>Googleマップ埋め込み</li>
-        <li>SNSリンク設置</li>
-        <li>基本SEO対策</li>
-        <li>公開後30日間の修正サポート</li>
-      </ul>
-      <p class="price-note">※ ドメイン・サーバー費用は別途月額500円〜</p>
-      <div class="price-compare">
-        <div class="compare-item">
-          <div class="old">一般的な制作会社</div>
-          <div style="font-size:1.5rem;font-weight:900;color:var(--text);">30〜50万円</div>
-          <div class="new">相場価格</div>
-        </div>
-        <div class="compare-item" style="border:2px solid var(--orange);">
-          <div style="font-size:0.85rem;font-weight:700;color:var(--orange);">サクッとHP</div>
-          <div style="font-size:1.5rem;font-weight:900;color:var(--orange);">¥15,000</div>
-          <div class="new">最大97%OFF!</div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
+            <div class="lab-power-core" aria-hidden="true">
+              <span></span>
+              <span></span>
+              <span></span>
+            </div>
 
-<!-- FAQ / WORRIES -->
-<section class="worry" id="faq">
-  <div class="container">
-    <h2 class="section-title animate-on-scroll">
-      こんな<span class="accent">お悩み</span>ありませんか？
-    </h2>
-    <p class="section-sub animate-on-scroll">初めてのHP作成、不安なことは何でもご相談ください。</p>
-    <div class="worry-grid">
-      <div class="worry-card animate-on-scroll">
-        <div class="worry-q"><span class="face">😰</span>パソコンが全然わからないんですが…</div>
-        <div class="worry-a"><span class="icon">✓</span><span>大丈夫です！LINEやお電話でやり取りできます。お店の写真をスマホで撮って送っていただくだけでOK。難しい操作は一切不要です。</span></div>
-      </div>
-      <div class="worry-card animate-on-scroll">
-        <div class="worry-q"><span class="face">😟</span>安いとクオリティが心配…</div>
-        <div class="worry-a"><span class="icon">✓</span><span>テンプレートを活用することで高品質を低価格で実現。プロのデザイナーが丁寧に仕上げるので、安かろう悪かろうにはなりません。</span></div>
-      </div>
-      <div class="worry-card animate-on-scroll">
-        <div class="worry-q"><span class="face">🤔</span>作った後の更新はどうするの？</div>
-        <div class="worry-a"><span class="icon">✓</span><span>公開後30日間は無料で修正対応。その後も月額2,000円で更新代行プランをご用意。自分で触る必要はありません。</span></div>
-      </div>
-      <div class="worry-card animate-on-scroll">
-        <div class="worry-q"><span class="face">😅</span>うちみたいな小さいお店でも必要？</div>
-        <div class="worry-a"><span class="icon">✓</span><span>むしろ小さなお店こそ効果大！「◯◯市 ラーメン」等で検索した時にHPがあると信頼度が格段にアップします。名刺代わりにもなります。</span></div>
-      </div>
-    </div>
-  </div>
-</section>
+            <div class="lab-orbit-stack" aria-hidden="true">
+              <span></span>
+              <span></span>
+              <span></span>
+            </div>
 
-<!-- VOICES -->
-<section class="voice" id="voice">
-  <div class="container">
-    <h2 class="section-title animate-on-scroll">
-      お客様の<span class="accent">声</span>
-    </h2>
-    <p class="section-sub animate-on-scroll">実際にご利用いただいたお客様からの感想です。</p>
-    <div class="voice-grid">
-      <div class="voice-card animate-on-scroll">
-        <div class="voice-header">
-          <div class="voice-avatar">👨‍🍳</div>
-          <div><div class="voice-name">田中さん（50代）</div><div class="voice-biz">居酒屋経営・北海道</div></div>
-        </div>
-        <div class="voice-stars">★★★★★</div>
-        <p>パソコンは全然ダメなんですが、電話で話して写真を送っただけでこんなキレイなHPができるとは！お客さんから「ホームページ見たよ」って言われることが増えました。</p>
-      </div>
-      <div class="voice-card animate-on-scroll">
-        <div class="voice-header">
-          <div class="voice-avatar">👩</div>
-          <div><div class="voice-name">佐藤さん（40代）</div><div class="voice-biz">美容室オーナー・青森県</div></div>
-        </div>
-        <div class="voice-stars">★★★★★</div>
-        <p>他社では30万と言われて諦めてたんですが、15,000円でここまでできるなんて！デザインもおしゃれで、若いお客様からの予約が増えました。</p>
-      </div>
-      <div class="voice-card animate-on-scroll">
-        <div class="voice-header">
-          <div class="voice-avatar">👨</div>
-          <div><div class="voice-name">鈴木さん（60代）</div><div class="voice-biz">建設業・岩手県</div></div>
-        </div>
-        <div class="voice-stars">★★★★★</div>
-        <p>息子に「会社のHP無いと信用されないよ」と言われて。頼んで3日後にはもう完成してて驚きました。名刺にURL入れたら取引先の反応が良くなった気がします。</p>
-      </div>
-    </div>
-  </div>
-</section>
+            <div class="lab-output-badges" aria-hidden="true">
+              <span>Design System</span>
+              <span>Motion Layer</span>
+              <span>Launch Ready</span>
+            </div>
 
-<!-- CTA -->
-<section class="cta" id="contact">
-  <div class="container">
-    <h2 class="animate-on-scroll">まずはお気軽に<br>ご相談ください 😊</h2>
-    <p class="animate-on-scroll">無理な営業は一切なし。<br>「こんなHP作れる？」くらいの気軽さでOKです。</p>
-    <div class="cta-buttons animate-on-scroll">
-      <a href="tel:011-000-0000" class="btn-white">📞 電話で相談する</a>
-      <a href="#" class="btn-white-outline">💬 LINEで相談する</a>
-    </div>
-    <div class="cta-phone animate-on-scroll">
-      📞 011-000-0000
-      <small>受付時間 9:00〜18:00（土日祝もOK）</small>
-    </div>
-  </div>
-</section>
+            <div class="lab-complete-badge" aria-hidden="true">
+              <span></span>
+              <strong>BUILD COMPLETE</strong>
+            </div>
 
-<!-- FOOTER -->
-<footer class="footer">
-  <div class="container">
-    <div class="footer-grid">
-      <div>
-        <div class="footer-brand">🚀 サクッとHP</div>
-        <p>テンプレートを選ぶだけ。<br>15,000円でプロ品質のホームページを。<br>パソコンが苦手でも安心のサポート体制。</p>
+            <article class="lab-preview-card" aria-label="生成されるWebサイトプレビュー">
+              <nav class="lab-preview-nav">
+                <span>HERO</span>
+                <i></i>
+                <i></i>
+                <i></i>
+                <b>Get Started</b>
+              </nav>
+              <div class="lab-preview-body">
+                <div class="lab-preview-copy">
+                  <h3>The Next Standard<br>of Digital Trust.</h3>
+                  <p>先進技術とデザインの力で、ビジネスの未来をより強く、より美しく。</p>
+                  <div class="lab-preview-stats" aria-hidden="true">
+                    <span>Responsive</span>
+                    <span>Motion Ready</span>
+                  </div>
+                  <a href="#contact">Get Started</a>
+                </div>
+                <div class="lab-preview-visual" aria-hidden="true">
+                  <span></span>
+                  <span></span>
+                  <span></span>
+                  <span></span>
+                </div>
+              </div>
+              <div class="lab-build-sweep" aria-hidden="true"></div>
+            </article>
+          </div>
+
+          <div class="lab-steps" aria-label="生成ステップ">
+            <article class="lab-step" data-step="1">
+              <span>01</span>
+              <strong>Prompt</strong>
+              <em>言葉でイメージを入力</em>
+            </article>
+            <article class="lab-step" data-step="2">
+              <span>02</span>
+              <strong>Design</strong>
+              <em>AIがレイアウトを生成</em>
+            </article>
+            <article class="lab-step" data-step="3">
+              <span>03</span>
+              <strong>Motion</strong>
+              <em>動きと演出を追加</em>
+            </article>
+          </div>
+        </div>
       </div>
-      <div>
-        <h4>メニュー</h4>
+    </section>
+
+    <section class="trust-strip" aria-label="対応内容">
+      <span>プロンプト作成</span>
+      <span>動画風アニメーション</span>
+      <span>Spline風3D</span>
+      <span>スマホ対応</span>
+      <span>基本SEO設定</span>
+    </section>
+
+    <section class="motion-section" id="motion">
+      <div class="section-header">
+        <p class="section-label">How It Works</p>
+        <h2>動画の作り方を、HP制作に置き換える。</h2>
+        <p>AutoAEやSplineのように、まずテンプレートを選び、プロンプトや3D演出で印象を決め、必要な文字や写真を差し替えて公開します。</p>
+      </div>
+      <div class="motion-steps">
+        <article>
+          <span>01</span>
+          <h3>雰囲気を言葉にする</h3>
+          <p>「近未来」「高級感」「白くて清潔」「美容室向け」など、作りたい印象を短くまとめます。</p>
+        </article>
+        <article>
+          <span>02</span>
+          <h3>演出テンプレートを選ぶ</h3>
+          <p>文字表示、検索風タイピング、浮遊カード、3Dオブジェクト、スクロール連動などを選びます。</p>
+        </article>
+        <article>
+          <span>03</span>
+          <h3>HPに組み込む</h3>
+          <p>動画素材として貼る方法と、CSS/JavaScriptで軽く動かす方法を内容に合わせて使い分けます。</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="spline-section" id="spline">
+      <div class="spline-copy">
+        <p class="section-label">Spline Style</p>
+        <h2>3Dの“触れる感じ”で、第一印象を強くする。</h2>
+        <p>Splineで作るような立体感を、HPのヒーローやサービス紹介に合わせて再現します。軽いCSS演出なら読み込みも速く、スマホでも見せやすいです。</p>
+        <div class="spline-tags" aria-label="3D演出の例">
+          <span>Floating Logo</span>
+          <span>Glass Cards</span>
+          <span>Interactive Tilt</span>
+        </div>
+      </div>
+      <div class="spline-preview" aria-label="Spline風3Dプレビュー">
+        <div class="spline-scene">
+          <div class="spline-grid"></div>
+          <div class="spline-orb orb-a"></div>
+          <div class="spline-orb orb-b"></div>
+          <div class="spline-object">
+            <span class="object-face face-front">HP</span>
+            <span class="object-face face-top"></span>
+            <span class="object-face face-side"></span>
+          </div>
+          <div class="spline-card card-a">
+            <strong>AI Prompt</strong>
+            <span>未来感のあるトップページ</span>
+          </div>
+          <div class="spline-card card-b">
+            <strong>3D Motion</strong>
+            <span>スクロールでふわっと表示</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="scroll-section" id="scroll">
+      <div class="scroll-sticky">
+        <div class="scroll-copy">
+          <p class="section-label">3D Scroll Website</p>
+          <h2>動画をフレーム化して、スクロールで動くLPにする。</h2>
+          <p>Seedanceなどで作った4秒動画をJPG連番に変換し、スクロール量に合わせて表示します。ページを読むだけで、動画が進むような見せ方になります。</p>
+        </div>
+        <div class="frame-player" aria-label="フレーム化した動画のスクロール演出">
+          <div class="frame-screen">
+            <div class="frame-frame frame-1"></div>
+            <div class="frame-frame frame-2"></div>
+            <div class="frame-frame frame-3"></div>
+            <div class="frame-frame frame-4"></div>
+            <div class="frame-frame frame-5"></div>
+            <div class="frame-caption">
+              <span>FRAME 001 - 120</span>
+              <strong>Hero image to scroll motion</strong>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="scroll-steps" aria-label="動画フレーム化の手順">
+        <article>
+          <span>STEP 1</span>
+          <h3>ベース画像を作る</h3>
+          <p>HPの世界観になる1枚を作り、ヒーロー演出の元にします。</p>
+        </article>
+        <article>
+          <span>STEP 2</span>
+          <h3>4秒動画にする</h3>
+          <p>Seedanceなどで短いmp4にして、動きの方向性を決めます。</p>
+        </article>
+        <article>
+          <span>STEP 3</span>
+          <h3>JPG連番に変換</h3>
+          <p>mp4をフレーム化して、Webで読み込める素材にします。</p>
+        </article>
+        <article>
+          <span>STEP 4</span>
+          <h3>LPに組み込む</h3>
+          <p>スクロール量に合わせて画像が切り替わるように実装します。</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="ai-build-section" id="aibuild">
+      <div class="ai-build-shell">
+        <div class="ai-build-copy">
+          <p class="section-label">AI Build Workflow</p>
+          <h2>素材とURLを渡して、AIにサイトの下書きを作らせる。</h2>
+          <p>動画、テキスト、参考サイトURLをまとめてAIに渡し、デザイン方針・構成・アニメーション案を一気に作ります。最後は人が整えて、軽くて見やすいHPに仕上げます。</p>
+        </div>
+        <div class="ai-console" aria-label="AIサイト生成の入力イメージ">
+          <div class="console-tabs">
+            <span class="is-active">Full Stack App</span>
+            <span>Mobile App</span>
+          </div>
+          <div class="upload-row">
+            <span>MP4</span>
+            <span>TXT</span>
+            <span>URL</span>
+          </div>
+          <div class="console-input">
+            <p>この動画と参考サイトを使って、3Dスクロールのランディングページを作ってください。</p>
+            <strong>https://example.com/reference</strong>
+          </div>
+          <div class="model-row">
+            <span>Claude / GPT</span>
+            <span>Design Prompt</span>
+            <span>Website Link</span>
+          </div>
+        </div>
+      </div>
+      <div class="ai-build-points">
+        <article>
+          <h3>丸投げではなく、設計して使う</h3>
+          <p>AIには方向性を作らせ、料金・導線・スマホ表示・SEOは人が確認します。</p>
+        </article>
+        <article>
+          <h3>重くなりすぎない形に調整</h3>
+          <p>3Dや動画演出は見た目だけでなく、読み込み速度も考えて軽量化します。</p>
+        </article>
+        <article>
+          <h3>公開できるHPに仕上げる</h3>
+          <p>AIの下書きをそのまま出さず、問い合わせにつながる構成へ整えます。</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section split" id="plans">
+      <div class="section-copy">
+        <p class="section-label">Price</p>
+        <h2>テンプレートだから早い。AI演出で、ちゃんとかっこいい。</h2>
+        <p>高額なフルオーダーではなく、実績あるテンプレートとAI制作フローを組み合わせます。格安・短期でも、第一印象で目を引くトップページを作れます。</p>
+      </div>
+      <div class="pricing-card">
+        <p class="plan-name">スタートプラン</p>
+        <div class="price">15,000円〜<small>税込 16,500円〜</small></div>
         <ul>
-          <li><a href="#how">作り方</a></li>
-          <li><a href="#templates">テンプレート</a></li>
-          <li><a href="#price">料金</a></li>
-          <li><a href="#faq">よくある質問</a></li>
+          <li>トップページ制作</li>
+          <li>AIプロンプト作成サポート</li>
+          <li>動画風・3D風の簡易アニメーション</li>
+          <li>Spline風の立体ヒーロー演出</li>
+          <li>スマホ・PC対応</li>
+          <li>写真・文章の差し替え</li>
+          <li>問い合わせボタン設置</li>
+          <li>Googleマップ・SNSリンク設置</li>
+          <li>基本SEO設定</li>
         </ul>
+        <p class="note">ドメイン・サーバー費用、追加ページ、予約機能などは内容に応じてお見積もりします。</p>
       </div>
-      <div>
-        <h4>お問い合わせ</h4>
-        <ul>
-          <li><a href="tel:011-000-0000">📞 011-000-0000</a></li>
-          <li><a href="#">💬 LINE相談</a></li>
-          <li><a href="mailto:info@sakutto-hp.jp">✉ info@sakutto-hp.jp</a></li>
-        </ul>
+    </section>
+
+    <section class="section muted" id="ai">
+      <div class="section-header">
+        <p class="section-label">AI Support</p>
+        <h2>AIで、文章づくりも速く。</h2>
+        <p>「何を書けばいいかわからない」状態からでも大丈夫です。業種や強みをヒアリングし、AIを使ってたたき台を作り、人の目で自然な言葉に整えます。</p>
       </div>
-    </div>
-    <div class="footer-bottom">
-      &copy; 2026 サクッとHP All rights reserved.
-    </div>
-  </div>
-</footer>
+      <div class="feature-grid">
+        <article class="feature-card">
+          <span class="icon text-icon">文</span>
+          <h3>文章作成</h3>
+          <p>サービス紹介、よくある質問、店舗紹介などの原稿づくりをサポートします。</p>
+        </article>
+        <article class="feature-card">
+          <span class="icon layout-icon">配</span>
+          <h3>構成整理</h3>
+          <p>お客様が迷わず問い合わせできる順番に、情報をわかりやすく並べます。</p>
+        </article>
+        <article class="feature-card">
+          <span class="icon seo-icon">検</span>
+          <h3>検索対策</h3>
+          <p>地域名、業種名、サービス名を意識した基本的なSEO文章を整えます。</p>
+        </article>
+      </div>
+    </section>
 
-<script>
-// Hamburger
-const hamburger = document.getElementById('hamburger');
-const navLinks = document.getElementById('navLinks');
-hamburger.addEventListener('click', () => navLinks.classList.toggle('open'));
-navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => navLinks.classList.remove('open')));
+    <section class="section" id="templates">
+      <div class="section-header">
+        <p class="section-label">Templates</p>
+        <h2>業種に合わせて、テンプレートを選べます。</h2>
+        <p>既存の形があるから速く、安く、仕上がりも安定。色・写真・文章を変えて、あなたの事業らしく整えます。</p>
+      </div>
+      <div class="template-grid">
+        <article class="template-card">
+          <img src="portfolio1.png" alt="店舗向けテンプレートの画面例">
+          <div>
+            <p class="badge">店舗向け</p>
+            <h3>飲食店・美容室・整体院</h3>
+            <p>メニュー、営業時間、アクセス、予約導線を見やすく配置します。</p>
+          </div>
+        </article>
+        <article class="template-card">
+          <img src="portfolio2.png" alt="サービス業向けテンプレートの画面例">
+          <div>
+            <p class="badge">サービス向け</p>
+            <h3>士業・代行業・相談窓口</h3>
+            <p>信頼感、料金、対応範囲、問い合わせまでの流れを整理します。</p>
+          </div>
+        </article>
+        <article class="template-card">
+          <img src="portfolio3.png" alt="企業向けテンプレートの画面例">
+          <div>
+            <p class="badge">企業向け</p>
+            <h3>会社案内・採用・実績紹介</h3>
+            <p>事業内容、強み、実績、採用情報をきちんと伝える構成です。</p>
+          </div>
+        </article>
+      </div>
+    </section>
 
-// Scroll animations
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach((entry, i) => {
-    if (entry.isIntersecting) {
-      setTimeout(() => entry.target.classList.add('visible'), i * 60);
-      observer.unobserve(entry.target);
+    <section class="section muted" id="flow">
+      <div class="section-header">
+        <p class="section-label">Flow</p>
+        <h2>むずかしい準備は、ほとんど不要です。</h2>
+      </div>
+      <div class="flow-list">
+        <article>
+          <span>01</span>
+          <h3>相談</h3>
+          <p>業種、目的、希望の雰囲気を簡単に伺います。</p>
+        </article>
+        <article>
+          <span>02</span>
+          <h3>演出選択</h3>
+          <p>テンプレートと、AI・3D・動画風の見せ方を選びます。</p>
+        </article>
+        <article>
+          <span>03</span>
+          <h3>素材共有</h3>
+          <p>写真、店名、住所、サービス内容などを送っていただきます。</p>
+        </article>
+        <article>
+          <span>04</span>
+          <h3>公開</h3>
+          <p>内容を確認後、公開作業まで対応します。</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section split reverse">
+      <div class="image-panel">
+        <img src="team.png" alt="ホームページ制作を相談している様子">
+      </div>
+      <div class="section-copy">
+        <p class="section-label">For Small Business</p>
+        <h2>はじめてのHPでも、話しながら進められます。</h2>
+        <p>パソコンが苦手でも問題ありません。LINE、電話、メールなど使いやすい方法でやり取りできます。必要な文章も一緒に考えるので、空欄のまま止まりません。</p>
+        <a class="text-link" href="#contact">まずは作れるか相談する</a>
+      </div>
+    </section>
+
+    <section class="section muted" id="faq">
+      <div class="section-header">
+        <p class="section-label">FAQ</p>
+        <h2>よくある質問</h2>
+      </div>
+      <div class="faq-list">
+        <details>
+          <summary>本当にすぐできますか？</summary>
+          <p>写真や掲載内容がそろっていれば、最短即日の公開も可能です。内容量や追加機能がある場合はスケジュールをご案内します。</p>
+        </details>
+        <details>
+          <summary>テンプレートだと安っぽくなりませんか？</summary>
+          <p>色、写真、文章、余白、導線を事業に合わせて調整します。完全オリジナルではありませんが、見やすく信頼感のある仕上がりを目指します。</p>
+        </details>
+        <details>
+          <summary>文章が用意できていません。</summary>
+          <p>AIを使ってたたき台を作成し、自然な表現へ整えます。簡単な箇条書きや口頭の説明だけでも進められます。</p>
+        </details>
+        <details>
+          <summary>公開後の修正はできますか？</summary>
+          <p>軽微な修正や更新のご相談に対応できます。定期的な更新代行が必要な場合は、別途プランをご案内します。</p>
+        </details>
+      </div>
+    </section>
+
+    <section class="contact-section" id="contact">
+      <div class="contact-inner">
+        <p class="section-label">Contact</p>
+        <h2>まずは「こんなHP作れる？」から。</h2>
+        <p>業種、載せたい内容、希望納期を教えてください。テンプレートで対応できるか、費用感と進め方をすぐにお伝えします。</p>
+        <div class="contact-actions">
+          <a class="button primary" href="tel:011-000-0000">電話で相談</a>
+          <a class="button secondary" href="mailto:info@sakutto-hp.jp">メールで相談</a>
+        </div>
+        <p class="contact-note">受付 9:00〜18:00 / 土日祝も相談可</p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div>
+      <strong>サクッとHP</strong>
+      <p>テンプレート活用の格安ホームページ制作</p>
+    </div>
+    <p>&copy; 2026 サクッとHP</p>
+  </footer>
+
+  <script>
+    const menuButton = document.querySelector('.menu-button');
+    const navLinks = document.querySelector('.nav-links');
+    const splinePreview = document.querySelector('.spline-preview');
+    const interactiveDemo = document.querySelector('.InteractiveHeroDemo');
+
+    menuButton.addEventListener('click', () => {
+      const isOpen = navLinks.classList.toggle('is-open');
+      menuButton.setAttribute('aria-expanded', String(isOpen));
+    });
+
+    navLinks.querySelectorAll('a').forEach((link) => {
+      link.addEventListener('click', () => {
+        navLinks.classList.remove('is-open');
+        menuButton.setAttribute('aria-expanded', 'false');
+      });
+    });
+
+    if (splinePreview) {
+      splinePreview.addEventListener('pointermove', (event) => {
+        const rect = splinePreview.getBoundingClientRect();
+        const x = ((event.clientX - rect.left) / rect.width - 0.5) * 12;
+        const y = ((event.clientY - rect.top) / rect.height - 0.5) * -12;
+        splinePreview.style.setProperty('--tilt-x', `${y}deg`);
+        splinePreview.style.setProperty('--tilt-y', `${x}deg`);
+      });
+
+      splinePreview.addEventListener('pointerleave', () => {
+        splinePreview.style.setProperty('--tilt-x', '0deg');
+        splinePreview.style.setProperty('--tilt-y', '0deg');
+      });
     }
-  });
-}, { threshold: 0.12 });
-document.querySelectorAll('.animate-on-scroll').forEach(el => observer.observe(el));
 
-// Smooth scroll
-document.querySelectorAll('a[href^="#"]').forEach(a => {
-  a.addEventListener('click', e => {
-    e.preventDefault();
-    const t = document.querySelector(a.getAttribute('href'));
-    if (t) t.scrollIntoView({ behavior: 'smooth', block: 'start' });
-  });
-});
-</script>
+    if (interactiveDemo) {
+      const steps = Array.from(interactiveDemo.querySelectorAll('.lab-step'));
+      const promptButton = interactiveDemo.querySelector('.lab-prompt-pill');
+      const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+      const coarsePointer = window.matchMedia('(hover: none)');
+      let isDragging = false;
+      let buildTimers = [];
+      let autoTimer = null;
+      let autoStartTimer = null;
+      let currentProgress = 0;
+
+      const getStage = (progress) => {
+        if (progress >= 92) return 'complete';
+        if (progress >= 62) return 'motion';
+        if (progress >= 34) return 'design';
+        if (progress > 5) return 'prompt';
+        return 'idle';
+      };
+
+      const setBuildProgress = (value) => {
+        const progress = Math.max(0, Math.min(100, value));
+        const activeCount = progress >= 70 ? 3 : progress >= 40 ? 2 : progress > 8 ? 1 : 0;
+
+        currentProgress = progress;
+        interactiveDemo.style.setProperty('--build-progress', String(progress));
+        interactiveDemo.dataset.build = getStage(progress);
+        interactiveDemo.classList.toggle('is-building', progress > 8);
+
+        steps.forEach((step, index) => {
+          step.classList.toggle('is-active', index < activeCount);
+        });
+      };
+
+      const clearBuildTimer = () => {
+        buildTimers.forEach((timer) => window.clearTimeout(timer));
+        buildTimers = [];
+      };
+
+      const stopAutoDemo = () => {
+        if (autoStartTimer) {
+          window.clearTimeout(autoStartTimer);
+          autoStartTimer = null;
+        }
+        if (autoTimer) {
+          window.clearInterval(autoTimer);
+          autoTimer = null;
+        }
+      };
+
+      const runBuildSequence = () => {
+        clearBuildTimer();
+        interactiveDemo.classList.add('is-activated');
+        setBuildProgress(0);
+
+        const sequence = [
+          [120, 18],
+          [420, 42],
+          [760, 72],
+          [1080, 100],
+        ];
+
+        sequence.forEach(([delay, progress]) => {
+          const timer = window.setTimeout(() => {
+            setBuildProgress(progress);
+            if (progress === 100) {
+              window.setTimeout(() => interactiveDemo.classList.remove('is-activated'), 720);
+            }
+          }, delay);
+          buildTimers.push(timer);
+        });
+      };
+
+      const updatePointer = (event, useDragProgress) => {
+        const rect = interactiveDemo.getBoundingClientRect();
+        const x = Math.max(0, Math.min(rect.width, event.clientX - rect.left));
+        const y = Math.max(0, Math.min(rect.height, event.clientY - rect.top));
+        const normalizedX = x / rect.width;
+        const normalizedY = y / rect.height;
+
+        interactiveDemo.style.setProperty('--pointer-x', `${normalizedX * 100}%`);
+        interactiveDemo.style.setProperty('--pointer-y', `${normalizedY * 100}%`);
+
+        if (useDragProgress) {
+          clearBuildTimer();
+          setBuildProgress(normalizedX * 100);
+        }
+      };
+
+      const startAutoDemo = () => {
+        if (reduceMotion.matches) return;
+        autoStartTimer = window.setTimeout(runBuildSequence, 900);
+        autoTimer = window.setInterval(() => {
+          if (!isDragging) runBuildSequence();
+        }, coarsePointer.matches ? 6200 : 7600);
+      };
+
+      interactiveDemo.addEventListener('pointerenter', () => {
+        if (!coarsePointer.matches) {
+          interactiveDemo.classList.add('is-hovered');
+          if (currentProgress < 8) setBuildProgress(14);
+        }
+      });
+
+      interactiveDemo.addEventListener('pointermove', (event) => {
+        if (coarsePointer.matches) return;
+        updatePointer(event, isDragging);
+      });
+
+      interactiveDemo.addEventListener('pointerdown', (event) => {
+        stopAutoDemo();
+        isDragging = true;
+        interactiveDemo.classList.add('is-dragging');
+        interactiveDemo.setPointerCapture(event.pointerId);
+        updatePointer(event, true);
+      });
+
+      interactiveDemo.addEventListener('pointerup', (event) => {
+        isDragging = false;
+        interactiveDemo.classList.remove('is-dragging');
+        if (interactiveDemo.hasPointerCapture(event.pointerId)) {
+          interactiveDemo.releasePointerCapture(event.pointerId);
+        }
+      });
+
+      interactiveDemo.addEventListener('pointerleave', () => {
+        if (isDragging || coarsePointer.matches) return;
+        interactiveDemo.classList.remove('is-hovered');
+        if (currentProgress <= 16) setBuildProgress(0);
+      });
+
+      interactiveDemo.addEventListener('click', (event) => {
+        if (event.target.closest('.lab-preview-card a')) return;
+        stopAutoDemo();
+        runBuildSequence();
+      });
+
+      promptButton?.addEventListener('click', (event) => {
+        event.stopPropagation();
+        stopAutoDemo();
+        runBuildSequence();
+      });
+
+      if (reduceMotion.matches) {
+        setBuildProgress(100);
+      } else {
+        setBuildProgress(0);
+        startAutoDemo();
+      }
+
+      window.addEventListener('beforeunload', () => {
+        clearBuildTimer();
+        stopAutoDemo();
+      });
+    }
+  </script>
 </body>
 </html>
