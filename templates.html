@@ -35,22 +35,103 @@
 
     <div class="template-demo-list">
       <section class="template-demo" id="food">
-        <div class="demo-toolbar"><div class="demo-dots"><span></span><span></span><span></span></div><strong>01 Restaurant Template</strong></div>
-        <div class="demo-page food">
+        <div class="demo-toolbar"><div class="demo-dots"><span></span><span></span><span></span></div><strong>01 Restaurant Template / 北のテーブル</strong></div>
+        <div class="demo-page food restaurant-template">
           <nav class="demo-nav">
             <div class="demo-brand"><span class="demo-mark">R</span><span>北のテーブル</span></div>
-            <div class="demo-nav-links"><span>Menu</span><span>Lunch</span><span>Access</span></div>
+            <div class="demo-nav-links"><span>Menu</span><span>Concept</span><span>Access</span></div>
             <span class="demo-nav-cta">予約する</span>
           </nav>
-          <div class="demo-hero">
+
+          <div class="restaurant-hero">
             <div>
               <p class="demo-eyebrow">Local Restaurant</p>
-              <h2>今日行きたくなる、<br class="mobile-only">料理が主役のHP。</h2>
-              <p>看板メニュー、営業時間、予約導線を最短で伝える飲食店向けテンプレートです。</p>
-              <div class="demo-actions"><span class="demo-button">メニューを見る</span><span class="demo-button secondary">地図を見る</span></div>
+              <h2>北海道の旬を、<br class="mobile-only">気軽に味わう街のレストラン。</h2>
+              <p>看板メニュー、季節のおすすめ、予約、営業時間、地図までを1ページで伝える飲食店向け完成テンプレートです。</p>
+              <div class="demo-actions"><span class="demo-button">メニューを見る</span><span class="demo-button secondary">席を予約する</span></div>
+              <div class="restaurant-hours">
+                <span>Lunch 11:30-14:30</span>
+                <span>Dinner 17:30-22:00</span>
+              </div>
             </div>
-            <div class="demo-visual"><span class="visual-line one"></span><span class="visual-line two"></span><span class="visual-line three"></span></div>
+            <div class="restaurant-visual" aria-hidden="true">
+              <div class="restaurant-plate"></div>
+              <div class="restaurant-photo-card main"></div>
+              <div class="restaurant-photo-card sub"></div>
+              <div class="restaurant-mini-card">
+                <span>Seasonal Course</span>
+                <strong>3,800円</strong>
+              </div>
+            </div>
           </div>
+
+          <section class="restaurant-section restaurant-concept">
+            <div>
+              <p class="demo-eyebrow">Concept</p>
+              <h3>食材の魅力が伝わる、落ち着いた店紹介。</h3>
+            </div>
+            <p>地元野菜、道産肉、季節の魚介など、お店の強みを短い文章と写真で伝えます。初めての人にも「何が美味しい店か」がすぐ分かる構成です。</p>
+          </section>
+
+          <section class="restaurant-section">
+            <div class="restaurant-section-title">
+              <p class="demo-eyebrow">Menu</p>
+              <h3>おすすめメニュー</h3>
+            </div>
+            <div class="restaurant-menu-grid">
+              <article>
+                <span>Lunch</span>
+                <h4>道産野菜のプレートランチ</h4>
+                <p>彩り野菜とメイン料理を少しずつ楽しめる人気ランチ。</p>
+                <strong>1,480円</strong>
+              </article>
+              <article>
+                <span>Dinner</span>
+                <h4>季節のグリルコース</h4>
+                <p>前菜、メイン、デザートまで味わえる夜の定番。</p>
+                <strong>3,800円</strong>
+              </article>
+              <article>
+                <span>Drink</span>
+                <h4>北海道ワインとクラフトビール</h4>
+                <p>料理に合わせて選べるドリンクメニュー。</p>
+                <strong>680円〜</strong>
+              </article>
+            </div>
+          </section>
+
+          <section class="restaurant-reserve-band">
+            <div>
+              <p class="demo-eyebrow">Reserve</p>
+              <h3>当日予約・貸切相談もすぐ誘導。</h3>
+              <p>電話、LINE、予約フォームなど、店舗に合わせて導線を差し替えできます。</p>
+            </div>
+            <div class="restaurant-reserve-actions">
+              <span>電話する</span>
+              <span>LINE予約</span>
+            </div>
+          </section>
+
+          <section class="restaurant-section">
+            <div class="restaurant-section-title">
+              <p class="demo-eyebrow">Shop Info</p>
+              <h3>店舗情報</h3>
+            </div>
+            <div class="restaurant-info-grid">
+              <article><span>営業時間</span><strong>11:30-14:30 / 17:30-22:00</strong></article>
+              <article><span>定休日</span><strong>水曜日</strong></article>
+              <article><span>住所</span><strong>札幌市中央区サンプル1-2-3</strong></article>
+              <article><span>席数</span><strong>24席 / 貸切相談可</strong></article>
+            </div>
+          </section>
+
+          <section class="restaurant-gallery" aria-label="写真ギャラリー">
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+          </section>
+
           <div class="demo-feature-row">
             <article><span>01</span><h3>メニュー</h3><p>人気メニューと価格を見やすく掲載。</p></article>
             <article><span>02</span><h3>予約</h3><p>電話・フォーム・SNSへ誘導。</p></article>
