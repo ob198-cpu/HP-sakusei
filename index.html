@@ -659,6 +659,43 @@
       <p class="price-footnote">料金は目安です。内容量、素材の有無、公開方法、追加機能によって変わるため、相談時に費用感を確認します。</p>
     </section>
 
+    <section class="quick-estimate-section" id="estimate">
+      <div class="quick-estimate-shell">
+        <div class="quick-estimate-copy">
+          <p class="section-label">Quick Estimate</p>
+          <h2>作りたい形を選ぶと、費用と納期の目安が見えます。</h2>
+          <p>正式な見積もりではありませんが、相談前に「だいたいどの規模か」をつかめます。迷ったら一番近いものを選んでください。</p>
+        </div>
+        <div class="estimate-panel" data-estimate-panel>
+          <div class="estimate-tabs" role="tablist" aria-label="制作規模の選択">
+            <button class="is-active" type="button" data-estimate="simple" aria-pressed="true">シンプル</button>
+            <button type="button" data-estimate="motion" aria-pressed="false">演出あり</button>
+            <button type="button" data-estimate="multi" aria-pressed="false">複数ページ</button>
+          </div>
+          <div class="estimate-result" aria-live="polite">
+            <p class="badge" data-estimate-label>Simple Plan</p>
+            <div class="estimate-main">
+              <div>
+                <span>制作費目安</span>
+                <strong data-estimate-price>15,000円〜</strong>
+              </div>
+              <div>
+                <span>公開目安</span>
+                <strong data-estimate-time>最短即日〜</strong>
+              </div>
+            </div>
+            <p data-estimate-desc>トップページ中心で、サービス紹介・料金・問い合わせ導線を整える基本制作です。</p>
+            <ul data-estimate-points>
+              <li>トップページ制作</li>
+              <li>スマホ・PC対応</li>
+              <li>基本SEO設定</li>
+            </ul>
+            <a href="#contact">この規模で相談する</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <section class="deliverables-section" id="deliverables">
       <div class="section-header">
         <p class="section-label">Deliverables</p>
@@ -930,6 +967,7 @@
     const navLinks = document.querySelector('.nav-links');
     const splinePreview = document.querySelector('.spline-preview');
     const interactiveDemo = document.querySelector('.InteractiveHeroDemo');
+    const estimatePanel = document.querySelector('[data-estimate-panel]');
 
     menuButton.addEventListener('click', () => {
       const isOpen = navLinks.classList.toggle('is-open');
@@ -942,6 +980,59 @@
         menuButton.setAttribute('aria-expanded', 'false');
       });
     });
+
+    if (estimatePanel) {
+      const estimateData = {
+        simple: {
+          label: 'Simple Plan',
+          price: '15,000円〜',
+          time: '最短即日〜',
+          desc: 'トップページ中心で、サービス紹介・料金・問い合わせ導線を整える基本制作です。',
+          points: ['トップページ制作', 'スマホ・PC対応', '基本SEO設定'],
+          accent: '22%',
+        },
+        motion: {
+          label: 'Motion Plan',
+          price: '25,000円〜',
+          time: '2〜4日目安',
+          desc: '3D風ヒーロー、文字演出、スクロール演出など、第一印象を強めたい場合の目安です。',
+          points: ['3D風ヒーロー', '動画風アニメーション', '演出調整'],
+          accent: '52%',
+        },
+        multi: {
+          label: 'Multi Page',
+          price: '35,000円〜',
+          time: '3〜7日目安',
+          desc: 'トップページに加えて、会社概要・メニュー詳細・実績など複数ページを整える場合の目安です。',
+          points: ['複数ページ', '情報整理', '公開前チェック'],
+          accent: '82%',
+        },
+      };
+      const buttons = Array.from(estimatePanel.querySelectorAll('[data-estimate]'));
+      const label = estimatePanel.querySelector('[data-estimate-label]');
+      const price = estimatePanel.querySelector('[data-estimate-price]');
+      const time = estimatePanel.querySelector('[data-estimate-time]');
+      const desc = estimatePanel.querySelector('[data-estimate-desc]');
+      const points = estimatePanel.querySelector('[data-estimate-points]');
+
+      const renderEstimate = (key) => {
+        const item = estimateData[key] || estimateData.simple;
+        label.textContent = item.label;
+        price.textContent = item.price;
+        time.textContent = item.time;
+        desc.textContent = item.desc;
+        points.innerHTML = item.points.map((point) => `<li>${point}</li>`).join('');
+        estimatePanel.style.setProperty('--estimate-x', item.accent);
+        buttons.forEach((button) => {
+          button.classList.toggle('is-active', button.dataset.estimate === key);
+          button.setAttribute('aria-pressed', String(button.dataset.estimate === key));
+        });
+      };
+
+      buttons.forEach((button) => {
+        button.addEventListener('click', () => renderEstimate(button.dataset.estimate));
+      });
+    }
 
     if (splinePreview) {
       splinePreview.addEventListener('pointermove', (event) => {
