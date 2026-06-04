@@ -1635,11 +1635,45 @@ img {
   text-align: center;
 }
 
+.price-summary {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+  margin-top: 28px;
+}
+
+.price-summary article {
+  padding: 18px;
+  border: 1px solid rgba(20, 18, 36, 0.1);
+  border-radius: 10px;
+  background:
+    radial-gradient(circle at 86% 18%, rgba(115, 87, 255, 0.1), transparent 28%),
+    rgba(255, 255, 255, 0.78);
+}
+
+.price-summary span,
+.price-option-grid span {
+  color: var(--brand);
+  font-size: 0.74rem;
+  font-weight: 900;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.price-summary strong {
+  display: block;
+  margin-top: 5px;
+  font-size: 1.12rem;
+  line-height: 1.25;
+}
+
 .pricing-card {
   padding: clamp(28px, 5vw, 46px);
   border: 1px solid var(--line);
   border-radius: 8px;
-  background: var(--white);
+  background:
+    radial-gradient(circle at 86% 14%, rgba(255, 79, 163, 0.1), transparent 28%),
+    var(--white);
   box-shadow: var(--shadow);
 }
 
@@ -1687,6 +1721,65 @@ img {
   margin: 22px 0 0;
   color: var(--muted);
   font-size: 0.86rem;
+}
+
+.pricing-cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 46px;
+  margin-top: 24px;
+  padding: 12px 18px;
+  border-radius: 999px;
+  color: var(--white);
+  background: linear-gradient(135deg, var(--brand), var(--hot));
+  font-weight: 900;
+  box-shadow: 0 16px 38px rgba(115, 87, 255, 0.22);
+}
+
+.price-option-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 14px;
+  grid-column: 1 / -1;
+  margin-top: 12px;
+}
+
+.price-option-grid article {
+  min-height: 220px;
+  padding: 22px;
+  border: 1px solid rgba(20, 18, 36, 0.1);
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.82);
+  box-shadow: 0 14px 32px rgba(52, 37, 25, 0.06);
+}
+
+.price-option-grid h3 {
+  margin: 9px 0 8px;
+  font-size: 1.08rem;
+}
+
+.price-option-grid p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.9rem;
+  line-height: 1.7;
+}
+
+.price-option-grid strong {
+  display: block;
+  margin-top: 18px;
+  color: var(--ink);
+  font-size: 1.08rem;
+}
+
+.price-footnote {
+  grid-column: 1 / -1;
+  max-width: 860px;
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.9rem;
+  line-height: 1.7;
 }
 
 .feature-grid,
@@ -2183,6 +2276,8 @@ img {
   .scroll-steps,
   .ai-build-shell,
   .ai-build-points,
+  .price-summary,
+  .price-option-grid,
   .contact-checklist,
   .faq-list {
     grid-template-columns: 1fr;
