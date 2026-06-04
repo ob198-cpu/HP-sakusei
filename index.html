@@ -379,6 +379,41 @@
       </div>
     </section>
 
+    <section class="template-finder-section" id="template-finder">
+      <div class="finder-shell" data-template-finder>
+        <div class="finder-copy">
+          <p class="section-label">Template Finder</p>
+          <h2>業種を選ぶと、おすすめテンプレートが分かります。</h2>
+          <p>迷ったら近い業種を選んでください。必要な導線や見せ方を、相談時に一緒に調整します。</p>
+        </div>
+        <div class="finder-panel">
+          <div class="finder-buttons" aria-label="業種を選択">
+            <button class="is-active" type="button" data-template-key="food" aria-pressed="true">飲食</button>
+            <button type="button" data-template-key="salon" aria-pressed="false">美容</button>
+            <button type="button" data-template-key="it" aria-pressed="false">IT</button>
+            <button type="button" data-template-key="care" aria-pressed="false">整体</button>
+            <button type="button" data-template-key="professional" aria-pressed="false">士業</button>
+            <button type="button" data-template-key="construction" aria-pressed="false">建設</button>
+            <button type="button" data-template-key="pet" aria-pressed="false">ペット</button>
+            <button type="button" data-template-key="shop" aria-pressed="false">小売</button>
+            <button type="button" data-template-key="school" aria-pressed="false">教室</button>
+            <button type="button" data-template-key="stay" aria-pressed="false">宿泊</button>
+          </div>
+          <article class="finder-result" aria-live="polite">
+            <p class="badge" data-template-category>Restaurant</p>
+            <h3 data-template-title>飲食店向けテンプレート</h3>
+            <p data-template-desc>メニュー、予約、地図、営業時間をすぐ見せたい店舗向け。初めて来る人が迷わない構成です。</p>
+            <ul data-template-points>
+              <li>メニュー掲載</li>
+              <li>予約・電話導線</li>
+              <li>地図・営業時間</li>
+            </ul>
+            <a href="templates.html#food" data-template-link>この見本を見る</a>
+          </article>
+        </div>
+      </div>
+    </section>
+
     <section class="case-section" id="cases">
       <div class="section-header">
         <p class="section-label">Use Cases</p>
@@ -1099,6 +1134,7 @@
     const interactiveDemo = document.querySelector('.InteractiveHeroDemo');
     const estimatePanel = document.querySelector('[data-estimate-panel]');
     const beforeAfter = document.querySelector('[data-before-after]');
+    const templateFinder = document.querySelector('[data-template-finder]');
 
     menuButton.addEventListener('click', () => {
       const isOpen = navLinks.classList.toggle('is-open');
@@ -1111,6 +1147,105 @@
         menuButton.setAttribute('aria-expanded', 'false');
       });
     });
+
+    if (templateFinder) {
+      const templates = {
+        food: {
+          category: 'Restaurant',
+          title: '飲食店向けテンプレート',
+          desc: 'メニュー、予約、地図、営業時間をすぐ見せたい店舗向け。初めて来る人が迷わない構成です。',
+          points: ['メニュー掲載', '予約・電話導線', '地図・営業時間'],
+          href: 'templates.html#food',
+        },
+        salon: {
+          category: 'Beauty',
+          title: '美容・サロン向けテンプレート',
+          desc: '写真の印象、料金表、スタッフ紹介、LINE予約を上品に見せたいサロン向けです。',
+          points: ['写真ギャラリー', '料金表', 'LINE予約'],
+          href: 'templates.html#salon',
+        },
+        it: {
+          category: 'IT / AI',
+          title: 'IT・AI企業向けテンプレート',
+          desc: 'SaaS、AIツール、開発会社など、先進性と信頼感を短く強く見せたい方向けです。',
+          points: ['機能紹介', '導入効果', '資料請求CTA'],
+          href: 'templates.html#it',
+        },
+        care: {
+          category: 'Care',
+          title: '整体・治療院向けテンプレート',
+          desc: '悩み別導線、施術内容、料金、口コミを整理して安心感を作る構成です。',
+          points: ['悩み別導線', '施術内容', '口コミ'],
+          href: 'templates.html#care',
+        },
+        professional: {
+          category: 'Professional',
+          title: '士業・専門家向けテンプレート',
+          desc: '相談内容、プロフィール、実績、問い合わせを落ち着いた印象で見せます。',
+          points: ['相談内容', 'プロフィール', '実績'],
+          href: 'templates.html#professional',
+        },
+        construction: {
+          category: 'Construction',
+          title: '建設・工務店向けテンプレート',
+          desc: '施工実績、対応エリア、見積相談を見せ、信頼と問い合わせにつなげます。',
+          points: ['施工実績', '対応エリア', '見積相談'],
+          href: 'templates.html#construction',
+        },
+        pet: {
+          category: 'Pet',
+          title: 'ペットショップ向けテンプレート',
+          desc: 'トリミング、ホテル、商品紹介をやさしく見せ、予約や来店につなげる構成です。',
+          points: ['トリミング', 'ホテル', '商品紹介'],
+          href: 'templates.html#pet',
+        },
+        shop: {
+          category: 'Retail',
+          title: '小売・EC向けテンプレート',
+          desc: '商品、ブランドストーリー、購入導線を整理して、買いやすさを作ります。',
+          points: ['商品紹介', 'ブランド紹介', '購入導線'],
+          href: 'templates.html#shop',
+        },
+        school: {
+          category: 'School',
+          title: '教室・スクール向けテンプレート',
+          desc: 'コース、料金、体験申込を見やすく並べ、保護者や受講者が比較しやすい形にします。',
+          points: ['コース紹介', '料金', '体験申込'],
+          href: 'templates.html#school',
+        },
+        stay: {
+          category: 'Travel',
+          title: '宿泊・観光向けテンプレート',
+          desc: '写真、施設案内、予約、アクセスを魅力的に伝え、現地の雰囲気まで見せます。',
+          points: ['施設写真', '予約導線', 'アクセス'],
+          href: 'templates.html#stay',
+        },
+      };
+      const buttons = Array.from(templateFinder.querySelectorAll('[data-template-key]'));
+      const category = templateFinder.querySelector('[data-template-category]');
+      const title = templateFinder.querySelector('[data-template-title]');
+      const desc = templateFinder.querySelector('[data-template-desc]');
+      const points = templateFinder.querySelector('[data-template-points]');
+      const link = templateFinder.querySelector('[data-template-link]');
+
+      const renderTemplate = (key) => {
+        const item = templates[key] || templates.food;
+        category.textContent = item.category;
+        title.textContent = item.title;
+        desc.textContent = item.desc;
+        points.innerHTML = item.points.map((point) => `<li>${point}</li>`).join('');
+        link.href = item.href;
+        buttons.forEach((button) => {
+          const isActive = button.dataset.templateKey === key;
+          button.classList.toggle('is-active', isActive);
+          button.setAttribute('aria-pressed', String(isActive));
+        });
+      };
+
+      buttons.forEach((button) => {
+        button.addEventListener('click', () => renderTemplate(button.dataset.templateKey));
+      });
+    }
 
     if (estimatePanel) {
       const estimateData = {
