@@ -1843,9 +1843,9 @@ img {
   background: rgba(20, 184, 166, 0.12);
 }
 
-.template-state.is-building {
-  color: #6d4bd8;
-  background: rgba(115, 87, 255, 0.1);
+.template-state.is-basic {
+  color: #3153c8;
+  background: rgba(64, 96, 220, 0.1);
 }
 
 .template-product-card p:not(.badge):not(.template-state) {
