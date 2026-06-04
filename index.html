@@ -1051,6 +1051,38 @@
       </div>
     </section>
 
+    <section class="message-builder-section" id="message">
+      <div class="message-builder-shell" data-message-builder>
+        <div class="message-builder-copy">
+          <p class="section-label">Message Builder</p>
+          <h2>相談文も、そのまま使える形にしておきました。</h2>
+          <p>問い合わせの文章を考えるのが面倒な場合は、近い内容を選んで送ってください。空欄のままでも、こちらで一緒に整理できます。</p>
+        </div>
+        <div class="message-builder-panel">
+          <div class="message-tabs" aria-label="相談文テンプレートを選択">
+            <button class="is-active" type="button" data-message-key="quick" aria-pressed="true">最短公開</button>
+            <button type="button" data-message-key="motion" aria-pressed="false">演出重視</button>
+            <button type="button" data-message-key="unsure" aria-pressed="false">未定相談</button>
+          </div>
+          <label class="message-output-label" for="consult-message">相談文テンプレート</label>
+          <textarea id="consult-message" data-message-output>HP制作の相談です。
+
+業種:
+目的:
+希望テンプレート:
+載せたい内容:
+希望納期:
+
+低予算・短期で公開できるか相談したいです。</textarea>
+          <div class="message-actions">
+            <button type="button" data-copy-message>相談文をコピー</button>
+            <a href="#contact">送信先を見る</a>
+          </div>
+          <p class="message-copy-status" data-copy-status aria-live="polite">必要なところだけ書き換えて使えます。</p>
+        </div>
+      </div>
+    </section>
+
     <section class="section split reverse">
       <div class="image-panel">
         <img src="team.png" alt="ホームページ制作を相談している様子">
@@ -1135,6 +1167,7 @@
     const estimatePanel = document.querySelector('[data-estimate-panel]');
     const beforeAfter = document.querySelector('[data-before-after]');
     const templateFinder = document.querySelector('[data-template-finder]');
+    const messageBuilder = document.querySelector('[data-message-builder]');
 
     menuButton.addEventListener('click', () => {
       const isOpen = navLinks.classList.toggle('is-open');
@@ -1244,6 +1277,67 @@
 
       buttons.forEach((button) => {
         button.addEventListener('click', () => renderTemplate(button.dataset.templateKey));
+      });
+    }
+
+    if (messageBuilder) {
+      const messages = {
+        quick: `HP制作の相談です。
+
+業種:
+目的:
+希望テンプレート:
+載せたい内容:
+希望納期:
+
+低予算・短期で公開できるか相談したいです。`,
+        motion: `HP制作の相談です。
+
+業種:
+参考にしたい雰囲気:
+使いたいテンプレート:
+入れたい演出:
+載せたい内容:
+希望納期:
+
+3D風・動画風の演出を入れて、印象の強いHPにしたいです。`,
+        unsure: `HP制作の相談です。
+
+業種:
+載せたい内容:
+今困っていること:
+希望納期:
+
+テンプレートや構成はまだ決まっていません。どの形が合うか相談したいです。`,
+      };
+      const buttons = Array.from(messageBuilder.querySelectorAll('[data-message-key]'));
+      const output = messageBuilder.querySelector('[data-message-output]');
+      const copyButton = messageBuilder.querySelector('[data-copy-message]');
+      const status = messageBuilder.querySelector('[data-copy-status]');
+
+      const renderMessage = (key) => {
+        output.value = messages[key] || messages.quick;
+        status.textContent = '必要なところだけ書き換えて使えます。';
+        buttons.forEach((button) => {
+          const isActive = button.dataset.messageKey === key;
+          button.classList.toggle('is-active', isActive);
+          button.setAttribute('aria-pressed', String(isActive));
+        });
+      };
+
+      buttons.forEach((button) => {
+        button.addEventListener('click', () => renderMessage(button.dataset.messageKey));
+      });
+
+      copyButton?.addEventListener('click', async () => {
+        try {
+          await navigator.clipboard.writeText(output.value);
+          status.textContent = '相談文をコピーしました。';
+        } catch {
+          output.focus();
+          output.select();
+          status.textContent = '相談文を選択しました。コピーして使ってください。';
+        }
       });
     }
 
