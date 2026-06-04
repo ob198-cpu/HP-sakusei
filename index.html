@@ -740,6 +740,57 @@
       </div>
     </section>
 
+    <section class="before-after-section" id="before-after">
+      <div class="section-header">
+        <p class="section-label">Before / After</p>
+        <h2>テンプレートに、伝わる文章と演出を足します。</h2>
+        <p>ただ枠に文字を入れるだけではなく、見た瞬間に「何のサービスか」「どう問い合わせるか」が分かる状態へ整えます。</p>
+      </div>
+      <div class="before-after-shell" data-before-after data-view="before">
+        <div class="before-after-controls" role="tablist" aria-label="表示切り替え">
+          <button class="is-active" type="button" data-before-after-view="before" aria-pressed="true">Before</button>
+          <button type="button" data-before-after-view="after" aria-pressed="false">After</button>
+        </div>
+        <div class="before-after-stage" aria-live="polite">
+          <article class="before-preview">
+            <p class="badge">Template Only</p>
+            <div class="preview-browser-bar" aria-hidden="true"><span></span><span></span><span></span></div>
+            <div class="plain-wire" aria-hidden="true">
+              <i></i><i></i><i></i><i></i>
+            </div>
+            <h3>情報はあるけど、印象が弱い状態</h3>
+            <p>写真、料金、問い合わせ先は載っていても、強みや導線がぼんやりしている状態です。</p>
+          </article>
+          <article class="after-preview">
+            <p class="badge">AI Motion Finish</p>
+            <div class="preview-browser-bar" aria-hidden="true"><span></span><span></span><span></span></div>
+            <div class="motion-wire" aria-hidden="true">
+              <span></span><span></span><span></span><span></span>
+            </div>
+            <h3>見た瞬間に、雰囲気と行動が伝わる状態</h3>
+            <p>AIで文章と構成を整え、3D風・動画風の演出で第一印象と問い合わせ導線を強くします。</p>
+          </article>
+        </div>
+        <div class="before-after-points">
+          <article>
+            <span>01</span>
+            <strong>コピーを整理</strong>
+            <p>誰向けのサービスか、何を頼めるかを短く伝えます。</p>
+          </article>
+          <article>
+            <span>02</span>
+            <strong>導線を強化</strong>
+            <p>電話、メール、予約、SNSへ迷わず進める形にします。</p>
+          </article>
+          <article>
+            <span>03</span>
+            <strong>演出を追加</strong>
+            <p>重すぎない範囲で、動画風・3D風の印象を足します。</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
     <section class="deliverables-section" id="deliverables">
       <div class="section-header">
         <p class="section-label">Deliverables</p>
@@ -1047,6 +1098,7 @@
     const splinePreview = document.querySelector('.spline-preview');
     const interactiveDemo = document.querySelector('.InteractiveHeroDemo');
     const estimatePanel = document.querySelector('[data-estimate-panel]');
+    const beforeAfter = document.querySelector('[data-before-after]');
 
     menuButton.addEventListener('click', () => {
       const isOpen = navLinks.classList.toggle('is-open');
@@ -1110,6 +1162,22 @@
 
       buttons.forEach((button) => {
         button.addEventListener('click', () => renderEstimate(button.dataset.estimate));
+      });
+    }
+
+    if (beforeAfter) {
+      const buttons = Array.from(beforeAfter.querySelectorAll('[data-before-after-view]'));
+      const setBeforeAfter = (view) => {
+        beforeAfter.dataset.view = view;
+        buttons.forEach((button) => {
+          const isActive = button.dataset.beforeAfterView === view;
+          button.classList.toggle('is-active', isActive);
+          button.setAttribute('aria-pressed', String(isActive));
+        });
+      };
+
+      buttons.forEach((button) => {
+        button.addEventListener('click', () => setBeforeAfter(button.dataset.beforeAfterView));
       });
     }
 
