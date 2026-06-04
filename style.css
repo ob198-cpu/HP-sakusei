@@ -2074,6 +2074,46 @@ img {
   color: rgba(255, 255, 255, 0.78);
 }
 
+.contact-checklist {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  margin: 28px auto 26px;
+}
+
+.contact-checklist article {
+  padding: 18px;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.08);
+  text-align: left;
+  backdrop-filter: blur(14px);
+}
+
+.contact-checklist span {
+  color: #9dd7ff;
+  font-size: 0.76rem;
+  font-weight: 900;
+}
+
+.contact-checklist strong,
+.contact-checklist em {
+  display: block;
+}
+
+.contact-checklist strong {
+  margin-top: 7px;
+  font-size: 0.98rem;
+}
+
+.contact-checklist em {
+  margin-top: 5px;
+  color: rgba(255, 255, 255, 0.68);
+  font-size: 0.78rem;
+  font-style: normal;
+  line-height: 1.5;
+}
+
 .contact-section .button.secondary {
   color: var(--white);
   border: 1px solid rgba(255, 255, 255, 0.5);
@@ -2143,6 +2183,7 @@ img {
   .scroll-steps,
   .ai-build-shell,
   .ai-build-points,
+  .contact-checklist,
   .faq-list {
     grid-template-columns: 1fr;
   }
