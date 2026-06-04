@@ -2236,6 +2236,115 @@ img {
   white-space: nowrap;
 }
 
+.fit-section {
+  padding: clamp(72px, 9vw, 116px) clamp(18px, 5vw, 72px);
+  background:
+    radial-gradient(circle at 14% 18%, rgba(53, 160, 255, 0.12), transparent 28%),
+    radial-gradient(circle at 88% 16%, rgba(255, 79, 163, 0.1), transparent 26%),
+    #ffffff;
+}
+
+.fit-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+  width: min(1120px, 100%);
+  margin: 0 auto;
+}
+
+.fit-card {
+  padding: clamp(24px, 4vw, 34px);
+  border: 1px solid rgba(20, 18, 36, 0.1);
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.9);
+  box-shadow: 0 18px 46px rgba(25, 22, 65, 0.08);
+}
+
+.fit-card.is-good {
+  background:
+    radial-gradient(circle at 88% 14%, rgba(53, 160, 255, 0.12), transparent 28%),
+    rgba(255, 255, 255, 0.92);
+}
+
+.fit-card.is-consult {
+  background:
+    radial-gradient(circle at 88% 14%, rgba(255, 79, 163, 0.1), transparent 28%),
+    rgba(255, 255, 255, 0.92);
+}
+
+.fit-card h3 {
+  margin: 12px 0 18px;
+  font-size: 1.28rem;
+}
+
+.fit-card ul {
+  display: grid;
+  gap: 12px;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.fit-card li {
+  padding-left: 22px;
+  position: relative;
+  color: var(--muted);
+  font-size: 0.94rem;
+  line-height: 1.68;
+}
+
+.fit-card li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.7em;
+  width: 9px;
+  height: 9px;
+  border-radius: 999px;
+  background: linear-gradient(135deg, #35a0ff, var(--brand));
+}
+
+.fit-card.is-consult li::before {
+  background: linear-gradient(135deg, var(--brand), var(--hot));
+}
+
+.fit-note {
+  display: grid;
+  grid-template-columns: 0.82fr 1fr auto;
+  gap: 18px;
+  align-items: center;
+  width: min(1120px, 100%);
+  margin: 18px auto 0;
+  padding: 20px 22px;
+  border: 1px solid rgba(20, 18, 36, 0.1);
+  border-radius: 16px;
+  background: rgba(248, 248, 252, 0.92);
+}
+
+.fit-note strong {
+  font-size: 1rem;
+}
+
+.fit-note p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.92rem;
+  line-height: 1.7;
+}
+
+.fit-note a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  padding: 10px 18px;
+  border-radius: 999px;
+  color: var(--white);
+  background: linear-gradient(135deg, var(--brand), var(--hot));
+  font-weight: 900;
+  white-space: nowrap;
+}
+
 .feature-grid,
 .template-grid {
   display: grid;
@@ -3011,6 +3120,8 @@ img {
   .case-grid,
   .deliverables-shell,
   .deliverables-list,
+  .fit-grid,
+  .fit-note,
   .price-summary,
   .price-option-grid,
   .quality-grid,
@@ -3020,11 +3131,13 @@ img {
   }
 
   .compare-note,
+  .fit-note,
   .quality-cta {
     align-items: flex-start;
     flex-direction: column;
   }
 
+  .fit-note a,
   .quality-cta a {
     width: 100%;
   }
