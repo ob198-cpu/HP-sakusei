@@ -1782,6 +1782,84 @@ img {
   line-height: 1.7;
 }
 
+.quality-section {
+  padding: clamp(72px, 9vw, 116px) clamp(18px, 5vw, 72px);
+  color: var(--white);
+  background:
+    radial-gradient(circle at 84% 18%, rgba(255, 79, 163, 0.16), transparent 28%),
+    radial-gradient(circle at 16% 78%, rgba(53, 160, 255, 0.18), transparent 30%),
+    linear-gradient(135deg, #070815, #11152c 58%, #1a0f2a);
+}
+
+.quality-section .section-header p:not(.section-label) {
+  color: rgba(255, 255, 255, 0.72);
+}
+
+.quality-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+  width: min(1120px, 100%);
+  margin: 0 auto;
+}
+
+.quality-grid article {
+  min-height: 190px;
+  padding: 24px;
+  border: 1px solid rgba(255, 255, 255, 0.13);
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.07);
+  box-shadow: 0 18px 44px rgba(0, 0, 0, 0.18);
+}
+
+.quality-grid span {
+  color: #8fd3ff;
+  font-size: 0.76rem;
+  font-weight: 900;
+}
+
+.quality-grid h3 {
+  margin: 10px 0 8px;
+  font-size: 1.08rem;
+}
+
+.quality-grid p {
+  margin: 0;
+  color: rgba(255, 255, 255, 0.68);
+  font-size: 0.9rem;
+  line-height: 1.7;
+}
+
+.quality-cta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  width: min(1120px, 100%);
+  margin: 18px auto 0;
+  padding: 20px 22px;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.quality-cta strong {
+  font-size: 1rem;
+}
+
+.quality-cta a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  padding: 10px 18px;
+  border-radius: 999px;
+  color: var(--white);
+  background: linear-gradient(135deg, var(--brand), var(--hot));
+  font-weight: 900;
+  white-space: nowrap;
+}
+
 .feature-grid,
 .template-grid {
   display: grid;
@@ -2278,9 +2356,19 @@ img {
   .ai-build-points,
   .price-summary,
   .price-option-grid,
+  .quality-grid,
   .contact-checklist,
   .faq-list {
     grid-template-columns: 1fr;
+  }
+
+  .quality-cta {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .quality-cta a {
+    width: 100%;
   }
 
   .hero {
