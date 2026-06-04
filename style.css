@@ -2142,6 +2142,179 @@ img {
   --accent-b: #f59e0b;
 }
 
+.case-section {
+  padding: clamp(72px, 9vw, 116px) clamp(18px, 5vw, 72px);
+  background:
+    radial-gradient(circle at 16% 18%, rgba(53, 160, 255, 0.12), transparent 28%),
+    radial-gradient(circle at 90% 10%, rgba(255, 79, 163, 0.1), transparent 28%),
+    #ffffff;
+}
+
+.case-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+  width: min(1120px, 100%);
+  margin: 0 auto;
+}
+
+.case-grid article {
+  overflow: hidden;
+  border: 1px solid rgba(20, 18, 36, 0.1);
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.86);
+  box-shadow: 0 18px 46px rgba(25, 22, 65, 0.09);
+}
+
+.case-visual {
+  --case-a: #7357ff;
+  --case-b: #ff5a8a;
+  position: relative;
+  min-height: 210px;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 76% 18%, color-mix(in srgb, var(--case-b) 42%, transparent), transparent 28%),
+    radial-gradient(circle at 18% 80%, color-mix(in srgb, var(--case-a) 36%, transparent), transparent 34%),
+    linear-gradient(145deg, color-mix(in srgb, var(--case-a) 12%, #ffffff), #ffffff);
+}
+
+.case-visual::before,
+.case-visual::after,
+.case-visual span {
+  content: '';
+  position: absolute;
+}
+
+.case-visual::before {
+  left: 28px;
+  right: 28px;
+  top: 34px;
+  height: 86px;
+  border: 1px solid rgba(255, 255, 255, 0.74);
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.72);
+  box-shadow: 0 20px 46px rgba(25, 22, 65, 0.12);
+}
+
+.case-visual::after {
+  left: 42px;
+  bottom: 34px;
+  width: 112px;
+  height: 48px;
+  border-radius: 16px;
+  background: linear-gradient(135deg, var(--case-a), var(--case-b));
+}
+
+.case-visual span:nth-child(1) {
+  left: 48px;
+  right: 92px;
+  top: 58px;
+  height: 8px;
+  border-radius: 999px;
+  background: rgba(20, 18, 36, 0.14);
+}
+
+.case-visual span:nth-child(2) {
+  left: 48px;
+  right: 150px;
+  top: 75px;
+  height: 8px;
+  border-radius: 999px;
+  background: rgba(20, 18, 36, 0.1);
+}
+
+.case-visual span:nth-child(3) {
+  right: 34px;
+  bottom: 32px;
+  width: 74px;
+  height: 74px;
+  border-radius: 22px;
+  background: color-mix(in srgb, var(--case-a) 72%, #ffffff);
+  box-shadow: 0 0 34px color-mix(in srgb, var(--case-a) 38%, transparent);
+}
+
+.food-case { --case-a: #e85d2a; --case-b: #ffb347; }
+.salon-case { --case-a: #c96ec9; --case-b: #ff8fb6; }
+.it-case {
+  --case-a: #3aa7ff;
+  --case-b: #a855f7;
+  background:
+    radial-gradient(circle at 76% 18%, rgba(168, 85, 247, 0.42), transparent 28%),
+    radial-gradient(circle at 18% 80%, rgba(58, 167, 255, 0.35), transparent 34%),
+    linear-gradient(145deg, #070b1c, #121733);
+}
+
+.it-case::before {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.14);
+}
+
+.it-case span:nth-child(1),
+.it-case span:nth-child(2) {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.case-copy {
+  padding: 24px;
+}
+
+.case-copy h3 {
+  margin: 8px 0 8px;
+  font-size: 1.18rem;
+  line-height: 1.35;
+}
+
+.case-copy p:not(.badge) {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.92rem;
+  line-height: 1.7;
+}
+
+.case-copy ul {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  padding: 0;
+  margin: 18px 0 0;
+  list-style: none;
+}
+
+.case-copy li {
+  padding: 6px 9px;
+  border-radius: 999px;
+  background: rgba(115, 87, 255, 0.1);
+  color: #4f46e5;
+  font-size: 0.74rem;
+  font-weight: 900;
+}
+
+.case-link-row {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 24px;
+}
+
+.case-link-row a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 46px;
+  padding: 10px 18px;
+  border-radius: 999px;
+  color: var(--white);
+  background: linear-gradient(135deg, var(--brand), var(--hot));
+  font-weight: 900;
+}
+
+.case-link-row a + a {
+  color: var(--ink);
+  background: #ffffff;
+  border: 1px solid rgba(20, 18, 36, 0.12);
+}
+
 @media (max-width: 1180px) {
   .template-product-grid {
     grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -2354,6 +2527,7 @@ img {
   .scroll-steps,
   .ai-build-shell,
   .ai-build-points,
+  .case-grid,
   .price-summary,
   .price-option-grid,
   .quality-grid,
