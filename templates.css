@@ -3399,6 +3399,510 @@ a {
   display: none;
 }
 
+.salon-live-body {
+  color: #251820;
+  background:
+    radial-gradient(circle at 14% 0%, rgba(255, 143, 182, 0.18), transparent 30%),
+    radial-gradient(circle at 86% 12%, rgba(201, 110, 201, 0.16), transparent 32%),
+    linear-gradient(135deg, #fbf5f4, #f7edf1 52%, #f9f1e6);
+}
+
+.salon-live-top {
+  position: sticky;
+  top: 0;
+  z-index: 30;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  padding: 16px clamp(18px, 4vw, 52px);
+  border-bottom: 1px solid rgba(43, 29, 36, 0.1);
+  background: rgba(251, 245, 244, 0.78);
+  backdrop-filter: blur(18px);
+}
+
+.salon-live-top strong {
+  font-size: 0.95rem;
+  font-weight: 900;
+}
+
+.salon-live-top nav {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+
+.salon-live-top a,
+.salon-live-actions a,
+.salon-live-booking a,
+.salon-live-reserve-card a,
+.salon-live-cta a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 42px;
+  padding: 10px 16px;
+  border-radius: 999px;
+  font-size: 0.84rem;
+  font-weight: 900;
+}
+
+.salon-live-top a {
+  border: 1px solid rgba(43, 29, 36, 0.1);
+  background: rgba(255, 255, 255, 0.72);
+  color: #7b4b65;
+}
+
+.salon-live-top a.is-primary,
+.salon-live-actions a:first-child,
+.salon-live-booking a,
+.salon-live-reserve-card a,
+.salon-live-cta a {
+  border-color: transparent;
+  color: #ffffff;
+  background: linear-gradient(135deg, #b6538a, #ff8fb6);
+  box-shadow: 0 16px 34px rgba(182, 83, 138, 0.22);
+}
+
+.salon-live-shell {
+  width: min(1280px, calc(100% - 40px));
+  margin: clamp(24px, 4vw, 44px) auto clamp(42px, 7vw, 78px);
+  overflow: hidden;
+  border: 1px solid rgba(43, 29, 36, 0.1);
+  border-radius: 34px;
+  background: #fff9f7;
+  box-shadow: 0 44px 120px rgba(84, 52, 65, 0.18);
+}
+
+.salon-live-hero {
+  position: relative;
+  min-height: 760px;
+  overflow: hidden;
+  color: #ffffff;
+}
+
+.salon-live-hero > img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.salon-live-hero-overlay {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(90deg, rgba(36, 22, 29, 0.88), rgba(36, 22, 29, 0.46) 48%, rgba(36, 22, 29, 0.2)),
+    linear-gradient(180deg, rgba(36, 22, 29, 0.18), rgba(36, 22, 29, 0.72));
+}
+
+.salon-live-nav {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  padding: 26px clamp(22px, 5vw, 64px);
+}
+
+.salon-live-nav strong {
+  font-size: 1rem;
+  font-weight: 900;
+  letter-spacing: 0.04em;
+}
+
+.salon-live-nav div {
+  display: flex;
+  gap: 18px;
+  color: rgba(255, 255, 255, 0.76);
+  font-size: 0.82rem;
+  font-weight: 900;
+}
+
+.salon-live-nav a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 38px;
+  padding: 8px 14px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.12);
+  font-size: 0.82rem;
+  font-weight: 900;
+  backdrop-filter: blur(12px);
+}
+
+.salon-live-copy {
+  position: relative;
+  z-index: 2;
+  width: min(760px, 100%);
+  padding: clamp(80px, 9vw, 140px) clamp(22px, 5vw, 64px) 36px;
+}
+
+.salon-live-copy h1 {
+  margin: 0;
+  font-size: clamp(3rem, 7vw, 6.5rem);
+  line-height: 0.98;
+  letter-spacing: 0;
+}
+
+.salon-live-copy p:not(.demo-eyebrow) {
+  max-width: 640px;
+  margin: 22px 0 0;
+  color: rgba(255, 255, 255, 0.78);
+  font-weight: 720;
+}
+
+.salon-live-badges,
+.salon-live-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 24px;
+}
+
+.salon-live-badges span {
+  display: inline-flex;
+  align-items: center;
+  min-height: 34px;
+  padding: 7px 12px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 999px;
+  color: rgba(255, 255, 255, 0.88);
+  background: rgba(255, 255, 255, 0.1);
+  font-size: 0.76rem;
+  font-weight: 900;
+  backdrop-filter: blur(12px);
+}
+
+.salon-live-actions a:last-child {
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0.12);
+  box-shadow: none;
+  backdrop-filter: blur(12px);
+}
+
+.salon-live-booking {
+  position: absolute;
+  z-index: 3;
+  right: clamp(22px, 5vw, 64px);
+  bottom: clamp(24px, 5vw, 58px);
+  width: min(360px, calc(100% - 44px));
+  padding: 24px;
+  border: 1px solid rgba(255, 255, 255, 0.24);
+  border-radius: 26px;
+  background: rgba(45, 28, 37, 0.66);
+  box-shadow: 0 26px 70px rgba(32, 16, 24, 0.32);
+  backdrop-filter: blur(18px);
+}
+
+.salon-live-booking > span,
+.salon-live-proof span,
+.salon-live-menu-grid span,
+.salon-live-style-card span,
+.salon-live-reserve-card > span,
+.salon-live-voice-grid span {
+  color: #ffb9d2;
+  font-size: 0.72rem;
+  font-weight: 900;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.salon-live-booking strong {
+  display: block;
+  margin-top: 8px;
+  font-size: 1.35rem;
+  line-height: 1.18;
+}
+
+.salon-live-booking p {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 0.9rem;
+  font-weight: 700;
+}
+
+.salon-live-booking div {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+  color: rgba(255, 255, 255, 0.82);
+  font-size: 0.86rem;
+  font-weight: 850;
+}
+
+.salon-live-booking em {
+  color: rgba(255, 255, 255, 0.58);
+  font-style: normal;
+}
+
+.salon-live-booking a {
+  width: 100%;
+  margin-top: 14px;
+}
+
+.salon-live-proof,
+.salon-live-menu,
+.salon-live-style,
+.salon-live-reserve,
+.salon-live-voice,
+.salon-live-cta {
+  padding: clamp(34px, 5vw, 62px) clamp(22px, 5vw, 64px);
+}
+
+.salon-live-proof {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.salon-live-proof article,
+.salon-live-menu-grid article,
+.salon-live-reserve-card,
+.salon-live-voice-grid article {
+  border: 1px solid rgba(43, 29, 36, 0.1);
+  border-radius: 24px;
+  background: rgba(255, 255, 255, 0.68);
+  box-shadow: 0 18px 52px rgba(84, 52, 65, 0.08);
+}
+
+.salon-live-proof article {
+  padding: 22px;
+}
+
+.salon-live-proof strong {
+  display: block;
+  margin-top: 8px;
+  font-size: 1.08rem;
+}
+
+.salon-live-proof p,
+.salon-live-section-head p,
+.salon-live-style p,
+.salon-live-reserve p,
+.salon-live-voice-grid p,
+.salon-live-cta p {
+  color: #725f69;
+  font-weight: 700;
+}
+
+.salon-live-section-head {
+  display: grid;
+  grid-template-columns: minmax(0, 0.72fr) minmax(0, 1fr);
+  gap: 26px;
+  align-items: start;
+  margin-bottom: 22px;
+}
+
+.salon-live-section-head h2,
+.salon-live-style h2,
+.salon-live-reserve h2,
+.salon-live-voice h2,
+.salon-live-cta h2 {
+  margin: 0;
+  font-size: clamp(1.8rem, 3.4vw, 3.25rem);
+  line-height: 1.13;
+}
+
+.salon-live-menu-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.salon-live-menu-grid article {
+  display: grid;
+  min-height: 260px;
+  padding: 24px;
+  background:
+    radial-gradient(circle at 86% 12%, rgba(255, 143, 182, 0.12), transparent 30%),
+    rgba(255, 255, 255, 0.72);
+}
+
+.salon-live-menu-grid article.is-featured {
+  color: #ffffff;
+  background:
+    radial-gradient(circle at 86% 12%, rgba(255, 255, 255, 0.2), transparent 30%),
+    linear-gradient(135deg, #7b4b65, #d36fa4);
+}
+
+.salon-live-menu-grid h3 {
+  margin: 12px 0 8px;
+  font-size: 1.3rem;
+}
+
+.salon-live-menu-grid p {
+  margin: 0;
+}
+
+.salon-live-menu-grid strong {
+  align-self: end;
+  margin-top: 18px;
+  font-size: 1.16rem;
+}
+
+.salon-live-menu-grid article.is-featured p,
+.salon-live-menu-grid article.is-featured span {
+  color: rgba(255, 255, 255, 0.78);
+}
+
+.salon-live-style,
+.salon-live-reserve,
+.salon-live-voice {
+  display: grid;
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1fr);
+  gap: clamp(24px, 4vw, 48px);
+  align-items: center;
+}
+
+.salon-live-style-card {
+  display: grid;
+  align-content: end;
+  min-height: 420px;
+  padding: 28px;
+  overflow: hidden;
+  border-radius: 30px;
+  color: #ffffff;
+  background:
+    linear-gradient(180deg, rgba(43, 29, 36, 0.02), rgba(43, 29, 36, 0.74)),
+    url('assets/templates/salon-premium-hero.png') 58% center / cover;
+  box-shadow: 0 24px 72px rgba(84, 52, 65, 0.18);
+}
+
+.salon-live-style-card strong {
+  margin-top: 8px;
+  font-size: clamp(1.8rem, 3vw, 3rem);
+  line-height: 1.04;
+}
+
+.salon-live-style-card p {
+  max-width: 400px;
+  color: rgba(255, 255, 255, 0.78);
+}
+
+.salon-live-reserve {
+  color: #ffffff;
+  background:
+    radial-gradient(circle at 80% 12%, rgba(255, 143, 182, 0.22), transparent 30%),
+    linear-gradient(135deg, #2b1d24, #6d3d59 60%, #b6538a);
+}
+
+.salon-live-reserve p {
+  color: rgba(255, 255, 255, 0.72);
+}
+
+.salon-live-reserve-card {
+  padding: 26px;
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.14);
+  box-shadow: 0 24px 72px rgba(32, 16, 24, 0.24);
+}
+
+.salon-live-reserve-card h3 {
+  margin: 8px 0 18px;
+  font-size: 1.6rem;
+}
+
+.salon-live-form-grid {
+  display: grid;
+  gap: 10px;
+}
+
+.salon-live-form-grid label {
+  display: grid;
+  gap: 4px;
+  padding: 13px 14px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 16px;
+  color: rgba(255, 255, 255, 0.58);
+  background: rgba(0, 0, 0, 0.16);
+  font-size: 0.74rem;
+  font-weight: 900;
+}
+
+.salon-live-form-grid strong {
+  color: #ffffff;
+  font-size: 1rem;
+}
+
+.salon-live-reserve-card a {
+  width: 100%;
+  margin-top: 18px;
+}
+
+.salon-live-voice {
+  align-items: start;
+}
+
+.salon-live-voice-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.salon-live-voice-grid article {
+  min-height: 230px;
+  padding: 22px;
+}
+
+.salon-live-voice-grid strong {
+  display: block;
+  margin-top: 18px;
+  line-height: 1.55;
+}
+
+.salon-live-cta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  margin: 0 clamp(22px, 5vw, 64px) clamp(34px, 5vw, 58px);
+  border-radius: 30px;
+  color: #ffffff;
+  background:
+    radial-gradient(circle at 86% 18%, rgba(255, 255, 255, 0.2), transparent 32%),
+    linear-gradient(135deg, #2b1d24, #7b4b65 58%, #d36fa4);
+  box-shadow: 0 24px 70px rgba(84, 52, 65, 0.18);
+}
+
+.salon-live-cta p {
+  max-width: 720px;
+  color: rgba(255, 255, 255, 0.72);
+}
+
+.salon-live-cta a {
+  flex: 0 0 auto;
+  background: #ffffff;
+  color: #7b4b65;
+  box-shadow: none;
+}
+
+.salon-live-footer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  flex-wrap: wrap;
+  padding: 0 20px 34px;
+  color: #725f69;
+  font-size: 0.84rem;
+  font-weight: 800;
+}
+
+.salon-live-footer a {
+  color: #b6538a;
+}
+
+.salon-live-mobile-cta {
+  display: none;
+}
+
 @media (max-width: 1100px) {
   .template-catalog-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -4047,5 +4551,154 @@ a {
   .restaurant-live-mobile-cta a:nth-child(2) {
     color: #20130b;
     background: linear-gradient(135deg, #fff0d8, #c98945);
+  }
+
+  .salon-live-body {
+    padding-bottom: 78px;
+  }
+
+  .salon-live-top {
+    position: static;
+    align-items: flex-start;
+    flex-direction: column;
+    padding: 14px 16px;
+  }
+
+  .salon-live-top nav,
+  .salon-live-top a {
+    width: 100%;
+  }
+
+  .salon-live-shell {
+    width: min(100% - 20px, 1280px);
+    margin-top: 12px;
+    border-radius: 24px;
+  }
+
+  .salon-live-hero {
+    min-height: auto;
+  }
+
+  .salon-live-hero > img {
+    height: 100%;
+    object-position: 58% center;
+  }
+
+  .salon-live-hero-overlay {
+    background:
+      linear-gradient(180deg, rgba(36, 22, 29, 0.78), rgba(36, 22, 29, 0.9)),
+      linear-gradient(90deg, rgba(36, 22, 29, 0.86), rgba(36, 22, 29, 0.36));
+  }
+
+  .salon-live-nav {
+    align-items: flex-start;
+    flex-direction: column;
+    padding: 20px;
+  }
+
+  .salon-live-nav div {
+    display: none;
+  }
+
+  .salon-live-nav a {
+    width: 100%;
+  }
+
+  .salon-live-copy {
+    width: 100%;
+    padding: 54px 20px 28px;
+  }
+
+  .salon-live-copy h1 {
+    font-size: clamp(2.45rem, 12vw, 4rem);
+    line-height: 1.03;
+    overflow-wrap: anywhere;
+  }
+
+  .salon-live-actions a {
+    flex: 1 1 190px;
+  }
+
+  .salon-live-booking {
+    position: relative;
+    right: auto;
+    bottom: auto;
+    width: calc(100% - 40px);
+    margin: 8px 20px 22px;
+  }
+
+  .salon-live-proof,
+  .salon-live-section-head,
+  .salon-live-menu-grid,
+  .salon-live-style,
+  .salon-live-reserve,
+  .salon-live-voice,
+  .salon-live-voice-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .salon-live-proof,
+  .salon-live-menu,
+  .salon-live-style,
+  .salon-live-reserve,
+  .salon-live-voice {
+    padding: 34px 20px;
+  }
+
+  .salon-live-menu-grid article,
+  .salon-live-voice-grid article {
+    min-height: auto;
+  }
+
+  .salon-live-style-card {
+    min-height: 280px;
+    border-radius: 24px;
+  }
+
+  .salon-live-cta {
+    align-items: flex-start;
+    flex-direction: column;
+    margin-left: 20px;
+    margin-right: 20px;
+    padding: 24px;
+    border-radius: 24px;
+  }
+
+  .salon-live-cta a {
+    width: 100%;
+  }
+
+  .salon-live-mobile-cta {
+    position: fixed;
+    left: 10px;
+    right: 10px;
+    bottom: 10px;
+    z-index: 40;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+    padding: 8px;
+    border: 1px solid rgba(43, 29, 36, 0.12);
+    border-radius: 20px;
+    background: rgba(43, 29, 36, 0.82);
+    box-shadow: 0 18px 48px rgba(43, 29, 36, 0.28);
+    backdrop-filter: blur(18px);
+  }
+
+  .salon-live-mobile-cta a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 42px;
+    border-radius: 14px;
+    color: #ffffff;
+    background: rgba(255, 255, 255, 0.1);
+    font-size: 0.82rem;
+    font-weight: 900;
+  }
+
+  .salon-live-mobile-cta a:nth-child(2) {
+    color: #ffffff;
+    background: linear-gradient(135deg, #b6538a, #ff8fb6);
   }
 }
