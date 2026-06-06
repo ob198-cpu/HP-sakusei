@@ -1233,6 +1233,8 @@ a {
 .restaurant-premium-info,
 .restaurant-premium-includes,
 .restaurant-premium-mobile,
+.restaurant-premium-product,
+.restaurant-premium-variants,
 .restaurant-premium-conversion {
   padding: 0 clamp(22px, 5vw, 64px) clamp(32px, 5vw, 56px);
 }
@@ -1495,6 +1497,125 @@ a {
 .phone-sticky span:nth-child(2) {
   color: #201915;
   background: #f4c26e;
+}
+
+.restaurant-product-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.restaurant-product-grid article,
+.restaurant-variant-grid article {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid var(--restaurant-line);
+  border-radius: 22px;
+  background: rgba(255, 255, 255, 0.66);
+  box-shadow: 0 18px 52px rgba(71, 48, 31, 0.08);
+}
+
+.restaurant-product-grid article {
+  min-height: 230px;
+  padding: 22px;
+}
+
+.restaurant-product-grid article::before {
+  content: '';
+  display: block;
+  width: 48px;
+  height: 48px;
+  margin-bottom: 18px;
+  border-radius: 16px;
+  background:
+    radial-gradient(circle at 70% 20%, rgba(255, 255, 255, 0.34), transparent 30%),
+    linear-gradient(145deg, #211813, #c98945);
+}
+
+.restaurant-product-grid span,
+.restaurant-variant-grid span {
+  display: block;
+  color: #c98945;
+  font-size: 0.72rem;
+  font-weight: 900;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.restaurant-product-grid h4 {
+  margin: 10px 0 8px;
+  font-size: 1.08rem;
+  line-height: 1.28;
+}
+
+.restaurant-product-grid p,
+.restaurant-premium-variants p {
+  color: #68594c;
+  font-weight: 680;
+}
+
+.restaurant-premium-variants {
+  display: grid;
+  grid-template-columns: minmax(0, 0.72fr) minmax(0, 1fr);
+  gap: clamp(24px, 5vw, 56px);
+  align-items: center;
+}
+
+.restaurant-premium-variants h3 {
+  margin: 0;
+  font-size: clamp(1.7rem, 3.5vw, 3.2rem);
+  line-height: 1.12;
+}
+
+.restaurant-variant-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.restaurant-variant-grid article {
+  min-height: 260px;
+  padding: 22px;
+  color: #ffffff;
+  background:
+    linear-gradient(180deg, rgba(0, 0, 0, 0.06), rgba(0, 0, 0, 0.54)),
+    url('assets/templates/restaurant-interior-card.png') center / cover;
+}
+
+.restaurant-variant-grid article::after {
+  content: '';
+  position: absolute;
+  inset: auto 18px 18px 18px;
+  height: 2px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, #f4c26e, rgba(255, 255, 255, 0.18));
+}
+
+.restaurant-variant-grid article.is-cafe {
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.08), rgba(64, 35, 18, 0.58)),
+    url('assets/templates/restaurant-premium-hero.png') 58% 62% / 145%;
+}
+
+.restaurant-variant-grid article.is-bar {
+  background:
+    linear-gradient(180deg, rgba(0, 0, 0, 0.02), rgba(14, 8, 6, 0.66)),
+    url('assets/templates/restaurant-dish-card.png') center / cover;
+}
+
+.restaurant-variant-grid strong {
+  display: block;
+  margin-top: 126px;
+  font-size: clamp(1.25rem, 2.4vw, 1.7rem);
+  line-height: 1.12;
+}
+
+.restaurant-variant-grid p {
+  position: relative;
+  z-index: 1;
+  margin: 10px 0 0;
+  color: rgba(255, 248, 238, 0.78);
+  font-size: 0.9rem;
 }
 
 .restaurant-premium-info {
@@ -2408,10 +2529,13 @@ a {
   .restaurant-premium-menu-grid,
   .restaurant-premium-flow,
   .restaurant-premium-package-grid,
+  .restaurant-product-grid,
+  .restaurant-variant-grid,
   .restaurant-premium-section-head,
   .restaurant-premium-conversion,
   .restaurant-premium-info,
-  .restaurant-premium-mobile {
+  .restaurant-premium-mobile,
+  .restaurant-premium-variants {
     grid-template-columns: 1fr;
   }
 
@@ -2421,6 +2545,8 @@ a {
   .restaurant-premium-info,
   .restaurant-premium-includes,
   .restaurant-premium-mobile,
+  .restaurant-premium-product,
+  .restaurant-premium-variants,
   .restaurant-premium-conversion {
     padding-left: 20px;
     padding-right: 20px;
@@ -2437,8 +2563,17 @@ a {
 
   .restaurant-premium-menu-grid article,
   .restaurant-premium-flow article,
-  .restaurant-premium-package-grid article {
+  .restaurant-premium-package-grid article,
+  .restaurant-product-grid article {
     min-height: auto;
+  }
+
+  .restaurant-variant-grid article {
+    min-height: 230px;
+  }
+
+  .restaurant-variant-grid strong {
+    margin-top: 104px;
   }
 
   .restaurant-premium-structure {
