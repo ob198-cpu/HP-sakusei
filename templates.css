@@ -971,12 +971,69 @@ a {
   font-weight: 800;
 }
 
+.template-upgrade-panel {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+  margin-top: 16px;
+}
+
+.template-upgrade-panel article {
+  position: relative;
+  min-height: 188px;
+  padding: 22px;
+  overflow: hidden;
+  border: 1px solid rgba(20, 26, 44, 0.1);
+  border-radius: 20px;
+  background:
+    radial-gradient(circle at 86% 16%, color-mix(in srgb, var(--accent-2) 16%, transparent), transparent 30%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.66));
+  box-shadow: 0 18px 48px rgba(20, 26, 44, 0.08);
+}
+
+.template-upgrade-panel article::after {
+  content: '';
+  position: absolute;
+  left: 22px;
+  right: 22px;
+  bottom: 18px;
+  height: 2px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, var(--accent), var(--accent-2));
+  opacity: 0.72;
+}
+
+.template-upgrade-panel span {
+  color: var(--accent);
+  font-size: 0.68rem;
+  font-weight: 900;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.template-upgrade-panel strong {
+  display: block;
+  margin-top: 12px;
+  font-size: 1.14rem;
+  line-height: 1.22;
+}
+
+.template-upgrade-panel p {
+  margin: 10px 0 18px;
+  color: var(--muted);
+  font-size: 0.86rem;
+  font-weight: 680;
+  line-height: 1.65;
+}
+
 .demo-page.dark .template-detail-heading p:not(.demo-eyebrow),
-.demo-page.dark .template-service-grid p {
+.demo-page.dark .template-service-grid p,
+.demo-page.dark .template-upgrade-panel p {
   color: rgba(255, 255, 255, 0.68);
 }
 
-.demo-page.dark .template-service-grid article {
+.demo-page.dark .template-service-grid article,
+.demo-page.dark .template-upgrade-panel article {
   border-color: rgba(255, 255, 255, 0.12);
   background: rgba(255, 255, 255, 0.07);
 }
@@ -3396,6 +3453,7 @@ a {
   .restaurant-concept,
   .template-detail-heading,
   .template-service-grid,
+  .template-upgrade-panel,
   .restaurant-menu-grid,
   .restaurant-info-grid,
   .restaurant-gallery,
