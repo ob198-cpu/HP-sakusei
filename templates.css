@@ -1231,14 +1231,102 @@ a {
 .restaurant-premium-menu,
 .restaurant-premium-package,
 .restaurant-premium-info,
+.restaurant-premium-commerce,
 .restaurant-premium-decision,
 .restaurant-premium-includes,
 .restaurant-premium-mobile,
 .restaurant-premium-product,
 .restaurant-premium-variants,
 .restaurant-premium-readiness,
+.restaurant-premium-fields,
 .restaurant-premium-conversion {
   padding: 0 clamp(22px, 5vw, 64px) clamp(32px, 5vw, 56px);
+}
+
+.restaurant-premium-commerce {
+  display: grid;
+  grid-template-columns: minmax(0, 0.74fr) minmax(0, 1.1fr);
+  gap: 16px;
+  align-items: stretch;
+}
+
+.restaurant-commerce-main,
+.restaurant-commerce-specs article,
+.restaurant-fields-table {
+  border: 1px solid var(--restaurant-line);
+  border-radius: 24px;
+  background: rgba(255, 255, 255, 0.66);
+  box-shadow: 0 18px 52px rgba(71, 48, 31, 0.08);
+}
+
+.restaurant-commerce-main {
+  padding: clamp(24px, 4vw, 34px);
+}
+
+.restaurant-commerce-main h3 {
+  margin: 0;
+  font-size: clamp(1.9rem, 4vw, 3.45rem);
+  line-height: 1.05;
+}
+
+.restaurant-commerce-main p:not(.demo-eyebrow) {
+  color: #68594c;
+  font-weight: 680;
+}
+
+.restaurant-commerce-tags {
+  display: flex;
+  gap: 9px;
+  flex-wrap: wrap;
+  margin-top: 22px;
+}
+
+.restaurant-commerce-tags span {
+  display: inline-flex;
+  align-items: center;
+  min-height: 34px;
+  padding: 7px 11px;
+  border-radius: 999px;
+  color: #ffffff;
+  background: #201915;
+  font-size: 0.74rem;
+  font-weight: 900;
+}
+
+.restaurant-commerce-specs {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.restaurant-commerce-specs article {
+  display: grid;
+  min-height: 190px;
+  padding: 18px;
+}
+
+.restaurant-commerce-specs span {
+  color: #c98945;
+  font-size: 0.68rem;
+  font-weight: 900;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.restaurant-commerce-specs strong {
+  display: block;
+  align-self: center;
+  font-size: clamp(2.3rem, 5vw, 4rem);
+  line-height: 0.95;
+}
+
+.restaurant-commerce-specs p {
+  align-self: end;
+  margin: 0;
+  color: #68594c;
+  font-size: 0.8rem;
+  font-weight: 680;
+  line-height: 1.5;
 }
 
 .restaurant-premium-decision {
@@ -1747,6 +1835,47 @@ a {
   font-size: 0.88rem;
   font-weight: 680;
   line-height: 1.58;
+}
+
+.restaurant-premium-fields {
+  display: grid;
+  grid-template-columns: minmax(0, 0.68fr) minmax(0, 1fr);
+  gap: clamp(24px, 5vw, 56px);
+  align-items: start;
+}
+
+.restaurant-premium-fields h3 {
+  margin: 0;
+  font-size: clamp(1.7rem, 3.5vw, 3.2rem);
+  line-height: 1.12;
+}
+
+.restaurant-fields-table {
+  display: grid;
+  overflow: hidden;
+}
+
+.restaurant-fields-table div {
+  display: grid;
+  grid-template-columns: 140px minmax(0, 1fr);
+  gap: 18px;
+  padding: 18px 20px;
+  border-bottom: 1px solid var(--restaurant-line);
+}
+
+.restaurant-fields-table div:last-child {
+  border-bottom: 0;
+}
+
+.restaurant-fields-table span {
+  color: #c98945;
+  font-size: 0.82rem;
+  font-weight: 900;
+}
+
+.restaurant-fields-table strong {
+  font-size: 0.94rem;
+  line-height: 1.65;
 }
 
 .restaurant-premium-info {
@@ -2655,6 +2784,8 @@ a {
   }
 
   .restaurant-premium-value,
+  .restaurant-premium-commerce,
+  .restaurant-commerce-specs,
   .restaurant-premium-decision,
   .restaurant-decision-board,
   .restaurant-premium-includes,
@@ -2670,7 +2801,8 @@ a {
   .restaurant-premium-mobile,
   .restaurant-premium-variants,
   .restaurant-premium-readiness,
-  .restaurant-readiness-list {
+  .restaurant-readiness-list,
+  .restaurant-premium-fields {
     grid-template-columns: 1fr;
   }
 
@@ -2678,12 +2810,14 @@ a {
   .restaurant-premium-menu,
   .restaurant-premium-package,
   .restaurant-premium-info,
+  .restaurant-premium-commerce,
   .restaurant-premium-decision,
   .restaurant-premium-includes,
   .restaurant-premium-mobile,
   .restaurant-premium-product,
   .restaurant-premium-variants,
   .restaurant-premium-readiness,
+  .restaurant-premium-fields,
   .restaurant-premium-conversion {
     padding-left: 20px;
     padding-right: 20px;
@@ -2711,6 +2845,19 @@ a {
 
   .restaurant-variant-grid strong {
     margin-top: 104px;
+  }
+
+  .restaurant-commerce-specs article {
+    min-height: auto;
+  }
+
+  .restaurant-commerce-specs strong {
+    margin: 18px 0;
+  }
+
+  .restaurant-fields-table div {
+    grid-template-columns: 1fr;
+    gap: 6px;
   }
 
   .restaurant-premium-structure {
