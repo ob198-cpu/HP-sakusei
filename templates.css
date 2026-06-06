@@ -3903,6 +3903,527 @@ a {
   display: none;
 }
 
+.care-live-body {
+  color: #172822;
+  background:
+    radial-gradient(circle at 14% 0%, rgba(132, 215, 180, 0.2), transparent 30%),
+    radial-gradient(circle at 86% 12%, rgba(22, 160, 133, 0.16), transparent 32%),
+    linear-gradient(135deg, #f5faf6, #eef7f1 52%, #faf5e9);
+}
+
+.care-live-top {
+  position: sticky;
+  top: 0;
+  z-index: 30;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  padding: 16px clamp(18px, 4vw, 52px);
+  border-bottom: 1px solid rgba(23, 40, 34, 0.1);
+  background: rgba(245, 250, 246, 0.78);
+  backdrop-filter: blur(18px);
+}
+
+.care-live-top strong {
+  font-size: 0.95rem;
+  font-weight: 900;
+}
+
+.care-live-top nav {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+
+.care-live-top a,
+.care-live-actions a,
+.care-live-booking a,
+.care-live-reserve-card a,
+.care-live-cta a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 42px;
+  padding: 10px 16px;
+  border-radius: 999px;
+  font-size: 0.84rem;
+  font-weight: 900;
+}
+
+.care-live-top a {
+  border: 1px solid rgba(23, 40, 34, 0.1);
+  background: rgba(255, 255, 255, 0.72);
+  color: #28725f;
+}
+
+.care-live-top a.is-primary,
+.care-live-actions a:first-child,
+.care-live-booking a,
+.care-live-reserve-card a,
+.care-live-cta a {
+  border-color: transparent;
+  color: #ffffff;
+  background: linear-gradient(135deg, #147260, #84d7b4);
+  box-shadow: 0 16px 34px rgba(20, 114, 96, 0.2);
+}
+
+.care-live-shell {
+  width: min(1280px, calc(100% - 40px));
+  margin: clamp(24px, 4vw, 44px) auto clamp(42px, 7vw, 78px);
+  overflow: hidden;
+  border: 1px solid rgba(23, 40, 34, 0.1);
+  border-radius: 34px;
+  background: #fbfff8;
+  box-shadow: 0 44px 120px rgba(38, 73, 58, 0.16);
+}
+
+.care-live-hero {
+  position: relative;
+  min-height: 760px;
+  overflow: hidden;
+  color: #ffffff;
+}
+
+.care-live-hero > img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.care-live-hero-overlay {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(90deg, rgba(18, 44, 35, 0.9), rgba(18, 44, 35, 0.48) 50%, rgba(18, 44, 35, 0.2)),
+    linear-gradient(180deg, rgba(18, 44, 35, 0.16), rgba(18, 44, 35, 0.76));
+}
+
+.care-live-nav {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  padding: 26px clamp(22px, 5vw, 64px);
+}
+
+.care-live-nav strong {
+  font-size: 1rem;
+  font-weight: 900;
+  letter-spacing: 0.04em;
+}
+
+.care-live-nav div {
+  display: flex;
+  gap: 18px;
+  color: rgba(255, 255, 255, 0.76);
+  font-size: 0.82rem;
+  font-weight: 900;
+}
+
+.care-live-nav a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 38px;
+  padding: 8px 14px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.12);
+  font-size: 0.82rem;
+  font-weight: 900;
+  backdrop-filter: blur(12px);
+}
+
+.care-live-copy {
+  position: relative;
+  z-index: 2;
+  width: min(780px, 100%);
+  padding: clamp(80px, 9vw, 140px) clamp(22px, 5vw, 64px) 36px;
+}
+
+.care-live-copy h1 {
+  margin: 0;
+  font-size: clamp(3rem, 6.8vw, 6.2rem);
+  line-height: 1;
+  letter-spacing: 0;
+}
+
+.care-live-copy p:not(.demo-eyebrow) {
+  max-width: 660px;
+  margin: 22px 0 0;
+  color: rgba(255, 255, 255, 0.78);
+  font-weight: 720;
+}
+
+.care-live-badges,
+.care-live-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 24px;
+}
+
+.care-live-badges span {
+  display: inline-flex;
+  align-items: center;
+  min-height: 34px;
+  padding: 7px 12px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 999px;
+  color: rgba(255, 255, 255, 0.88);
+  background: rgba(255, 255, 255, 0.1);
+  font-size: 0.76rem;
+  font-weight: 900;
+  backdrop-filter: blur(12px);
+}
+
+.care-live-actions a:last-child {
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0.12);
+  box-shadow: none;
+  backdrop-filter: blur(12px);
+}
+
+.care-live-booking {
+  position: absolute;
+  z-index: 3;
+  right: clamp(22px, 5vw, 64px);
+  bottom: clamp(24px, 5vw, 58px);
+  width: min(360px, calc(100% - 44px));
+  padding: 24px;
+  border: 1px solid rgba(255, 255, 255, 0.24);
+  border-radius: 26px;
+  background: rgba(18, 44, 35, 0.68);
+  box-shadow: 0 26px 70px rgba(18, 44, 35, 0.32);
+  backdrop-filter: blur(18px);
+}
+
+.care-live-booking > span,
+.care-live-proof span,
+.care-live-symptom-grid span,
+.care-live-flow-card span,
+.care-live-step-list span,
+.care-live-reserve-card > span,
+.care-live-voice-grid span {
+  color: #b7f0d5;
+  font-size: 0.72rem;
+  font-weight: 900;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.care-live-booking strong {
+  display: block;
+  margin-top: 8px;
+  font-size: 1.35rem;
+  line-height: 1.18;
+}
+
+.care-live-booking p {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 0.9rem;
+  font-weight: 700;
+}
+
+.care-live-booking div {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+  color: rgba(255, 255, 255, 0.82);
+  font-size: 0.86rem;
+  font-weight: 850;
+}
+
+.care-live-booking em {
+  color: rgba(255, 255, 255, 0.58);
+  font-style: normal;
+}
+
+.care-live-booking a {
+  width: 100%;
+  margin-top: 14px;
+}
+
+.care-live-proof,
+.care-live-symptoms,
+.care-live-flow,
+.care-live-reserve,
+.care-live-voice,
+.care-live-cta {
+  padding: clamp(34px, 5vw, 62px) clamp(22px, 5vw, 64px);
+}
+
+.care-live-proof {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.care-live-proof article,
+.care-live-symptom-grid article,
+.care-live-step-list article,
+.care-live-reserve-card,
+.care-live-voice-grid article {
+  border: 1px solid rgba(23, 40, 34, 0.1);
+  border-radius: 24px;
+  background: rgba(255, 255, 255, 0.68);
+  box-shadow: 0 18px 52px rgba(38, 73, 58, 0.08);
+}
+
+.care-live-proof article {
+  padding: 22px;
+}
+
+.care-live-proof strong {
+  display: block;
+  margin-top: 8px;
+  font-size: 1.08rem;
+}
+
+.care-live-proof p,
+.care-live-section-head p,
+.care-live-flow p,
+.care-live-reserve p,
+.care-live-voice-grid p,
+.care-live-cta p {
+  color: #536c62;
+  font-weight: 700;
+}
+
+.care-live-section-head {
+  display: grid;
+  grid-template-columns: minmax(0, 0.72fr) minmax(0, 1fr);
+  gap: 26px;
+  align-items: start;
+  margin-bottom: 22px;
+}
+
+.care-live-section-head h2,
+.care-live-flow h2,
+.care-live-reserve h2,
+.care-live-voice h2,
+.care-live-cta h2 {
+  margin: 0;
+  font-size: clamp(1.8rem, 3.4vw, 3.25rem);
+  line-height: 1.13;
+}
+
+.care-live-symptom-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.care-live-symptom-grid article {
+  display: grid;
+  min-height: 260px;
+  padding: 24px;
+  background:
+    radial-gradient(circle at 86% 12%, rgba(132, 215, 180, 0.14), transparent 30%),
+    rgba(255, 255, 255, 0.72);
+}
+
+.care-live-symptom-grid article.is-featured {
+  color: #ffffff;
+  background:
+    radial-gradient(circle at 86% 12%, rgba(255, 255, 255, 0.2), transparent 30%),
+    linear-gradient(135deg, #17352c, #16846f);
+}
+
+.care-live-symptom-grid h3 {
+  margin: 12px 0 8px;
+  font-size: 1.3rem;
+}
+
+.care-live-symptom-grid p {
+  margin: 0;
+}
+
+.care-live-symptom-grid strong {
+  align-self: end;
+  margin-top: 18px;
+  font-size: 1.16rem;
+}
+
+.care-live-symptom-grid article.is-featured p,
+.care-live-symptom-grid article.is-featured span {
+  color: rgba(255, 255, 255, 0.78);
+}
+
+.care-live-flow,
+.care-live-reserve,
+.care-live-voice {
+  display: grid;
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1fr);
+  gap: clamp(24px, 4vw, 48px);
+  align-items: center;
+}
+
+.care-live-flow-card {
+  display: grid;
+  align-content: end;
+  min-height: 420px;
+  padding: 28px;
+  overflow: hidden;
+  border-radius: 30px;
+  color: #ffffff;
+  background:
+    linear-gradient(180deg, rgba(18, 44, 35, 0.02), rgba(18, 44, 35, 0.74)),
+    url('assets/templates/care-premium-hero.png') 58% center / cover;
+  box-shadow: 0 24px 72px rgba(38, 73, 58, 0.18);
+}
+
+.care-live-flow-card strong {
+  margin-top: 8px;
+  font-size: clamp(1.8rem, 3vw, 3rem);
+  line-height: 1.04;
+}
+
+.care-live-flow-card p {
+  max-width: 420px;
+  color: rgba(255, 255, 255, 0.78);
+}
+
+.care-live-step-list {
+  display: grid;
+  gap: 12px;
+}
+
+.care-live-step-list article {
+  padding: 22px;
+}
+
+.care-live-step-list strong {
+  display: block;
+  margin-top: 8px;
+  font-size: 1.2rem;
+}
+
+.care-live-reserve {
+  color: #ffffff;
+  background:
+    radial-gradient(circle at 80% 12%, rgba(132, 215, 180, 0.22), transparent 30%),
+    linear-gradient(135deg, #123026, #176d5b 60%, #84d7b4);
+}
+
+.care-live-reserve p {
+  color: rgba(255, 255, 255, 0.72);
+}
+
+.care-live-reserve-card {
+  padding: 26px;
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.14);
+  box-shadow: 0 24px 72px rgba(18, 44, 35, 0.24);
+}
+
+.care-live-reserve-card h3 {
+  margin: 8px 0 18px;
+  font-size: 1.6rem;
+}
+
+.care-live-form-grid {
+  display: grid;
+  gap: 10px;
+}
+
+.care-live-form-grid label {
+  display: grid;
+  gap: 4px;
+  padding: 13px 14px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 16px;
+  color: rgba(255, 255, 255, 0.58);
+  background: rgba(0, 0, 0, 0.16);
+  font-size: 0.74rem;
+  font-weight: 900;
+}
+
+.care-live-form-grid strong {
+  color: #ffffff;
+  font-size: 1rem;
+}
+
+.care-live-reserve-card a {
+  width: 100%;
+  margin-top: 18px;
+}
+
+.care-live-voice {
+  align-items: start;
+}
+
+.care-live-voice-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.care-live-voice-grid article {
+  min-height: 230px;
+  padding: 22px;
+}
+
+.care-live-voice-grid strong {
+  display: block;
+  margin-top: 18px;
+  line-height: 1.55;
+}
+
+.care-live-cta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  margin: 0 clamp(22px, 5vw, 64px) clamp(34px, 5vw, 58px);
+  border-radius: 30px;
+  color: #ffffff;
+  background:
+    radial-gradient(circle at 86% 18%, rgba(255, 255, 255, 0.2), transparent 32%),
+    linear-gradient(135deg, #123026, #176d5b 58%, #84d7b4);
+  box-shadow: 0 24px 70px rgba(38, 73, 58, 0.18);
+}
+
+.care-live-cta p {
+  max-width: 720px;
+  color: rgba(255, 255, 255, 0.72);
+}
+
+.care-live-cta a {
+  flex: 0 0 auto;
+  background: #ffffff;
+  color: #176d5b;
+  box-shadow: none;
+}
+
+.care-live-footer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  flex-wrap: wrap;
+  padding: 0 20px 34px;
+  color: #536c62;
+  font-size: 0.84rem;
+  font-weight: 800;
+}
+
+.care-live-footer a {
+  color: #147260;
+}
+
+.care-live-mobile-cta {
+  display: none;
+}
+
 @media (max-width: 1100px) {
   .template-catalog-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -4700,5 +5221,154 @@ a {
   .salon-live-mobile-cta a:nth-child(2) {
     color: #ffffff;
     background: linear-gradient(135deg, #b6538a, #ff8fb6);
+  }
+
+  .care-live-body {
+    padding-bottom: 78px;
+  }
+
+  .care-live-top {
+    position: static;
+    align-items: flex-start;
+    flex-direction: column;
+    padding: 14px 16px;
+  }
+
+  .care-live-top nav,
+  .care-live-top a {
+    width: 100%;
+  }
+
+  .care-live-shell {
+    width: min(100% - 20px, 1280px);
+    margin-top: 12px;
+    border-radius: 24px;
+  }
+
+  .care-live-hero {
+    min-height: auto;
+  }
+
+  .care-live-hero > img {
+    height: 100%;
+    object-position: 58% center;
+  }
+
+  .care-live-hero-overlay {
+    background:
+      linear-gradient(180deg, rgba(18, 44, 35, 0.78), rgba(18, 44, 35, 0.92)),
+      linear-gradient(90deg, rgba(18, 44, 35, 0.86), rgba(18, 44, 35, 0.36));
+  }
+
+  .care-live-nav {
+    align-items: flex-start;
+    flex-direction: column;
+    padding: 20px;
+  }
+
+  .care-live-nav div {
+    display: none;
+  }
+
+  .care-live-nav a {
+    width: 100%;
+  }
+
+  .care-live-copy {
+    width: 100%;
+    padding: 54px 20px 28px;
+  }
+
+  .care-live-copy h1 {
+    font-size: clamp(2.35rem, 11vw, 3.8rem);
+    line-height: 1.04;
+    overflow-wrap: anywhere;
+  }
+
+  .care-live-actions a {
+    flex: 1 1 190px;
+  }
+
+  .care-live-booking {
+    position: relative;
+    right: auto;
+    bottom: auto;
+    width: calc(100% - 40px);
+    margin: 8px 20px 22px;
+  }
+
+  .care-live-proof,
+  .care-live-section-head,
+  .care-live-symptom-grid,
+  .care-live-flow,
+  .care-live-reserve,
+  .care-live-voice,
+  .care-live-voice-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .care-live-proof,
+  .care-live-symptoms,
+  .care-live-flow,
+  .care-live-reserve,
+  .care-live-voice {
+    padding: 34px 20px;
+  }
+
+  .care-live-symptom-grid article,
+  .care-live-voice-grid article {
+    min-height: auto;
+  }
+
+  .care-live-flow-card {
+    min-height: 280px;
+    border-radius: 24px;
+  }
+
+  .care-live-cta {
+    align-items: flex-start;
+    flex-direction: column;
+    margin-left: 20px;
+    margin-right: 20px;
+    padding: 24px;
+    border-radius: 24px;
+  }
+
+  .care-live-cta a {
+    width: 100%;
+  }
+
+  .care-live-mobile-cta {
+    position: fixed;
+    left: 10px;
+    right: 10px;
+    bottom: 10px;
+    z-index: 40;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+    padding: 8px;
+    border: 1px solid rgba(23, 40, 34, 0.12);
+    border-radius: 20px;
+    background: rgba(18, 44, 35, 0.84);
+    box-shadow: 0 18px 48px rgba(18, 44, 35, 0.28);
+    backdrop-filter: blur(18px);
+  }
+
+  .care-live-mobile-cta a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 42px;
+    border-radius: 14px;
+    color: #ffffff;
+    background: rgba(255, 255, 255, 0.1);
+    font-size: 0.82rem;
+    font-weight: 900;
+  }
+
+  .care-live-mobile-cta a:nth-child(2) {
+    color: #ffffff;
+    background: linear-gradient(135deg, #147260, #84d7b4);
   }
 }
