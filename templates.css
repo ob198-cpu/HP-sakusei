@@ -3998,6 +3998,117 @@ a {
   font-size: 1.08rem;
 }
 
+.salon-live-consult {
+  padding: clamp(34px, 5vw, 62px) clamp(22px, 5vw, 64px);
+  background:
+    radial-gradient(circle at 88% 10%, rgba(255, 143, 182, 0.16), transparent 30%),
+    linear-gradient(180deg, #fff9f7, #f8edf2);
+}
+
+.salon-live-consult-grid {
+  display: grid;
+  grid-template-columns: 1.08fr repeat(2, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.salon-live-consult-grid article {
+  display: grid;
+  min-height: 300px;
+  padding: 24px;
+  border: 1px solid rgba(43, 29, 36, 0.1);
+  border-radius: 26px;
+  background:
+    radial-gradient(circle at 86% 14%, rgba(255, 143, 182, 0.14), transparent 30%),
+    rgba(255, 255, 255, 0.76);
+  box-shadow: 0 18px 52px rgba(84, 52, 65, 0.08);
+}
+
+.salon-live-consult-grid article.is-featured {
+  color: #ffffff;
+  background:
+    linear-gradient(180deg, rgba(36, 22, 29, 0.04), rgba(36, 22, 29, 0.78)),
+    url('assets/templates/salon-premium-hero.png') 56% center / cover;
+  box-shadow: 0 26px 78px rgba(84, 52, 65, 0.2);
+}
+
+.salon-live-consult-grid span {
+  color: #b6538a;
+  font-size: 0.72rem;
+  font-weight: 900;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.salon-live-consult-grid h3 {
+  margin: 14px 0 10px;
+  font-size: clamp(1.25rem, 2vw, 1.7rem);
+  line-height: 1.16;
+}
+
+.salon-live-consult-grid p {
+  margin: 0;
+  color: #725667;
+  font-weight: 720;
+  line-height: 1.65;
+}
+
+.salon-live-consult-grid strong {
+  align-self: end;
+  margin-top: 22px;
+  color: #8a3f6a;
+  font-size: 1rem;
+  line-height: 1.45;
+}
+
+.salon-live-consult-grid article.is-featured span,
+.salon-live-consult-grid article.is-featured p,
+.salon-live-consult-grid article.is-featured strong {
+  color: rgba(255, 255, 255, 0.88);
+}
+
+.salon-live-slot-strip {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 9px;
+  margin-top: 16px;
+  padding: 16px;
+  border: 1px solid rgba(43, 29, 36, 0.1);
+  border-radius: 22px;
+  background: rgba(255, 255, 255, 0.74);
+  box-shadow: 0 14px 42px rgba(84, 52, 65, 0.07);
+}
+
+.salon-live-slot-strip span {
+  color: #b6538a;
+  font-size: 0.72rem;
+  font-weight: 900;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.salon-live-slot-strip b,
+.salon-live-slot-strip em {
+  display: inline-flex;
+  align-items: center;
+  min-height: 32px;
+  padding: 7px 11px;
+  border-radius: 999px;
+  font-size: 0.82rem;
+  font-weight: 900;
+}
+
+.salon-live-slot-strip b {
+  color: #ffffff;
+  background: linear-gradient(135deg, #b6538a, #ff8fb6);
+}
+
+.salon-live-slot-strip em {
+  color: #8a3f6a;
+  background: rgba(182, 83, 138, 0.1);
+  font-style: normal;
+}
+
 .salon-live-proof p,
 .salon-live-section-head p,
 .salon-live-style p,
@@ -8908,6 +9019,7 @@ a {
   .salon-live-proof,
   .salon-live-section-head,
   .salon-live-menu-grid,
+  .salon-live-consult-grid,
   .salon-live-style,
   .salon-live-reserve,
   .salon-live-voice,
@@ -8917,6 +9029,7 @@ a {
 
   .salon-live-proof,
   .salon-live-menu,
+  .salon-live-consult,
   .salon-live-style,
   .salon-live-reserve,
   .salon-live-voice {
@@ -8924,8 +9037,14 @@ a {
   }
 
   .salon-live-menu-grid article,
+  .salon-live-consult-grid article,
   .salon-live-voice-grid article {
     min-height: auto;
+  }
+
+  .salon-live-slot-strip {
+    align-items: flex-start;
+    flex-direction: column;
   }
 
   .salon-live-style-card {
