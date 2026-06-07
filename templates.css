@@ -7752,6 +7752,117 @@ a {
   color: rgba(255, 255, 255, 0.88);
 }
 
+.school-live-trust {
+  padding: clamp(34px, 5vw, 62px) clamp(22px, 5vw, 64px);
+  background:
+    radial-gradient(circle at 86% 10%, color-mix(in srgb, var(--live-accent-2), transparent 84%), transparent 30%),
+    linear-gradient(180deg, color-mix(in srgb, var(--live-bg-a), #ffffff 54%), var(--live-surface));
+}
+
+.school-live-trust-grid {
+  display: grid;
+  grid-template-columns: 1.08fr repeat(3, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.school-live-trust-grid article {
+  display: grid;
+  min-height: 270px;
+  padding: 24px;
+  border: 1px solid color-mix(in srgb, var(--live-ink), transparent 88%);
+  border-radius: 26px;
+  background:
+    radial-gradient(circle at 86% 12%, color-mix(in srgb, var(--live-accent), transparent 88%), transparent 30%),
+    rgba(255, 255, 255, 0.8);
+  box-shadow: 0 18px 52px color-mix(in srgb, var(--live-ink), transparent 92%);
+}
+
+.school-live-trust-grid article.is-featured {
+  color: #ffffff;
+  background:
+    linear-gradient(180deg, color-mix(in srgb, var(--live-dark), transparent 90%), color-mix(in srgb, var(--live-dark), transparent 18%)),
+    var(--live-feature-image) 58% center / cover;
+  box-shadow: 0 26px 78px color-mix(in srgb, var(--live-ink), transparent 80%);
+}
+
+.school-live-trust-grid span {
+  color: color-mix(in srgb, var(--live-accent), var(--live-accent-2) 24%);
+  font-size: 0.72rem;
+  font-weight: 900;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.school-live-trust-grid h3 {
+  margin: 14px 0 10px;
+  font-size: clamp(1.25rem, 1.9vw, 1.55rem);
+  line-height: 1.16;
+}
+
+.school-live-trust-grid p {
+  margin: 0;
+  color: var(--live-muted);
+  font-weight: 720;
+  line-height: 1.65;
+}
+
+.school-live-trust-grid strong {
+  align-self: end;
+  margin-top: 20px;
+  color: var(--live-accent);
+  font-size: 0.98rem;
+  line-height: 1.45;
+}
+
+.school-live-trust-grid article.is-featured span,
+.school-live-trust-grid article.is-featured p,
+.school-live-trust-grid article.is-featured strong {
+  color: rgba(255, 255, 255, 0.88);
+}
+
+.school-live-schedule-strip {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 9px;
+  margin-top: 16px;
+  padding: 16px;
+  border: 1px solid color-mix(in srgb, var(--live-ink), transparent 88%);
+  border-radius: 22px;
+  background: rgba(255, 255, 255, 0.72);
+  box-shadow: 0 14px 42px color-mix(in srgb, var(--live-ink), transparent 94%);
+}
+
+.school-live-schedule-strip span {
+  color: var(--live-accent);
+  font-size: 0.72rem;
+  font-weight: 900;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.school-live-schedule-strip b,
+.school-live-schedule-strip em {
+  display: inline-flex;
+  align-items: center;
+  min-height: 32px;
+  padding: 7px 11px;
+  border-radius: 999px;
+  font-size: 0.82rem;
+  font-weight: 900;
+}
+
+.school-live-schedule-strip b {
+  color: #ffffff;
+  background: linear-gradient(135deg, var(--live-accent), var(--live-accent-2));
+}
+
+.school-live-schedule-strip em {
+  color: var(--live-accent);
+  background: color-mix(in srgb, var(--live-accent), transparent 90%);
+  font-style: normal;
+}
+
 .stay-live-plans {
   padding: clamp(34px, 5vw, 62px) clamp(22px, 5vw, 64px);
   background:
@@ -9881,6 +9992,7 @@ a {
   .category-live-proof,
   .category-live-section-head,
   .category-live-card-grid,
+  .school-live-trust-grid,
   .stay-live-plan-grid,
   .category-live-feature,
   .category-live-conversion {
@@ -9889,6 +10001,7 @@ a {
 
   .category-live-proof,
   .category-live-products,
+  .school-live-trust,
   .stay-live-plans,
   .category-live-feature,
   .category-live-conversion {
@@ -9896,8 +10009,14 @@ a {
   }
 
   .category-live-card-grid article,
+  .school-live-trust-grid article,
   .stay-live-plan-grid article {
     min-height: auto;
+  }
+
+  .school-live-schedule-strip {
+    align-items: flex-start;
+    flex-direction: column;
   }
 
   .stay-live-booking-check {
