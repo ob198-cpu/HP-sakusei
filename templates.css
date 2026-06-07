@@ -7752,6 +7752,129 @@ a {
   color: rgba(255, 255, 255, 0.88);
 }
 
+.stay-live-plans {
+  padding: clamp(34px, 5vw, 62px) clamp(22px, 5vw, 64px);
+  background:
+    radial-gradient(circle at 8% 6%, color-mix(in srgb, var(--live-accent-2), transparent 84%), transparent 30%),
+    linear-gradient(180deg, color-mix(in srgb, var(--live-bg-a), #ffffff 52%), var(--live-surface));
+}
+
+.stay-live-plan-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.stay-live-plan-grid article {
+  display: grid;
+  min-height: 360px;
+  padding: 24px;
+  border: 1px solid color-mix(in srgb, var(--live-ink), transparent 88%);
+  border-radius: 26px;
+  background:
+    radial-gradient(circle at 86% 12%, color-mix(in srgb, var(--live-accent-2), transparent 86%), transparent 30%),
+    rgba(255, 255, 255, 0.78);
+  box-shadow: 0 18px 52px color-mix(in srgb, var(--live-ink), transparent 92%);
+}
+
+.stay-live-plan-grid article.is-featured {
+  color: #ffffff;
+  background:
+    linear-gradient(180deg, color-mix(in srgb, var(--live-dark), transparent 92%), color-mix(in srgb, var(--live-dark), transparent 22%)),
+    var(--live-feature-image) center / cover;
+  box-shadow: 0 26px 78px color-mix(in srgb, var(--live-ink), transparent 80%);
+}
+
+.stay-live-plan-grid span {
+  color: color-mix(in srgb, var(--live-accent-2), var(--live-accent) 20%);
+  font-size: 0.72rem;
+  font-weight: 900;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.stay-live-plan-grid h3 {
+  margin: 14px 0 10px;
+  font-size: clamp(1.35rem, 2vw, 1.7rem);
+  line-height: 1.16;
+}
+
+.stay-live-plan-grid p {
+  margin: 0;
+  color: var(--live-muted);
+  font-weight: 720;
+  line-height: 1.65;
+}
+
+.stay-live-plan-grid ul {
+  display: grid;
+  gap: 8px;
+  margin: 20px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.stay-live-plan-grid li {
+  padding: 9px 10px;
+  border: 1px solid color-mix(in srgb, var(--live-ink), transparent 90%);
+  border-radius: 14px;
+  color: color-mix(in srgb, var(--live-ink), transparent 12%);
+  background: rgba(255, 255, 255, 0.48);
+  font-size: 0.84rem;
+  font-weight: 850;
+}
+
+.stay-live-plan-grid strong {
+  align-self: end;
+  margin-top: 22px;
+  color: var(--live-accent);
+  font-size: 1.08rem;
+}
+
+.stay-live-plan-grid article.is-featured span,
+.stay-live-plan-grid article.is-featured p,
+.stay-live-plan-grid article.is-featured strong {
+  color: rgba(255, 255, 255, 0.88);
+}
+
+.stay-live-plan-grid article.is-featured li {
+  border-color: rgba(255, 255, 255, 0.18);
+  color: rgba(255, 255, 255, 0.86);
+  background: rgba(255, 255, 255, 0.11);
+  backdrop-filter: blur(14px);
+}
+
+.stay-live-booking-check {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 9px;
+  margin-top: 16px;
+  padding: 16px;
+  border: 1px solid color-mix(in srgb, var(--live-ink), transparent 88%);
+  border-radius: 22px;
+  background: rgba(255, 255, 255, 0.7);
+  box-shadow: 0 14px 42px color-mix(in srgb, var(--live-ink), transparent 94%);
+}
+
+.stay-live-booking-check strong {
+  margin-right: 4px;
+  color: var(--live-ink);
+  font-size: 0.92rem;
+}
+
+.stay-live-booking-check span {
+  display: inline-flex;
+  align-items: center;
+  min-height: 32px;
+  padding: 7px 11px;
+  border-radius: 999px;
+  color: var(--live-accent);
+  background: color-mix(in srgb, var(--live-accent), transparent 90%);
+  font-size: 0.78rem;
+  font-weight: 900;
+}
+
 .category-live-feature,
 .category-live-conversion {
   display: grid;
@@ -9758,6 +9881,7 @@ a {
   .category-live-proof,
   .category-live-section-head,
   .category-live-card-grid,
+  .stay-live-plan-grid,
   .category-live-feature,
   .category-live-conversion {
     grid-template-columns: 1fr;
@@ -9765,13 +9889,20 @@ a {
 
   .category-live-proof,
   .category-live-products,
+  .stay-live-plans,
   .category-live-feature,
   .category-live-conversion {
     padding: 34px 20px;
   }
 
-  .category-live-card-grid article {
+  .category-live-card-grid article,
+  .stay-live-plan-grid article {
     min-height: auto;
+  }
+
+  .stay-live-booking-check {
+    align-items: flex-start;
+    flex-direction: column;
   }
 
   .category-live-feature-card {
