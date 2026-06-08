@@ -5207,6 +5207,112 @@ a {
   line-height: 1.7;
 }
 
+.demo-pricing-board {
+  padding: clamp(34px, 5vw, 64px) clamp(22px, 5vw, 64px);
+  color: var(--readiness-ink, var(--decision-ink, #11131c));
+  background:
+    radial-gradient(circle at 82% 0%, var(--readiness-glow-strong, rgba(255, 90, 157, 0.1)), transparent 32%),
+    var(--readiness-bg, var(--decision-bg, #ffffff));
+}
+
+.demo-pricing-head {
+  display: grid;
+  grid-template-columns: minmax(0, 0.68fr) minmax(0, 1fr);
+  gap: 24px;
+  align-items: end;
+  margin-bottom: 18px;
+}
+
+.demo-pricing-head h2 {
+  margin: 0;
+  font-size: clamp(1.7rem, 3vw, 2.85rem);
+  line-height: 1.15;
+}
+
+.demo-pricing-head p:not(.demo-eyebrow) {
+  margin: 0;
+  color: var(--readiness-muted, var(--decision-muted, rgba(17, 19, 28, 0.62)));
+  font-weight: 730;
+  line-height: 1.75;
+}
+
+.demo-pricing-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.demo-pricing-grid article {
+  display: grid;
+  min-height: 286px;
+  padding: 24px;
+  border: 1px solid var(--readiness-line, var(--decision-line, rgba(20, 26, 44, 0.1)));
+  border-radius: 26px;
+  background:
+    linear-gradient(180deg, var(--readiness-card-top, rgba(255, 255, 255, 0.88)), var(--readiness-card-bottom, rgba(255, 255, 255, 0.68)));
+  box-shadow: 0 18px 52px var(--readiness-shadow, rgba(20, 26, 44, 0.08));
+}
+
+.demo-pricing-grid article.is-featured {
+  color: #ffffff;
+  background:
+    radial-gradient(circle at 84% 0%, rgba(255, 255, 255, 0.22), transparent 28%),
+    var(--readiness-pill, linear-gradient(135deg, #7357ff, #ff5a9d));
+  box-shadow: 0 24px 70px var(--readiness-shadow, rgba(20, 26, 44, 0.16));
+}
+
+.demo-pricing-grid span {
+  color: var(--readiness-pill-label, var(--decision-accent, #7357ff));
+  font-size: 0.72rem;
+  font-weight: 950;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.demo-pricing-grid article.is-featured span {
+  color: rgba(255, 255, 255, 0.76);
+}
+
+.demo-pricing-grid h3 {
+  margin: 10px 0 8px;
+  font-size: clamp(1.2rem, 1.8vw, 1.55rem);
+  line-height: 1.2;
+}
+
+.demo-pricing-grid strong {
+  display: block;
+  margin: 0 0 14px;
+  font-size: clamp(1.3rem, 2.3vw, 2rem);
+  line-height: 1.1;
+}
+
+.demo-pricing-grid p {
+  margin: 0;
+  color: var(--readiness-muted, var(--decision-muted, rgba(17, 19, 28, 0.62)));
+  font-weight: 730;
+  line-height: 1.65;
+}
+
+.demo-pricing-grid ul {
+  display: grid;
+  gap: 8px;
+  align-self: end;
+  margin: 20px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.demo-pricing-grid li {
+  color: var(--readiness-muted, var(--decision-muted, rgba(17, 19, 28, 0.62)));
+  font-size: 0.86rem;
+  font-weight: 780;
+}
+
+.demo-pricing-grid article.is-featured p,
+.demo-pricing-grid article.is-featured li {
+  color: rgba(255, 255, 255, 0.82);
+}
+
 .restaurant-live-body {
   --readiness-ink: #17110c;
   --readiness-muted: #756557;
@@ -8886,17 +8992,21 @@ a {
   .demo-decision-head,
   .demo-decision-grid,
   .demo-readiness-head,
-  .demo-readiness-grid {
+  .demo-readiness-grid,
+  .demo-pricing-head,
+  .demo-pricing-grid {
     grid-template-columns: 1fr;
   }
 
   .demo-decision-board,
-  .demo-readiness-board {
+  .demo-readiness-board,
+  .demo-pricing-board {
     padding: 34px 20px;
   }
 
   .demo-decision-grid article,
-  .demo-readiness-grid article {
+  .demo-readiness-grid article,
+  .demo-pricing-grid article {
     min-height: auto;
   }
 
