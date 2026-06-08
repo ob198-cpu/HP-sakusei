@@ -5372,6 +5372,81 @@ a {
   line-height: 1.7;
 }
 
+.demo-launch-board {
+  padding: clamp(34px, 5vw, 64px) clamp(22px, 5vw, 64px);
+  color: var(--readiness-ink, var(--decision-ink, #11131c));
+  background:
+    radial-gradient(circle at 88% 16%, var(--readiness-glow, rgba(115, 87, 255, 0.1)), transparent 30%),
+    var(--readiness-bg, #ffffff);
+}
+
+.demo-launch-head {
+  display: grid;
+  grid-template-columns: minmax(0, 0.7fr) minmax(0, 1fr);
+  gap: 24px;
+  align-items: start;
+  margin-bottom: 18px;
+}
+
+.demo-launch-head h2 {
+  margin: 0;
+  font-size: clamp(1.65rem, 2.8vw, 2.75rem);
+  line-height: 1.15;
+}
+
+.demo-launch-head p:not(.demo-eyebrow) {
+  margin: 0;
+  color: var(--readiness-muted, var(--decision-muted, rgba(17, 19, 28, 0.62)));
+  font-weight: 730;
+  line-height: 1.75;
+}
+
+.demo-launch-grid {
+  display: grid;
+  grid-template-columns: 1.12fr repeat(2, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.demo-launch-grid article {
+  display: grid;
+  min-height: 238px;
+  padding: 24px;
+  border: 1px solid var(--readiness-line, var(--decision-line, rgba(20, 26, 44, 0.1)));
+  border-radius: 24px;
+  background:
+    linear-gradient(180deg, var(--readiness-card-top, rgba(255, 255, 255, 0.88)), var(--readiness-card-bottom, rgba(255, 255, 255, 0.68)));
+  box-shadow: 0 18px 52px var(--readiness-shadow, rgba(20, 26, 44, 0.08));
+}
+
+.demo-launch-grid span {
+  color: var(--decision-accent, #7357ff);
+  font-size: 0.72rem;
+  font-weight: 950;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.demo-launch-grid h3 {
+  margin: 12px 0 10px;
+  font-size: clamp(1.16rem, 1.7vw, 1.45rem);
+  line-height: 1.2;
+}
+
+.demo-launch-grid p {
+  margin: 0;
+  color: var(--readiness-muted, var(--decision-muted, rgba(17, 19, 28, 0.62)));
+  font-weight: 730;
+  line-height: 1.65;
+}
+
+.demo-launch-grid strong {
+  align-self: end;
+  margin-top: 18px;
+  color: var(--decision-accent, #7357ff);
+  font-size: 0.92rem;
+  line-height: 1.45;
+}
+
 .restaurant-live-body {
   --readiness-ink: #17110c;
   --readiness-muted: #756557;
@@ -9055,20 +9130,24 @@ a {
   .demo-pricing-head,
   .demo-pricing-grid,
   .demo-faq-head,
-  .demo-faq-list article {
+  .demo-faq-list article,
+  .demo-launch-head,
+  .demo-launch-grid {
     grid-template-columns: 1fr;
   }
 
   .demo-decision-board,
   .demo-readiness-board,
   .demo-pricing-board,
-  .demo-faq-board {
+  .demo-faq-board,
+  .demo-launch-board {
     padding: 34px 20px;
   }
 
   .demo-decision-grid article,
   .demo-readiness-grid article,
-  .demo-pricing-grid article {
+  .demo-pricing-grid article,
+  .demo-launch-grid article {
     min-height: auto;
   }
 
