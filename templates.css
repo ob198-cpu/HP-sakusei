@@ -5447,6 +5447,48 @@ a {
   line-height: 1.45;
 }
 
+.demo-standard-strip {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
+  padding: clamp(22px, 3.5vw, 38px) clamp(22px, 5vw, 64px);
+  color: var(--readiness-ink, var(--decision-ink, #11131c));
+  background:
+    radial-gradient(circle at 8% 10%, var(--readiness-glow, rgba(115, 87, 255, 0.1)), transparent 30%),
+    var(--readiness-bg, #ffffff);
+}
+
+.demo-standard-strip article {
+  min-height: 132px;
+  padding: 18px;
+  border: 1px solid var(--readiness-line, var(--decision-line, rgba(20, 26, 44, 0.1)));
+  border-radius: 20px;
+  background: var(--readiness-card-top, rgba(255, 255, 255, 0.84));
+  box-shadow: 0 14px 40px var(--readiness-shadow, rgba(20, 26, 44, 0.06));
+}
+
+.demo-standard-strip span {
+  color: var(--decision-accent, #7357ff);
+  font-size: 0.68rem;
+  font-weight: 950;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.demo-standard-strip h3 {
+  margin: 9px 0 6px;
+  font-size: 1rem;
+  line-height: 1.25;
+}
+
+.demo-standard-strip p {
+  margin: 0;
+  color: var(--readiness-muted, var(--decision-muted, rgba(17, 19, 28, 0.62)));
+  font-size: 0.84rem;
+  font-weight: 730;
+  line-height: 1.55;
+}
+
 .demo-outcome-board {
   padding: clamp(34px, 5vw, 64px) clamp(22px, 5vw, 64px);
   color: var(--readiness-ink, var(--decision-ink, #11131c));
@@ -9223,6 +9265,7 @@ a {
   .demo-faq-list article,
   .demo-launch-head,
   .demo-launch-grid,
+  .demo-standard-strip,
   .demo-outcome-head,
   .demo-outcome-grid {
     grid-template-columns: 1fr;
@@ -9233,6 +9276,7 @@ a {
   .demo-pricing-board,
   .demo-faq-board,
   .demo-launch-board,
+  .demo-standard-strip,
   .demo-outcome-board {
     padding: 34px 20px;
   }
@@ -9241,6 +9285,7 @@ a {
   .demo-readiness-grid article,
   .demo-pricing-grid article,
   .demo-launch-grid article,
+  .demo-standard-strip article,
   .demo-outcome-grid article {
     min-height: auto;
   }
