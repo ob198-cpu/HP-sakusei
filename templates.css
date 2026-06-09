@@ -1725,9 +1725,9 @@ a {
 
 .restaurant-premium-commerce {
   display: grid;
-  grid-template-columns: minmax(0, 0.74fr) minmax(0, 1.1fr);
+  grid-template-columns: minmax(280px, 0.62fr) minmax(0, 1fr);
   gap: 16px;
-  align-items: stretch;
+  align-items: start;
 }
 
 .restaurant-commerce-main,
@@ -1807,14 +1807,16 @@ a {
 
 .restaurant-commerce-specs {
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 12px;
 }
 
 .restaurant-commerce-specs article {
   display: grid;
-  min-height: 190px;
-  padding: 18px;
+  min-height: 156px;
+  padding: 20px;
+  align-content: start;
+  gap: 10px;
 }
 
 .restaurant-commerce-specs span {
@@ -1827,18 +1829,16 @@ a {
 
 .restaurant-commerce-specs strong {
   display: block;
-  align-self: center;
-  font-size: clamp(2.3rem, 5vw, 4rem);
-  line-height: 0.95;
+  font-size: clamp(1.08rem, 1.8vw, 1.38rem);
+  line-height: 1.22;
 }
 
 .restaurant-commerce-specs p {
-  align-self: end;
   margin: 0;
   color: #68594c;
-  font-size: 0.8rem;
+  font-size: 0.88rem;
   font-weight: 680;
-  line-height: 1.5;
+  line-height: 1.62;
 }
 
 .restaurant-premium-preview-pack {
@@ -5571,6 +5571,89 @@ a {
   border-radius: 20px;
   background: var(--readiness-card-top, rgba(255, 255, 255, 0.82));
   box-shadow: 0 14px 42px var(--readiness-shadow, rgba(20, 26, 44, 0.06));
+}
+
+.demo-customize-board {
+  padding: clamp(34px, 5vw, 64px) clamp(22px, 5vw, 64px);
+  color: var(--readiness-ink, var(--decision-ink, #11131c));
+  background:
+    radial-gradient(circle at 10% 76%, var(--readiness-glow, rgba(115, 87, 255, 0.11)), transparent 30%),
+    radial-gradient(circle at 92% 16%, var(--readiness-glow-strong, rgba(255, 90, 157, 0.09)), transparent 30%),
+    var(--readiness-bg, #ffffff);
+}
+
+.demo-customize-head {
+  display: grid;
+  grid-template-columns: minmax(0, 0.72fr) minmax(0, 1fr);
+  gap: 24px;
+  align-items: start;
+  margin-bottom: 18px;
+}
+
+.demo-customize-head h2 {
+  margin: 0;
+  font-size: clamp(1.65rem, 2.8vw, 2.75rem);
+  line-height: 1.15;
+}
+
+.demo-customize-head p:not(.demo-eyebrow) {
+  margin: 0;
+  color: var(--readiness-muted, var(--decision-muted, rgba(17, 19, 28, 0.62)));
+  font-weight: 730;
+  line-height: 1.75;
+}
+
+.demo-customize-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.demo-customize-grid article {
+  display: grid;
+  min-height: 202px;
+  padding: 22px;
+  border: 1px solid var(--readiness-line, var(--decision-line, rgba(20, 26, 44, 0.1)));
+  border-radius: 24px;
+  background:
+    linear-gradient(180deg, var(--readiness-card-top, rgba(255, 255, 255, 0.9)), var(--readiness-card-bottom, rgba(255, 255, 255, 0.68)));
+  box-shadow: 0 18px 52px var(--readiness-shadow, rgba(20, 26, 44, 0.08));
+}
+
+.demo-customize-grid article.is-featured {
+  color: #ffffff;
+  background:
+    radial-gradient(circle at 84% 10%, rgba(255, 255, 255, 0.24), transparent 30%),
+    var(--readiness-pill, linear-gradient(135deg, #7357ff, #ff5a9d));
+}
+
+.demo-customize-grid span {
+  color: var(--decision-accent, #7357ff);
+  font-size: 0.72rem;
+  font-weight: 950;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.demo-customize-grid article.is-featured span {
+  color: rgba(255, 255, 255, 0.74);
+}
+
+.demo-customize-grid h3 {
+  margin: 12px 0 10px;
+  font-size: clamp(1.08rem, 1.5vw, 1.32rem);
+  line-height: 1.28;
+}
+
+.demo-customize-grid p {
+  margin: 0;
+  color: var(--readiness-muted, var(--decision-muted, rgba(17, 19, 28, 0.62)));
+  font-weight: 730;
+  line-height: 1.65;
+}
+
+.demo-customize-grid article.is-featured p {
+  color: rgba(255, 255, 255, 0.82);
 }
 
 .demo-device-proof-board {
@@ -9547,6 +9630,8 @@ a {
   .demo-launch-grid,
   .demo-package-head,
   .demo-package-grid,
+  .demo-customize-head,
+  .demo-customize-grid,
   .demo-device-proof-head,
   .demo-device-proof-grid,
   .demo-standard-strip,
@@ -9561,6 +9646,7 @@ a {
   .demo-faq-board,
   .demo-launch-board,
   .demo-package-board,
+  .demo-customize-board,
   .demo-device-proof-board,
   .demo-standard-strip,
   .demo-outcome-board {
@@ -9572,6 +9658,7 @@ a {
   .demo-pricing-grid article,
   .demo-launch-grid article,
   .demo-package-card,
+  .demo-customize-grid article,
   .demo-device-card,
   .demo-standard-strip article,
   .demo-outcome-grid article {
