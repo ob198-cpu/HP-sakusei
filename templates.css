@@ -5656,6 +5656,87 @@ a {
   color: rgba(255, 255, 255, 0.82);
 }
 
+.demo-handoff-board {
+  padding: clamp(34px, 5vw, 64px) clamp(22px, 5vw, 64px);
+  color: var(--readiness-ink, var(--decision-ink, #11131c));
+  background:
+    radial-gradient(circle at 88% 18%, var(--readiness-glow, rgba(115, 87, 255, 0.11)), transparent 30%),
+    var(--readiness-bg, #ffffff);
+}
+
+.demo-handoff-head {
+  display: grid;
+  grid-template-columns: minmax(0, 0.86fr) minmax(0, 1fr);
+  gap: 24px;
+  align-items: start;
+  margin-bottom: 18px;
+}
+
+.demo-handoff-head h2 {
+  margin: 0;
+  font-size: clamp(1.55rem, 2.35vw, 2.42rem);
+  line-height: 1.15;
+}
+
+.demo-handoff-head p:not(.demo-eyebrow),
+.demo-handoff-note p {
+  margin: 0;
+  color: var(--readiness-muted, var(--decision-muted, rgba(17, 19, 28, 0.62)));
+  font-weight: 730;
+  line-height: 1.75;
+}
+
+.demo-handoff-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.demo-handoff-grid article {
+  min-height: 176px;
+  padding: 20px;
+  border: 1px solid var(--readiness-line, var(--decision-line, rgba(20, 26, 44, 0.1)));
+  border-radius: 22px;
+  background:
+    linear-gradient(180deg, var(--readiness-card-top, rgba(255, 255, 255, 0.9)), var(--readiness-card-bottom, rgba(255, 255, 255, 0.68)));
+  box-shadow: 0 16px 46px var(--readiness-shadow, rgba(20, 26, 44, 0.07));
+}
+
+.demo-handoff-grid span,
+.demo-handoff-note span {
+  color: var(--decision-accent, #7357ff);
+  font-size: 0.7rem;
+  font-weight: 950;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.demo-handoff-grid h3 {
+  margin: 10px 0 8px;
+  font-size: clamp(1.06rem, 1.45vw, 1.28rem);
+  line-height: 1.28;
+}
+
+.demo-handoff-grid p {
+  margin: 0;
+  color: var(--readiness-muted, var(--decision-muted, rgba(17, 19, 28, 0.62)));
+  font-weight: 730;
+  line-height: 1.62;
+}
+
+.demo-handoff-note {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  margin-top: 14px;
+  padding: 16px 20px;
+  border: 1px solid var(--readiness-line, var(--decision-line, rgba(20, 26, 44, 0.1)));
+  border-radius: 20px;
+  background: var(--readiness-card-top, rgba(255, 255, 255, 0.82));
+  box-shadow: 0 14px 42px var(--readiness-shadow, rgba(20, 26, 44, 0.06));
+}
+
 .demo-device-proof-board {
   padding: clamp(34px, 5vw, 64px) clamp(22px, 5vw, 64px);
   color: var(--readiness-ink, var(--decision-ink, #11131c));
@@ -9632,6 +9713,8 @@ a {
   .demo-package-grid,
   .demo-customize-head,
   .demo-customize-grid,
+  .demo-handoff-head,
+  .demo-handoff-grid,
   .demo-device-proof-head,
   .demo-device-proof-grid,
   .demo-standard-strip,
@@ -9647,6 +9730,7 @@ a {
   .demo-launch-board,
   .demo-package-board,
   .demo-customize-board,
+  .demo-handoff-board,
   .demo-device-proof-board,
   .demo-standard-strip,
   .demo-outcome-board {
@@ -9659,6 +9743,7 @@ a {
   .demo-launch-grid article,
   .demo-package-card,
   .demo-customize-grid article,
+  .demo-handoff-grid article,
   .demo-device-card,
   .demo-standard-strip article,
   .demo-outcome-grid article {
@@ -9666,6 +9751,7 @@ a {
   }
 
   .demo-package-note,
+  .demo-handoff-note,
   .demo-device-proof-note {
     align-items: flex-start;
     flex-direction: column;
