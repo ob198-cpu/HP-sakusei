@@ -1,0 +1,33 @@
+name: Build Preview
+
+on:
+  workflow_dispatch:
+    inputs:
+      submissionPath:
+        description: "Submission JSON path"
+        required: true
+        default: "pipeline/sample-submissions/restaurant-premium.json"
+  repository_dispatch:
+    types: [build-preview]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+      - name: Build preview
+        run: |
+          SUBMISSION="${{ github.event.inputs.submissionPath || github.event.client_payload.submissionPath || 'pipeline/sample-submissions/restaurant-premium.json' }}"
+          node pipeline/build.mjs --submission "$SUBMISSION" --mode preview --strict
+      - name: Check deploy candidate
+        run: node pipeline/deploy-preview.mjs
+      - name: Upload preview artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: preview-html
+          path: dist/preview

@@ -1,0 +1,97 @@
+{
+  "templateId": "restaurant-premium",
+  "version": "1.0.0",
+  "sourceFile": "restaurant-premium-demo.html",
+  "previewPath": "preview/restaurant-premium-sample",
+  "fields": [
+    {
+      "id": "site.name",
+      "type": "text",
+      "maxLength": 40,
+      "required": true,
+      "selector": "[data-edit-id='site.name']"
+    },
+    {
+      "id": "hero.title",
+      "type": "text",
+      "maxLength": 60,
+      "required": true,
+      "selector": "[data-edit-id='hero.title']"
+    },
+    {
+      "id": "hero.lead",
+      "type": "textarea",
+      "maxLength": 180,
+      "required": true,
+      "selector": "[data-edit-id='hero.lead']"
+    },
+    {
+      "id": "hero.image",
+      "type": "image",
+      "maxBytes": 5242880,
+      "allowedMime": ["image/jpeg", "image/png", "image/webp"],
+      "allowedPathPrefixes": ["assets/templates/"],
+      "maxWidth": 1920,
+      "maxHeight": 1080,
+      "required": false,
+      "selector": "[data-edit-id='hero.image']"
+    },
+    {
+      "id": "contact.bookingUrl",
+      "type": "url",
+      "allowedHosts": ["line.me", "lin.ee", "reserve.example.com"],
+      "allowLocalHash": true,
+      "required": false,
+      "selector": "[data-edit-id='contact.bookingUrl']"
+    },
+    {
+      "id": "reserve.availability",
+      "type": "text",
+      "maxLength": 40,
+      "required": false,
+      "selector": "[data-edit-id='reserve.availability']"
+    },
+    {
+      "id": "hours.lunch",
+      "type": "text",
+      "maxLength": 30,
+      "required": false,
+      "selector": "[data-edit-id='hours.lunch']"
+    },
+    {
+      "id": "hours.dinner",
+      "type": "text",
+      "maxLength": 30,
+      "required": false,
+      "selector": "[data-edit-id='hours.dinner']"
+    },
+    {
+      "id": "hours.full",
+      "type": "text",
+      "maxLength": 60,
+      "required": false,
+      "selector": "[data-edit-id='hours.full']"
+    },
+    {
+      "id": "shop.closed",
+      "type": "text",
+      "maxLength": 30,
+      "required": false,
+      "selector": "[data-edit-id='shop.closed']"
+    },
+    {
+      "id": "contact.address",
+      "type": "text",
+      "maxLength": 80,
+      "required": false,
+      "selector": "[data-edit-id='contact.address']"
+    },
+    {
+      "id": "contact.bookingMethods",
+      "type": "text",
+      "maxLength": 60,
+      "required": false,
+      "selector": "[data-edit-id='contact.bookingMethods']"
+    }
+  ]
+}
