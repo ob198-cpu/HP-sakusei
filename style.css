@@ -167,7 +167,7 @@ img {
   flex: 1;
   display: flex;
   align-items: center;
-  width: min(1120px, 100%);
+  width: min(1280px, 100%);
   margin: 0 auto;
   pointer-events: none;
 }
@@ -353,7 +353,7 @@ img {
 }
 
 .section {
-  width: min(1120px, calc(100% - 36px));
+  width: min(1280px, calc(100% - 36px));
   margin: 0 auto;
   padding: 96px 0;
 }
@@ -361,12 +361,12 @@ img {
 .section.muted {
   width: 100%;
   max-width: none;
-  padding: 96px max(18px, calc((100vw - 1120px) / 2));
+  padding: 96px max(18px, calc((100vw - 1280px) / 2));
   background: var(--soft);
 }
 
 .motion-section {
-  padding: 96px max(18px, calc((100vw - 1120px) / 2));
+  padding: 96px max(18px, calc((100vw - 1280px) / 2));
   color: var(--white);
   background:
     radial-gradient(circle at 18% 20%, rgba(63, 140, 255, 0.18), transparent 25%),
@@ -481,7 +481,7 @@ img {
   grid-template-columns: minmax(0, 0.82fr) minmax(420px, 1fr);
   gap: clamp(32px, 6vw, 76px);
   align-items: center;
-  padding: 96px max(18px, calc((100vw - 1120px) / 2));
+  padding: 96px max(18px, calc((100vw - 1280px) / 2));
   color: var(--white);
   background:
     radial-gradient(circle at 28% 35%, rgba(34, 168, 120, 0.16), transparent 26%),
@@ -657,7 +657,7 @@ img {
 
 .scroll-section {
   min-height: 150vh;
-  padding: 0 max(18px, calc((100vw - 1120px) / 2)) 96px;
+  padding: 0 max(18px, calc((100vw - 1280px) / 2)) 96px;
   color: var(--white);
   background:
     radial-gradient(circle at 55% 35%, rgba(47, 98, 255, 0.26), transparent 28%),
@@ -847,7 +847,7 @@ img {
 }
 
 .ai-build-section {
-  padding: 96px max(18px, calc((100vw - 1120px) / 2));
+  padding: 96px max(18px, calc((100vw - 1280px) / 2));
   color: var(--white);
   background:
     radial-gradient(circle at 20% 20%, rgba(34, 168, 120, 0.14), transparent 28%),
@@ -1172,7 +1172,7 @@ img {
   grid-template-columns: 0.9fr 1.1fr;
   gap: 36px;
   align-items: center;
-  width: min(1120px, 100%);
+  width: min(1280px, 100%);
   margin: 0 auto;
 }
 
@@ -1318,7 +1318,7 @@ img {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 16px;
-  width: min(1120px, 100%);
+  width: min(1280px, 100%);
   margin: 0 auto;
 }
 
@@ -1395,7 +1395,7 @@ img {
   align-items: center;
   justify-content: space-between;
   gap: 18px;
-  width: min(1120px, 100%);
+  width: min(1280px, 100%);
   margin: 18px auto 0;
   padding: 20px 22px;
   border: 1px solid rgba(20, 18, 36, 0.1);
@@ -1429,7 +1429,7 @@ img {
 }
 
 .before-after-shell {
-  width: min(1120px, 100%);
+  width: min(1280px, 100%);
   margin: 0 auto;
 }
 
@@ -1694,7 +1694,7 @@ img {
   display: grid;
   grid-template-columns: minmax(0, 1fr) 340px;
   gap: 18px;
-  width: min(1120px, 100%);
+  width: min(1280px, 100%);
   margin: 0 auto;
 }
 
@@ -1815,7 +1815,7 @@ img {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 14px;
-  width: min(1120px, 100%);
+  width: min(1280px, 100%);
   margin: 0 auto;
 }
 
@@ -1851,7 +1851,7 @@ img {
   align-items: center;
   justify-content: space-between;
   gap: 18px;
-  width: min(1120px, 100%);
+  width: min(1280px, 100%);
   margin: 18px auto 0;
   padding: 20px 22px;
   border: 1px solid rgba(255, 255, 255, 0.14);
@@ -1888,7 +1888,7 @@ img {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 16px;
-  width: min(1120px, 100%);
+  width: min(1280px, 100%);
   margin: 0 auto;
 }
 
@@ -1953,7 +1953,7 @@ img {
   grid-template-columns: 0.82fr 1fr auto;
   gap: 18px;
   align-items: center;
-  width: min(1120px, 100%);
+  width: min(1280px, 100%);
   margin: 18px auto 0;
   padding: 20px 22px;
   border: 1px solid rgba(20, 18, 36, 0.1);
@@ -2060,7 +2060,7 @@ img {
 
 .template-product-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
   gap: 18px;
 }
 
@@ -2113,12 +2113,16 @@ img {
 }
 
 .template-product-card > div:last-child {
-  padding: 18px;
+  padding: 22px;
+}
+
+.template-product-card .badge {
+  font-size: 0.8rem;
 }
 
 .template-product-card h3 {
   margin: 7px 0 8px;
-  font-size: 1.05rem;
+  font-size: 1.3rem;
   line-height: 1.35;
 }
 
@@ -2129,7 +2133,7 @@ img {
   margin: 8px 0 0;
   padding: 4px 9px;
   border-radius: 999px;
-  font-size: 0.68rem;
+  font-size: 0.76rem;
   font-weight: 900;
 }
 
@@ -2145,9 +2149,9 @@ img {
 
 .template-product-card p:not(.badge):not(.template-state) {
   margin: 0;
-  color: var(--muted);
-  font-size: 0.86rem;
-  line-height: 1.7;
+  color: #57516b;
+  font-size: 1rem;
+  line-height: 1.75;
 }
 
 .template-shot {
@@ -2178,7 +2182,7 @@ img {
   border-radius: 999px;
   background: rgba(8, 9, 20, 0.78);
   color: #fff;
-  font-size: 0.68rem;
+  font-size: 0.76rem;
   font-weight: 900;
   letter-spacing: 0.04em;
   backdrop-filter: blur(4px);
@@ -2424,7 +2428,7 @@ img {
 }
 
 .monitor-proof-section {
-  padding: 96px max(18px, calc((100vw - 1120px) / 2));
+  padding: 96px max(18px, calc((100vw - 1280px) / 2));
   color: var(--ink);
   background:
     radial-gradient(circle at 12% 16%, rgba(124, 89, 255, 0.11), transparent 30%),
@@ -2566,7 +2570,7 @@ img {
   grid-template-columns: 0.82fr 1.18fr;
   gap: 26px;
   align-items: center;
-  width: min(1120px, 100%);
+  width: min(1280px, 100%);
   margin: 0 auto;
 }
 
@@ -2689,7 +2693,7 @@ img {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 16px;
-  width: min(1120px, 100%);
+  width: min(1280px, 100%);
   margin: 0 auto;
 }
 
@@ -2930,7 +2934,7 @@ img {
   grid-template-columns: 0.82fr 1.18fr;
   gap: 26px;
   align-items: stretch;
-  width: min(1120px, 100%);
+  width: min(1280px, 100%);
   margin: 0 auto;
 }
 
@@ -3031,7 +3035,7 @@ img {
   grid-template-columns: 0.86fr 1.14fr;
   gap: 30px;
   align-items: center;
-  width: min(1120px, 100%);
+  width: min(1280px, 100%);
   margin: 0 auto;
 }
 
@@ -3154,7 +3158,7 @@ img {
   grid-template-columns: minmax(0, 0.92fr) minmax(340px, 0.72fr);
   gap: clamp(24px, 5vw, 70px);
   align-items: center;
-  padding: 96px max(18px, calc((100vw - 1120px) / 2));
+  padding: 96px max(18px, calc((100vw - 1280px) / 2));
   color: var(--white);
   background:
     radial-gradient(circle at 18% 18%, rgba(45, 212, 191, 0.14), transparent 28%),
