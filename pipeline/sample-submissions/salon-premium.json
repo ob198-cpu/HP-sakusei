@@ -1,0 +1,16 @@
+{
+  "submissionId": "salon-premium-sample",
+  "requestType": "initial",
+  "templateId": "salon-premium",
+  "templateVersion": "1.0.0",
+  "customerToken": "sample-token-for-local-build-only",
+  "fields": {},
+  "images": {
+    "hero.image": "assets/templates/salon-premium-hero.png",
+    "gallery.image.1": "assets/templates/salon-premium-hero.png",
+    "gallery.image.2": "assets/templates/shot-salon.jpg",
+    "gallery.image.3": "assets/templates/salon-premium-hero.png",
+    "gallery.image.4": "assets/templates/shot-salon.jpg"
+  },
+  "meta": {"editorSessionId": "sample-local"}
+}

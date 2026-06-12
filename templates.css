@@ -12241,3 +12241,137 @@ a {
     background: linear-gradient(135deg, var(--live-accent), var(--live-accent-2));
   }
 }
+/* Editable image stream used by all premium demos */
+.template-image-flow {
+  position: relative;
+  overflow: hidden;
+  margin: clamp(36px, 5vw, 76px) 0;
+  padding: clamp(24px, 4vw, 42px);
+  border: 1px solid rgba(139, 160, 255, 0.28);
+  border-radius: 30px;
+  background:
+    radial-gradient(circle at 16% 0%, rgba(71, 145, 255, 0.24), transparent 34%),
+    radial-gradient(circle at 82% 10%, rgba(255, 91, 190, 0.16), transparent 34%),
+    linear-gradient(135deg, rgba(7, 11, 24, 0.96), rgba(13, 15, 35, 0.92));
+  box-shadow: 0 28px 90px rgba(4, 8, 22, 0.34);
+  color: #f7f8ff;
+}
+
+.template-image-flow::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image:
+    linear-gradient(rgba(136, 170, 255, 0.09) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(136, 170, 255, 0.08) 1px, transparent 1px);
+  background-size: 38px 38px;
+  mask-image: linear-gradient(180deg, rgba(0, 0, 0, 0.9), transparent 82%);
+}
+
+.template-image-flow-copy {
+  position: relative;
+  z-index: 1;
+  max-width: 760px;
+}
+
+.template-image-flow-copy h2 {
+  margin: 8px 0 10px;
+  font-size: clamp(28px, 4vw, 52px);
+  line-height: 1.05;
+  letter-spacing: 0;
+}
+
+.template-image-flow-copy p:not(.demo-eyebrow) {
+  max-width: 620px;
+  color: rgba(244, 247, 255, 0.72);
+  font-weight: 800;
+  line-height: 1.9;
+}
+
+.template-image-flow-window {
+  position: relative;
+  z-index: 1;
+  margin-top: clamp(22px, 3.4vw, 38px);
+  overflow: hidden;
+  border-radius: 24px;
+  mask-image: linear-gradient(90deg, transparent, #000 7%, #000 93%, transparent);
+}
+
+.template-image-flow-track {
+  display: flex;
+  width: max-content;
+  gap: clamp(16px, 2.2vw, 28px);
+  animation: templateImageFlow 38s linear infinite;
+  will-change: transform;
+}
+
+.template-image-flow:hover .template-image-flow-track {
+  animation-play-state: paused;
+}
+
+.template-image-flow figure {
+  position: relative;
+  flex: 0 0 auto;
+  width: clamp(230px, 31vw, 390px);
+  aspect-ratio: 16 / 10;
+  margin: 0;
+  overflow: hidden;
+  border: 1px solid rgba(185, 199, 255, 0.24);
+  border-radius: 22px;
+  background: #080b18;
+  box-shadow: 0 22px 60px rgba(0, 0, 0, 0.36);
+}
+
+.template-image-flow figure::after {
+  content: "APP IMAGE SLOT";
+  position: absolute;
+  left: 14px;
+  bottom: 12px;
+  padding: 7px 10px;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 999px;
+  background: rgba(3, 6, 16, 0.66);
+  color: rgba(255, 255, 255, 0.78);
+  font-size: 10px;
+  font-weight: 900;
+  letter-spacing: 0.08em;
+}
+
+.template-image-flow img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform: scale(1.02);
+}
+
+@keyframes templateImageFlow {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    transform: translate3d(calc(-50% - clamp(8px, 1.1vw, 14px)), 0, 0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .template-image-flow-track {
+    animation: none;
+  }
+}
+
+@media (max-width: 760px) {
+  .template-image-flow {
+    border-radius: 22px;
+    padding: 22px 18px;
+  }
+
+  .template-image-flow-window {
+    mask-image: none;
+  }
+
+  .template-image-flow figure {
+    width: min(78vw, 310px);
+  }
+}

@@ -4,6 +4,7 @@
   "type": "module",
   "scripts": {
     "pipeline:sample": "node pipeline/build.mjs --submission pipeline/sample-submissions/restaurant-premium.json --mode preview",
-    "pipeline:check": "node pipeline/build.mjs --submission pipeline/sample-submissions/restaurant-premium.json --mode preview --strict"
+    "pipeline:check": "node pipeline/build.mjs --submission pipeline/sample-submissions/restaurant-premium.json --mode preview --strict",
+    "pipeline:check-all": "node pipeline/build-all-samples.mjs"
   }
 }

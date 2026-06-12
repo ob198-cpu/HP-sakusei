@@ -1,0 +1,16 @@
+{
+  "submissionId": "retail-premium-sample",
+  "requestType": "initial",
+  "templateId": "retail-premium",
+  "templateVersion": "1.0.0",
+  "customerToken": "sample-token-for-local-build-only",
+  "fields": {},
+  "images": {
+    "hero.image": "assets/templates/retail-premium-hero.png",
+    "gallery.image.1": "assets/templates/retail-premium-hero.png",
+    "gallery.image.2": "assets/templates/shot-shop.jpg",
+    "gallery.image.3": "assets/templates/retail-premium-hero.png",
+    "gallery.image.4": "assets/templates/shot-shop.jpg"
+  },
+  "meta": {"editorSessionId": "sample-local"}
+}

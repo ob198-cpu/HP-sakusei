@@ -1,0 +1,16 @@
+{
+  "submissionId": "pet-premium-sample",
+  "requestType": "initial",
+  "templateId": "pet-premium",
+  "templateVersion": "1.0.0",
+  "customerToken": "sample-token-for-local-build-only",
+  "fields": {},
+  "images": {
+    "hero.image": "assets/templates/pet-premium-hero.png",
+    "gallery.image.1": "assets/templates/pet-premium-hero.png",
+    "gallery.image.2": "assets/templates/shot-pet.jpg",
+    "gallery.image.3": "assets/templates/pet-premium-hero.png",
+    "gallery.image.4": "assets/templates/shot-pet.jpg"
+  },
+  "meta": {"editorSessionId": "sample-local"}
+}

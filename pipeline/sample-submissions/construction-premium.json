@@ -1,0 +1,16 @@
+{
+  "submissionId": "construction-premium-sample",
+  "requestType": "initial",
+  "templateId": "construction-premium",
+  "templateVersion": "1.0.0",
+  "customerToken": "sample-token-for-local-build-only",
+  "fields": {},
+  "images": {
+    "hero.image": "assets/templates/construction-premium-hero.png",
+    "gallery.image.1": "assets/templates/construction-premium-hero.png",
+    "gallery.image.2": "assets/templates/shot-construction.jpg",
+    "gallery.image.3": "assets/templates/construction-premium-hero.png",
+    "gallery.image.4": "assets/templates/shot-construction.jpg"
+  },
+  "meta": {"editorSessionId": "sample-local"}
+}

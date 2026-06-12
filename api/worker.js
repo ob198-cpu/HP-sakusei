@@ -21,12 +21,15 @@ export default {
     if (!["initial", "revision"].includes(payload.requestType)) errors.push("requestTypeが不正です");
     if (typeof payload.templateId !== "string") errors.push("templateIdがありません");
     if (!payload.fields || typeof payload.fields !== "object" || Array.isArray(payload.fields)) errors.push("fieldsが不正です");
+    if (payload.images && (typeof payload.images !== "object" || Array.isArray(payload.images))) errors.push("imagesが不正です");
 
     if (errors.length > 0) {
       return json({ ok: false, errors }, 400);
     }
 
     const submissionId = crypto.randomUUID();
+
+    const acceptedImages = Object.keys(payload.images ?? {}).length;
 
     // Phase 1 stub: DB/Queue接続前は、ここで受信形式だけを固定する。
     // 本番化時は Turnstile、Rate Limit、token hash照合、revision回数チェックを必ず追加する。
@@ -35,6 +38,7 @@ export default {
         ok: true,
         submissionId,
         status: "queued",
+        acceptedImages,
         message: "内容を受け付けました。プレビューURL生成は運営側の承認フローで行います。"
       },
       202

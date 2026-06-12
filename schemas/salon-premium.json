@@ -1,0 +1,13 @@
+{
+  "templateId": "salon-premium",
+  "version": "1.0.0",
+  "sourceFile": "salon-premium-demo.html",
+  "previewPath": "preview/salon-premium-sample",
+  "fields": [
+    {"id": "hero.image", "type": "image", "required": false, "selector": "[data-edit-id='hero.image']"},
+    {"id": "gallery.image.1", "type": "image", "required": false, "selector": "[data-edit-id='gallery.image.1']"},
+    {"id": "gallery.image.2", "type": "image", "required": false, "selector": "[data-edit-id='gallery.image.2']"},
+    {"id": "gallery.image.3", "type": "image", "required": false, "selector": "[data-edit-id='gallery.image.3']"},
+    {"id": "gallery.image.4", "type": "image", "required": false, "selector": "[data-edit-id='gallery.image.4']"}
+  ]
+}

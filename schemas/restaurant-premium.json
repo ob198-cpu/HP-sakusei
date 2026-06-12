@@ -30,11 +30,55 @@
       "type": "image",
       "maxBytes": 5242880,
       "allowedMime": ["image/jpeg", "image/png", "image/webp"],
-      "allowedPathPrefixes": ["assets/templates/"],
+      "allowedPathPrefixes": ["assets/templates/", "assets/uploads/", "assets/customers/", "sites/"],
       "maxWidth": 1920,
       "maxHeight": 1080,
       "required": false,
       "selector": "[data-edit-id='hero.image']"
+    },
+    {
+      "id": "gallery.image.1",
+      "type": "image",
+      "maxBytes": 5242880,
+      "allowedMime": ["image/jpeg", "image/png", "image/webp"],
+      "allowedPathPrefixes": ["assets/templates/", "assets/uploads/", "assets/customers/", "sites/"],
+      "maxWidth": 1920,
+      "maxHeight": 1080,
+      "required": false,
+      "selector": "[data-edit-id='gallery.image.1']"
+    },
+    {
+      "id": "gallery.image.2",
+      "type": "image",
+      "maxBytes": 5242880,
+      "allowedMime": ["image/jpeg", "image/png", "image/webp"],
+      "allowedPathPrefixes": ["assets/templates/", "assets/uploads/", "assets/customers/", "sites/"],
+      "maxWidth": 1920,
+      "maxHeight": 1080,
+      "required": false,
+      "selector": "[data-edit-id='gallery.image.2']"
+    },
+    {
+      "id": "gallery.image.3",
+      "type": "image",
+      "maxBytes": 5242880,
+      "allowedMime": ["image/jpeg", "image/png", "image/webp"],
+      "allowedPathPrefixes": ["assets/templates/", "assets/uploads/", "assets/customers/", "sites/"],
+      "maxWidth": 1920,
+      "maxHeight": 1080,
+      "required": false,
+      "selector": "[data-edit-id='gallery.image.3']"
+    },
+    {
+      "id": "gallery.image.4",
+      "type": "image",
+      "maxBytes": 5242880,
+      "allowedMime": ["image/jpeg", "image/png", "image/webp"],
+      "allowedPathPrefixes": ["assets/templates/", "assets/uploads/", "assets/customers/", "sites/"],
+      "maxWidth": 1920,
+      "maxHeight": 1080,
+      "required": false,
+      "selector": "[data-edit-id='gallery.image.4']"
     },
     {
       "id": "contact.bookingUrl",

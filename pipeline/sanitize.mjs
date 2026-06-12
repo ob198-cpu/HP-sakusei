@@ -59,7 +59,7 @@ export function assertSafeImagePath(value, field) {
     throw new Error(`${field.id}: 不正な画像パスです`);
   }
 
-  const allowed = field.allowedPathPrefixes ?? [];
+  const allowed = field.allowedPathPrefixes ?? ["assets/templates/", "assets/uploads/", "assets/customers/", "sites/"];
   if (allowed.length > 0 && !allowed.some((prefix) => imagePath.startsWith(prefix))) {
     throw new Error(`${field.id}: 許可された画像フォルダではありません`);
   }

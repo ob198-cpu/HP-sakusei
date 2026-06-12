@@ -1,0 +1,16 @@
+{
+  "submissionId": "it-ai-premium-sample",
+  "requestType": "initial",
+  "templateId": "it-ai-premium",
+  "templateVersion": "1.0.0",
+  "customerToken": "sample-token-for-local-build-only",
+  "fields": {},
+  "images": {
+    "hero.image": "assets/templates/it-ai-hero.png",
+    "gallery.image.1": "assets/templates/it-ai-hero.png",
+    "gallery.image.2": "assets/templates/shot-it.jpg",
+    "gallery.image.3": "assets/templates/it-ai-hero.png",
+    "gallery.image.4": "assets/templates/shot-it.jpg"
+  },
+  "meta": {"editorSessionId": "sample-local"}
+}

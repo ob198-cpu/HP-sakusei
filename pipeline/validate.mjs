@@ -18,8 +18,31 @@ export function validateSubmission(schema, submission) {
     errors.push(`templateIdが一致しません: expected ${schema.templateId}`);
   }
 
-  const submittedFields = submission.fields ?? {};
+  if (submission.fields && (typeof submission.fields !== "object" || Array.isArray(submission.fields))) {
+    errors.push("fieldsはJSONオブジェクトで送信してください");
+  }
+
+  if (submission.images && (typeof submission.images !== "object" || Array.isArray(submission.images))) {
+    errors.push("imagesはJSONオブジェクトで送信してください");
+  }
+
+  const submittedFields = {
+    ...(submission.fields ?? {})
+  };
   const fieldMap = new Map(schema.fields.map((field) => [field.id, field]));
+
+  for (const [id, raw] of Object.entries(submission.images ?? {})) {
+    const field = fieldMap.get(id);
+    if (!field) {
+      warnings.push(`${id}: 未定義画像フィールドのため破棄しました`);
+      continue;
+    }
+    if (field.type !== "image") {
+      errors.push(`${id}: imagesには画像フィールドだけを指定してください`);
+      continue;
+    }
+    submittedFields[id] = raw;
+  }
 
   for (const field of schema.fields) {
     const raw = submittedFields[field.id];

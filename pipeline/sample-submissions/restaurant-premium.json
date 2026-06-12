@@ -8,7 +8,6 @@
     "site.name": "KITO TABLE",
     "hero.title": "札幌の夜に、季節を灯す小さなダイニング。",
     "hero.lead": "北海道の食材、静かな照明、少人数の記念日利用。来店前に知りたい料理、価格、席、予約方法を美しく整理した完成デモです。",
-    "hero.image": "assets/templates/restaurant-premium-hero.png",
     "contact.bookingUrl": "#reserve",
     "reserve.availability": "18:30 / 20:15 空席あり",
     "hours.lunch": "11:30-14:30",
@@ -18,7 +17,13 @@
     "contact.address": "札幌市中央区南2条西3丁目 2F",
     "contact.bookingMethods": "電話・LINE・予約サイト"
   },
-  "images": {},
+  "images": {
+    "hero.image": "assets/templates/restaurant-premium-hero.png",
+    "gallery.image.1": "assets/templates/restaurant-premium-hero.png",
+    "gallery.image.2": "assets/templates/restaurant-dish-card.png",
+    "gallery.image.3": "assets/templates/restaurant-interior-card.png",
+    "gallery.image.4": "assets/templates/shot-food.jpg"
+  },
   "meta": {
     "submittedAt": "2026-06-11T12:00:00+09:00",
     "editorSessionId": "sample-local"

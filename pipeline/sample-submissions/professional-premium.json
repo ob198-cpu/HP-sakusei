@@ -1,0 +1,16 @@
+{
+  "submissionId": "professional-premium-sample",
+  "requestType": "initial",
+  "templateId": "professional-premium",
+  "templateVersion": "1.0.0",
+  "customerToken": "sample-token-for-local-build-only",
+  "fields": {},
+  "images": {
+    "hero.image": "assets/templates/professional-premium-hero.png",
+    "gallery.image.1": "assets/templates/professional-premium-hero.png",
+    "gallery.image.2": "assets/templates/shot-professional.jpg",
+    "gallery.image.3": "assets/templates/professional-premium-hero.png",
+    "gallery.image.4": "assets/templates/shot-professional.jpg"
+  },
+  "meta": {"editorSessionId": "sample-local"}
+}
