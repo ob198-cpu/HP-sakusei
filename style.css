@@ -1007,6 +1007,10 @@ img {
   text-align: center;
 }
 
+.section-header .keep-phrase {
+  display: inline-block;
+}
+
 .price-summary {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -2276,35 +2280,76 @@ img {
 .pain-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 16px;
+  gap: 18px;
 }
 
 .pain-grid article {
   position: relative;
-  padding: 24px 22px;
-  border-radius: 14px;
-  border: 1px solid rgba(20, 18, 36, 0.1);
-  background: #f6f7fc;
+  padding: 30px 24px 28px;
+  border-radius: 18px;
+  border: 1px solid rgba(20, 18, 36, 0.08);
+  background: #ffffff;
+  box-shadow: 0 16px 40px rgba(20, 18, 36, 0.07);
+  overflow: hidden;
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+}
+
+.pain-grid article:hover {
+  transform: translateY(-4px);
+  border-color: rgba(115, 87, 255, 0.32);
+  box-shadow: 0 26px 60px rgba(20, 18, 36, 0.13);
+}
+
+.pain-grid article::before {
+  content: attr(data-num);
+  position: absolute;
+  top: 2px;
+  right: 14px;
+  font-size: 4.2rem;
+  font-weight: 900;
+  line-height: 1.15;
+  letter-spacing: -0.04em;
+  color: transparent;
+  background: linear-gradient(160deg, rgba(115, 87, 255, 0.22), rgba(63, 140, 255, 0.08));
+  -webkit-background-clip: text;
+  background-clip: text;
+  pointer-events: none;
+}
+
+.pain-grid article::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 4px;
+  background: linear-gradient(180deg, var(--brand), #3f8cff);
+  opacity: 0.85;
 }
 
 .pain-grid span {
   display: inline-block;
-  margin-bottom: 12px;
+  margin-bottom: 14px;
+  padding: 5px 13px;
+  border-radius: 999px;
+  background: rgba(115, 87, 255, 0.1);
   color: var(--brand);
-  font-size: 0.7rem;
+  font-size: 0.78rem;
   font-weight: 900;
-  letter-spacing: 0.12em;
+  letter-spacing: 0.06em;
 }
 
 .pain-grid p {
   margin: 0;
-  color: var(--muted);
-  font-size: 0.94rem;
-  line-height: 1.8;
+  color: var(--ink);
+  font-size: 1.04rem;
+  font-weight: 700;
+  line-height: 1.85;
 }
 
 .pain-grid strong {
-  color: var(--ink);
+  color: var(--brand);
+  font-weight: 900;
 }
 
 .pain-answer {
@@ -2327,7 +2372,7 @@ img {
   left: 50%;
   transform: translateX(-50%);
   border: 16px solid transparent;
-  border-top-color: #f6f7fc;
+  border-top-color: var(--paper);
 }
 
 .pain-answer-label {
@@ -2341,8 +2386,9 @@ img {
 }
 
 .pain-answer p {
-  margin: 18px 0 22px;
-  font-size: clamp(1rem, 1.8vw, 1.18rem);
+  margin: 18px 0 24px;
+  font-size: clamp(1.06rem, 1.9vw, 1.3rem);
+  font-weight: 700;
   line-height: 2;
 }
 
@@ -2807,6 +2853,10 @@ img {
 @media (max-width: 1180px) {
   .template-product-grid {
     grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .pain-grid {
+    grid-template-columns: repeat(2, 1fr);
   }
 }
 
