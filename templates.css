@@ -12243,18 +12243,26 @@ a {
 }
 /* Editable image stream used by all premium demos */
 .template-image-flow {
+  --flow-a: rgba(71, 145, 255, 0.24);
+  --flow-b: rgba(255, 91, 190, 0.16);
+  --flow-c: rgba(139, 160, 255, 0.28);
+  --flow-dot: rgba(139, 190, 255, 0.72);
+  --flow-speed: 38s;
+  --flow-direction: normal;
+  --flow-label: "APP IMAGE SLOT";
   position: relative;
   overflow: hidden;
   margin: clamp(36px, 5vw, 76px) 0;
   padding: clamp(24px, 4vw, 42px);
-  border: 1px solid rgba(139, 160, 255, 0.28);
+  border: 1px solid var(--flow-c);
   border-radius: 30px;
   background:
-    radial-gradient(circle at 16% 0%, rgba(71, 145, 255, 0.24), transparent 34%),
-    radial-gradient(circle at 82% 10%, rgba(255, 91, 190, 0.16), transparent 34%),
+    radial-gradient(circle at 16% 0%, var(--flow-a), transparent 34%),
+    radial-gradient(circle at 82% 10%, var(--flow-b), transparent 34%),
     linear-gradient(135deg, rgba(7, 11, 24, 0.96), rgba(13, 15, 35, 0.92));
-  box-shadow: 0 28px 90px rgba(4, 8, 22, 0.34);
+  box-shadow: 0 28px 90px rgba(4, 8, 22, 0.34), inset 0 0 80px color-mix(in srgb, var(--flow-a) 34%, transparent);
   color: #f7f8ff;
+  isolation: isolate;
 }
 
 .template-image-flow::before {
@@ -12269,9 +12277,25 @@ a {
   mask-image: linear-gradient(180deg, rgba(0, 0, 0, 0.9), transparent 82%);
 }
 
+.template-image-flow::after {
+  content: "";
+  position: absolute;
+  inset: -18% -8%;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.72;
+  background:
+    radial-gradient(circle, var(--flow-dot) 0 1px, transparent 2px) 0 0 / 42px 42px,
+    radial-gradient(circle, color-mix(in srgb, var(--flow-b) 78%, #ffffff) 0 1px, transparent 2px) 18px 24px / 58px 58px,
+    linear-gradient(105deg, transparent 0 42%, color-mix(in srgb, var(--flow-a) 46%, transparent) 50%, transparent 59%);
+  filter: blur(0.1px);
+  transform: translate3d(-4%, -2%, 0);
+  animation: templateParticleDrift 16s ease-in-out infinite alternate;
+}
+
 .template-image-flow-copy {
   position: relative;
-  z-index: 1;
+  z-index: 2;
   max-width: 760px;
 }
 
@@ -12291,7 +12315,7 @@ a {
 
 .template-image-flow-window {
   position: relative;
-  z-index: 1;
+  z-index: 2;
   margin-top: clamp(22px, 3.4vw, 38px);
   overflow: hidden;
   border-radius: 24px;
@@ -12302,7 +12326,8 @@ a {
   display: flex;
   width: max-content;
   gap: clamp(16px, 2.2vw, 28px);
-  animation: templateImageFlow 38s linear infinite;
+  animation: templateImageFlow var(--flow-speed) linear infinite;
+  animation-direction: var(--flow-direction);
   will-change: transform;
 }
 
@@ -12320,11 +12345,19 @@ a {
   border: 1px solid rgba(185, 199, 255, 0.24);
   border-radius: 22px;
   background: #080b18;
-  box-shadow: 0 22px 60px rgba(0, 0, 0, 0.36);
+  box-shadow: 0 22px 60px rgba(0, 0, 0, 0.36), 0 0 0 1px color-mix(in srgb, var(--flow-c) 28%, transparent);
+  transform: translateZ(0);
+  transition: transform 0.35s ease, border-color 0.35s ease, box-shadow 0.35s ease;
+}
+
+.template-image-flow figure:hover {
+  transform: translateY(-8px) scale(1.025);
+  border-color: color-mix(in srgb, var(--flow-c) 72%, #ffffff);
+  box-shadow: 0 32px 80px rgba(0, 0, 0, 0.42), 0 0 44px color-mix(in srgb, var(--flow-a) 48%, transparent);
 }
 
 .template-image-flow figure::after {
-  content: "APP IMAGE SLOT";
+  content: var(--flow-label);
   position: absolute;
   left: 14px;
   bottom: 12px;
@@ -12346,6 +12379,108 @@ a {
   transform: scale(1.02);
 }
 
+.restaurant-live-body .template-image-flow {
+  --flow-a: rgba(255, 142, 65, 0.3);
+  --flow-b: rgba(255, 203, 112, 0.16);
+  --flow-c: rgba(255, 176, 92, 0.36);
+  --flow-dot: rgba(255, 188, 96, 0.74);
+  --flow-speed: 34s;
+  --flow-label: "RESERVATION PHOTO";
+}
+
+.salon-live-body .template-image-flow {
+  --flow-a: rgba(255, 112, 185, 0.28);
+  --flow-b: rgba(255, 217, 181, 0.18);
+  --flow-c: rgba(255, 139, 211, 0.36);
+  --flow-dot: rgba(255, 190, 224, 0.76);
+  --flow-speed: 42s;
+  --flow-direction: reverse;
+  --flow-label: "STYLE PHOTO";
+}
+
+.care-live-body .template-image-flow {
+  --flow-a: rgba(83, 203, 165, 0.25);
+  --flow-b: rgba(126, 237, 180, 0.14);
+  --flow-c: rgba(110, 224, 185, 0.32);
+  --flow-dot: rgba(137, 236, 202, 0.72);
+  --flow-speed: 46s;
+  --flow-label: "CARE SPACE";
+}
+
+.it-live-body .template-image-flow {
+  --flow-a: rgba(54, 143, 255, 0.32);
+  --flow-b: rgba(128, 89, 255, 0.24);
+  --flow-c: rgba(104, 157, 255, 0.42);
+  --flow-dot: rgba(91, 174, 255, 0.82);
+  --flow-speed: 30s;
+  --flow-label: "DATA VISUAL";
+}
+
+.professional-live-body .template-image-flow {
+  --flow-a: rgba(129, 148, 192, 0.24);
+  --flow-b: rgba(197, 174, 132, 0.14);
+  --flow-c: rgba(178, 188, 222, 0.34);
+  --flow-dot: rgba(210, 219, 245, 0.68);
+  --flow-speed: 44s;
+  --flow-label: "TRUST IMAGE";
+}
+
+.construction-live-body .template-image-flow {
+  --flow-a: rgba(224, 155, 77, 0.26);
+  --flow-b: rgba(88, 163, 255, 0.17);
+  --flow-c: rgba(236, 176, 102, 0.34);
+  --flow-dot: rgba(255, 196, 112, 0.7);
+  --flow-speed: 36s;
+  --flow-label: "WORK RECORD";
+}
+
+.pet-live-body .template-image-flow {
+  --flow-a: rgba(91, 191, 144, 0.24);
+  --flow-b: rgba(255, 191, 125, 0.16);
+  --flow-c: rgba(122, 217, 172, 0.32);
+  --flow-dot: rgba(178, 237, 207, 0.72);
+  --flow-speed: 40s;
+  --flow-direction: reverse;
+  --flow-label: "PET CARE";
+}
+
+.retail-live-body .template-image-flow {
+  --flow-a: rgba(197, 133, 255, 0.25);
+  --flow-b: rgba(255, 168, 103, 0.18);
+  --flow-c: rgba(209, 151, 255, 0.36);
+  --flow-dot: rgba(223, 184, 255, 0.74);
+  --flow-speed: 32s;
+  --flow-label: "PRODUCT SHOT";
+}
+
+.category-live-body .template-image-flow {
+  --flow-a: rgba(72, 143, 255, 0.25);
+  --flow-b: rgba(150, 112, 255, 0.17);
+  --flow-c: rgba(125, 164, 255, 0.34);
+  --flow-dot: rgba(158, 198, 255, 0.72);
+  --flow-speed: 39s;
+  --flow-label: "SERVICE SCENE";
+}
+
+.school-live-body .template-image-flow {
+  --flow-a: rgba(76, 134, 255, 0.26);
+  --flow-b: rgba(255, 200, 92, 0.14);
+  --flow-c: rgba(104, 157, 255, 0.34);
+  --flow-dot: rgba(150, 188, 255, 0.72);
+  --flow-speed: 41s;
+  --flow-label: "CLASS SCENE";
+}
+
+.stay-live-body .template-image-flow {
+  --flow-a: rgba(87, 167, 137, 0.25);
+  --flow-b: rgba(151, 123, 255, 0.16);
+  --flow-c: rgba(118, 207, 176, 0.34);
+  --flow-dot: rgba(172, 231, 211, 0.72);
+  --flow-speed: 45s;
+  --flow-direction: reverse;
+  --flow-label: "STAY VIEW";
+}
+
 @keyframes templateImageFlow {
   from {
     transform: translate3d(0, 0, 0);
@@ -12355,8 +12490,25 @@ a {
   }
 }
 
+@keyframes templateParticleDrift {
+  0% {
+    transform: translate3d(-4%, -2%, 0) rotate(0deg);
+    opacity: 0.42;
+  }
+
+  55% {
+    opacity: 0.78;
+  }
+
+  100% {
+    transform: translate3d(4%, 3%, 0) rotate(1.4deg);
+    opacity: 0.56;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
-  .template-image-flow-track {
+  .template-image-flow-track,
+  .template-image-flow::after {
     animation: none;
   }
 }
