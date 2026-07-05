@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PARTS 03 — オーロラグラデーションヒーロー</title>
+<style>body { margin: 0; }</style>
+</head>
+<body>
+<!-- ▼▼▼ COPY START ▼▼▼ -->
+<!-- ============================================================
+  SAKUTTO PARTS 03: オーロラグラデーションヒーロー(CSSのみ)
+  使い方: このブロックを丸ごと <body> 内に貼り付け。
+  見出し・文章は .skp-au-inner の中を差し替え。
+  依存: なし(JS不使用・超軽量)
+============================================================ -->
+<section class="skp-au">
+  <div class="skp-au-blob skp-au-blob1" aria-hidden="true"></div>
+  <div class="skp-au-blob skp-au-blob2" aria-hidden="true"></div>
+  <div class="skp-au-blob skp-au-blob3" aria-hidden="true"></div>
+  <div class="skp-au-grain" aria-hidden="true"></div>
+  <div class="skp-au-inner">
+    <p class="skp-au-label">AURORA HERO</p>
+    <h1>光がゆっくり流れる<br>CSSだけのヒーロー背景</h1>
+    <p class="skp-au-lead">JavaScriptを一切使わない超軽量演出。どんなページにも数秒で追加できます。</p>
+  </div>
+</section>
+<style>
+  .skp-au {
+    position: relative;
+    min-height: 72vh;
+    display: grid;
+    place-items: center;
+    overflow: hidden;
+    background: #08070f;
+    isolation: isolate;
+  }
+
+  .skp-au-blob {
+    position: absolute;
+    width: 55vmax;
+    height: 55vmax;
+    border-radius: 50%;
+    filter: blur(90px);
+    opacity: 0.55;
+    mix-blend-mode: screen;
+    animation: skp-au-float 18s ease-in-out infinite alternate;
+  }
+
+  .skp-au-blob1 {
+    top: -20%;
+    left: -10%;
+    background: radial-gradient(circle, #6d4dff, transparent 62%);
+  }
+
+  .skp-au-blob2 {
+    top: 10%;
+    right: -18%;
+    background: radial-gradient(circle, #2f7cff, transparent 62%);
+    animation-delay: -6s;
+    animation-duration: 22s;
+  }
+
+  .skp-au-blob3 {
+    bottom: -30%;
+    left: 22%;
+    background: radial-gradient(circle, #17c3b2, transparent 62%);
+    animation-delay: -12s;
+    animation-duration: 26s;
+  }
+
+  @keyframes skp-au-float {
+    from {
+      transform: translate3d(0, 0, 0) scale(1);
+    }
+
+    to {
+      transform: translate3d(9vmax, 6vmax, 0) scale(1.18);
+    }
+  }
+
+  .skp-au-grain {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    opacity: 0.5;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0.05 0'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)'/%3E%3C/svg%3E");
+    pointer-events: none;
+  }
+
+  .skp-au-inner {
+    position: relative;
+    z-index: 2;
+    max-width: 760px;
+    padding: 80px 24px;
+    text-align: center;
+    font-family: 'Inter', 'Noto Sans JP', system-ui, sans-serif;
+    color: #f2f3ff;
+  }
+
+  .skp-au-label {
+    margin: 0 0 16px;
+    font-size: 0.72rem;
+    font-weight: 900;
+    letter-spacing: 0.3em;
+    color: rgba(180, 170, 255, 0.85);
+  }
+
+  .skp-au-inner h1 {
+    margin: 0;
+    font-size: clamp(1.9rem, 4.6vw, 3.4rem);
+    font-weight: 900;
+    line-height: 1.25;
+    background: linear-gradient(120deg, #ffffff 30%, #c9d2ff 65%, #9f8bff);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .skp-au-lead {
+    margin: 22px auto 0;
+    max-width: 520px;
+    color: rgba(222, 226, 255, 0.75);
+    line-height: 1.9;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .skp-au-blob {
+      animation: none;
+    }
+  }
+</style>
+<!-- ▲▲▲ COPY END ▲▲▲ -->
+</body>
+</html>

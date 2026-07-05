@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PARTS 09 — 無限マーキー</title>
+<style>body { margin: 0; }</style>
+</head>
+<body>
+<!-- ▼▼▼ COPY START ▼▼▼ -->
+<!-- ============================================================
+  SAKUTTO PARTS 09: 無限ループマーキー(CSSのみ)
+  使い方: このブロックを丸ごと <body> 内に貼り付け。
+  項目を変える場合は .skp-mq-track 内の<span>を編集し、
+  同じ内容を2セット(aria-hidden側も)にすること。
+  依存: なし(JS不使用 / ホバーで一時停止)
+============================================================ -->
+<section class="skp-mq">
+  <div class="skp-mq-row">
+    <div class="skp-mq-track">
+      <span>WEB DESIGN</span><i>◆</i>
+      <span>3D MOTION</span><i>◆</i>
+      <span>AI WRITING</span><i>◆</i>
+      <span>FAST DELIVERY</span><i>◆</i>
+      <span>SEO READY</span><i>◆</i>
+    </div>
+    <div class="skp-mq-track" aria-hidden="true">
+      <span>WEB DESIGN</span><i>◆</i>
+      <span>3D MOTION</span><i>◆</i>
+      <span>AI WRITING</span><i>◆</i>
+      <span>FAST DELIVERY</span><i>◆</i>
+      <span>SEO READY</span><i>◆</i>
+    </div>
+  </div>
+  <div class="skp-mq-row skp-mq-reverse" aria-hidden="true">
+    <div class="skp-mq-track">
+      <span>格安ホームページ制作</span><i>◆</i>
+      <span>最短即日公開</span><i>◆</i>
+      <span>スマホ対応</span><i>◆</i>
+      <span>更新サポート</span><i>◆</i>
+      <span>相談無料</span><i>◆</i>
+    </div>
+    <div class="skp-mq-track" aria-hidden="true">
+      <span>格安ホームページ制作</span><i>◆</i>
+      <span>最短即日公開</span><i>◆</i>
+      <span>スマホ対応</span><i>◆</i>
+      <span>更新サポート</span><i>◆</i>
+      <span>相談無料</span><i>◆</i>
+    </div>
+  </div>
+</section>
+<style>
+  .skp-mq {
+    padding: 46px 0;
+    overflow: hidden;
+    background: #090a12;
+    font-family: 'Inter', 'Noto Sans JP', system-ui, sans-serif;
+  }
+
+  .skp-mq-row {
+    display: flex;
+    width: max-content;
+  }
+
+  .skp-mq-row + .skp-mq-row {
+    margin-top: 18px;
+  }
+
+  .skp-mq-track {
+    display: flex;
+    align-items: center;
+    flex: none;
+    animation: skp-mq-scroll 26s linear infinite;
+  }
+
+  .skp-mq-reverse .skp-mq-track {
+    animation-direction: reverse;
+    animation-duration: 32s;
+  }
+
+  .skp-mq-row:hover .skp-mq-track {
+    animation-play-state: paused;
+  }
+
+  .skp-mq-track span {
+    padding: 0 28px;
+    font-size: clamp(1.2rem, 3vw, 2rem);
+    font-weight: 900;
+    letter-spacing: 0.06em;
+    color: transparent;
+    -webkit-text-stroke: 1px rgba(160, 150, 255, 0.55);
+    white-space: nowrap;
+  }
+
+  .skp-mq-reverse span {
+    color: rgba(238, 240, 255, 0.9);
+    -webkit-text-stroke: 0;
+  }
+
+  .skp-mq-track i {
+    font-style: normal;
+    color: #7357ff;
+    font-size: 0.8rem;
+  }
+
+  @keyframes skp-mq-scroll {
+    to {
+      transform: translateX(-100%);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .skp-mq-track {
+      animation: none;
+    }
+  }
+</style>
+<!-- ▲▲▲ COPY END ▲▲▲ -->
+</body>
+</html>

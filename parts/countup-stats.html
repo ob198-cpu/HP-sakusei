@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PARTS 08 — カウントアップ実績バー</title>
+<style>body { margin: 0; }</style>
+</head>
+<body>
+<!-- ▼▼▼ COPY START ▼▼▼ -->
+<!-- ============================================================
+  SAKUTTO PARTS 08: カウントアップ実績バー
+  使い方: このブロックを丸ごと <body> 内に貼り付け。
+  数字は data-skp-count="目標値" で指定。接頭/接尾語は自由。
+  依存: なし(バニラJS)
+============================================================ -->
+<section class="skp-cu">
+  <article>
+    <strong><span data-skp-count="120">0</span><em>件</em></strong>
+    <span>制作実績</span>
+  </article>
+  <article>
+    <strong><span data-skp-count="98">0</span><em>%</em></strong>
+    <span>満足度</span>
+  </article>
+  <article>
+    <strong><span data-skp-count="15000">0</span><em>円〜</em></strong>
+    <span>制作費</span>
+  </article>
+  <article>
+    <strong><span data-skp-count="1">0</span><em>日〜</em></strong>
+    <span>最短公開</span>
+  </article>
+</section>
+<style>
+  .skp-cu {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 16px;
+    padding: 70px clamp(20px, 6vw, 80px);
+    background: #0a0b15;
+    font-family: 'Inter', 'Noto Sans JP', system-ui, sans-serif;
+  }
+
+  .skp-cu article {
+    padding: 26px 20px;
+    text-align: center;
+    border: 1px solid rgba(140, 125, 255, 0.2);
+    border-radius: 18px;
+    background: rgba(255, 255, 255, 0.03);
+    color: #eef0ff;
+  }
+
+  .skp-cu strong {
+    display: block;
+    font-size: clamp(1.7rem, 3.4vw, 2.5rem);
+    font-weight: 900;
+    background: linear-gradient(120deg, #ffffff 40%, #a795ff);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .skp-cu em {
+    font-style: normal;
+    font-size: 0.6em;
+    margin-left: 2px;
+  }
+
+  .skp-cu article > span {
+    display: block;
+    margin-top: 8px;
+    font-size: 0.78rem;
+    font-weight: 700;
+    color: rgba(205, 210, 245, 0.65);
+    letter-spacing: 0.08em;
+  }
+</style>
+<script>
+(() => {
+  const targets = document.querySelectorAll('[data-skp-count]');
+  if (!targets.length) return;
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  const finish = (el, value) => {
+    el.textContent = value.toLocaleString('ja-JP');
+  };
+
+  if (reduceMotion || !('IntersectionObserver' in window)) {
+    targets.forEach((el) => finish(el, parseInt(el.dataset.skpCount, 10) || 0));
+    return;
+  }
+
+  const run = (el) => {
+    const target = parseInt(el.dataset.skpCount, 10) || 0;
+    const duration = 1300;
+    const start = performance.now();
+    const tick = (now) => {
+      const t = Math.min((now - start) / duration, 1);
+      const eased = 1 - Math.pow(1 - t, 3);
+      el.textContent = Math.round(target * eased).toLocaleString('ja-JP');
+      if (t < 1) {
+        requestAnimationFrame(tick);
+      } else {
+        finish(el, target);
+      }
+    };
+    requestAnimationFrame(tick);
+  };
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        run(entry.target);
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.7 });
+
+  targets.forEach((el) => observer.observe(el));
+})();
+</script>
+<!-- ▲▲▲ COPY END ▲▲▲ -->
+</body>
+</html>

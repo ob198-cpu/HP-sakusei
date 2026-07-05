@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PARTS 04 — 3Dチルトカード</title>
+<style>body { margin: 0; }</style>
+</head>
+<body>
+<!-- ▼▼▼ COPY START ▼▼▼ -->
+<!-- ============================================================
+  SAKUTTO PARTS 04: 3Dチルト + グレアカード
+  使い方: このブロックを丸ごと <body> 内に貼り付け。
+  カードを増やす場合は <article class="skp-tc-card"> を複製。
+  依存: なし(バニラJS / タッチ端末では自動オフ)
+============================================================ -->
+<section class="skp-tc">
+  <article class="skp-tc-card">
+    <span class="skp-tc-num">01</span>
+    <h3>マウスに追従して傾く</h3>
+    <p>カーソルの位置に合わせてカードが立体的に傾き、光の反射が走ります。</p>
+  </article>
+  <article class="skp-tc-card">
+    <span class="skp-tc-num">02</span>
+    <h3>軽量な実装</h3>
+    <p>ライブラリ不要。CSS変数とpointermoveだけで動く高速な演出です。</p>
+  </article>
+  <article class="skp-tc-card">
+    <span class="skp-tc-num">03</span>
+    <h3>スマホでは自動オフ</h3>
+    <p>タッチ端末では傾き処理を行わず、通常のカードとして表示されます。</p>
+  </article>
+</section>
+<style>
+  .skp-tc {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 22px;
+    padding: 70px clamp(20px, 6vw, 80px);
+    background: #0b0c18;
+    font-family: 'Inter', 'Noto Sans JP', system-ui, sans-serif;
+  }
+
+  .skp-tc-card {
+    position: relative;
+    overflow: hidden;
+    padding: 30px 26px;
+    border: 1px solid rgba(140, 125, 255, 0.22);
+    border-radius: 20px;
+    background: linear-gradient(160deg, rgba(38, 36, 74, 0.85), rgba(16, 16, 34, 0.95));
+    color: #eef0ff;
+    transform: perspective(900px) rotateX(var(--skp-rx, 0deg)) rotateY(var(--skp-ry, 0deg));
+    transition: transform 0.16s ease-out, border-color 0.3s ease;
+    will-change: transform;
+  }
+
+  .skp-tc-card::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(420px circle at var(--skp-gx, 50%) var(--skp-gy, 30%), rgba(255, 255, 255, 0.2), transparent 55%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+  }
+
+  .skp-tc-card:hover {
+    border-color: rgba(150, 130, 255, 0.6);
+  }
+
+  .skp-tc-card:hover::after {
+    opacity: 1;
+  }
+
+  .skp-tc-num {
+    font-size: 0.72rem;
+    font-weight: 900;
+    letter-spacing: 0.2em;
+    color: #9f8bff;
+  }
+
+  .skp-tc-card h3 {
+    margin: 12px 0 10px;
+    font-size: 1.12rem;
+    font-weight: 800;
+  }
+
+  .skp-tc-card p {
+    margin: 0;
+    color: rgba(215, 220, 250, 0.72);
+    font-size: 0.9rem;
+    line-height: 1.9;
+  }
+</style>
+<script>
+(() => {
+  if (!window.matchMedia('(hover: hover) and (pointer: fine)').matches) return;
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  document.querySelectorAll('.skp-tc-card').forEach((card) => {
+    card.addEventListener('pointermove', (event) => {
+      const rect = card.getBoundingClientRect();
+      const px = (event.clientX - rect.left) / rect.width;
+      const py = (event.clientY - rect.top) / rect.height;
+      card.style.setProperty('--skp-rx', `${(0.5 - py) * 10}deg`);
+      card.style.setProperty('--skp-ry', `${(px - 0.5) * 12}deg`);
+      card.style.setProperty('--skp-gx', `${px * 100}%`);
+      card.style.setProperty('--skp-gy', `${py * 100}%`);
+    });
+    card.addEventListener('pointerleave', () => {
+      card.style.setProperty('--skp-rx', '0deg');
+      card.style.setProperty('--skp-ry', '0deg');
+    });
+  });
+})();
+</script>
+<!-- ▲▲▲ COPY END ▲▲▲ -->
+</body>
+</html>

@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TECH PARTS LIBRARY | サクッとHP 制作用パーツ集</title>
+  <meta name="description" content="HP制作用の高技術パーツテンプレート集。コピーして貼り付けるだけで、パーティクル・3D・スポットライトなどの演出が使えます。">
+  <meta name="robots" content="noindex, nofollow">
+  <style>
+    :root {
+      --bg: #07070f;
+      --panel: #0e0e1c;
+      --line: rgba(140, 125, 255, 0.22);
+      --brand: #7357ff;
+      --hot: #3f8cff;
+      --text: #eef0ff;
+      --muted: rgba(206, 210, 242, 0.68);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Inter', 'Noto Sans JP', system-ui, sans-serif;
+      line-height: 1.8;
+    }
+
+    .lib-header {
+      position: relative;
+      padding: 90px clamp(20px, 6vw, 90px) 60px;
+      overflow: hidden;
+      background:
+        radial-gradient(ellipse 70% 60% at 70% 10%, rgba(63, 45, 150, 0.5), transparent 65%),
+        radial-gradient(ellipse 40% 40% at 15% 90%, rgba(47, 98, 255, 0.18), transparent 60%),
+        var(--bg);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .lib-label {
+      margin: 0 0 14px;
+      font-size: 0.72rem;
+      font-weight: 900;
+      letter-spacing: 0.3em;
+      color: #9f8bff;
+    }
+
+    .lib-header h1 {
+      margin: 0;
+      font-size: clamp(1.9rem, 4.4vw, 3.2rem);
+      font-weight: 900;
+      line-height: 1.25;
+      background: linear-gradient(120deg, #ffffff 35%, #c9d2ff 70%, #9f8bff);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .lib-header > p {
+      max-width: 720px;
+      margin: 18px 0 0;
+      color: var(--muted);
+    }
+
+    .lib-howto {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 14px;
+      max-width: 980px;
+      margin: 34px 0 0;
+    }
+
+    .lib-howto article {
+      padding: 18px 20px;
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      background: rgba(255, 255, 255, 0.03);
+    }
+
+    .lib-howto span {
+      display: inline-grid;
+      place-items: center;
+      width: 26px;
+      height: 26px;
+      margin-bottom: 8px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--brand), var(--hot));
+      font-size: 0.75rem;
+      font-weight: 900;
+    }
+
+    .lib-howto strong {
+      display: block;
+      font-size: 0.95rem;
+    }
+
+    .lib-howto p {
+      margin: 6px 0 0;
+      font-size: 0.82rem;
+      color: var(--muted);
+    }
+
+    main {
+      padding: 40px clamp(20px, 6vw, 90px) 90px;
+      display: grid;
+      gap: 46px;
+    }
+
+    .part-card {
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      overflow: hidden;
+      background: var(--panel);
+    }
+
+    .part-head {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 12px 18px;
+      padding: 20px clamp(18px, 3vw, 30px);
+      border-bottom: 1px solid rgba(140, 125, 255, 0.14);
+    }
+
+    .part-num {
+      font-size: 0.72rem;
+      font-weight: 900;
+      letter-spacing: 0.18em;
+      color: #9f8bff;
+    }
+
+    .part-head h2 {
+      margin: 0;
+      font-size: 1.15rem;
+      font-weight: 900;
+    }
+
+    .part-tags {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+    }
+
+    .part-tags span {
+      padding: 3px 10px;
+      border: 1px solid rgba(110, 231, 255, 0.35);
+      border-radius: 999px;
+      color: #8fe9ff;
+      font-size: 0.68rem;
+      font-weight: 800;
+      letter-spacing: 0.06em;
+    }
+
+    .part-actions {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-left: auto;
+    }
+
+    .part-actions button,
+    .part-actions a {
+      display: inline-flex;
+      align-items: center;
+      min-height: 38px;
+      padding: 7px 16px;
+      border-radius: 999px;
+      border: 1px solid rgba(160, 150, 255, 0.4);
+      background: rgba(255, 255, 255, 0.04);
+      color: var(--text);
+      font-size: 0.8rem;
+      font-weight: 800;
+      font-family: inherit;
+      text-decoration: none;
+      cursor: pointer;
+      transition: background 0.2s ease, border-color 0.2s ease;
+    }
+
+    .part-actions button:hover,
+    .part-actions a:hover {
+      background: rgba(120, 100, 255, 0.16);
+      border-color: rgba(160, 150, 255, 0.85);
+    }
+
+    .part-actions .copy-btn {
+      border: 0;
+      background: linear-gradient(135deg, var(--brand), var(--hot));
+    }
+
+    .part-actions .copy-btn:hover {
+      background: linear-gradient(135deg, #8468ff, #549aff);
+    }
+
+    .part-desc {
+      margin: 0;
+      padding: 16px clamp(18px, 3vw, 30px) 0;
+      color: var(--muted);
+      font-size: 0.88rem;
+    }
+
+    .part-frame {
+      padding: 16px clamp(18px, 3vw, 30px) 22px;
+    }
+
+    .part-frame iframe {
+      display: block;
+      width: 100%;
+      border: 1px solid rgba(140, 125, 255, 0.18);
+      border-radius: 14px;
+      background: #05050c;
+    }
+
+    .part-code {
+      display: none;
+      margin: 0 clamp(18px, 3vw, 30px) 22px;
+    }
+
+    .part-code.is-open {
+      display: block;
+    }
+
+    .part-code pre {
+      max-height: 420px;
+      overflow: auto;
+      margin: 0;
+      padding: 18px;
+      border: 1px solid rgba(140, 125, 255, 0.18);
+      border-radius: 14px;
+      background: #05050c;
+      color: #c9d2f5;
+      font-size: 0.76rem;
+      line-height: 1.6;
+      white-space: pre;
+    }
+
+    .lib-footer {
+      padding: 40px clamp(20px, 6vw, 90px) 70px;
+      border-top: 1px solid var(--line);
+      color: var(--muted);
+      font-size: 0.85rem;
+    }
+
+    .lib-footer a {
+      color: #9f8bff;
+    }
+  </style>
+</head>
+<body>
+  <header class="lib-header">
+    <p class="lib-label">INTERNAL TOOL</p>
+    <h1>TECH PARTS LIBRARY<br>貼り付けるだけの高技術パーツ集</h1>
+    <p>HP制作の依頼が来たら、ここからパーツを選んでコピーし、制作中のページの &lt;/body&gt; 直前に貼り付けるだけ。すべて自己完結型(HTML+CSS+JSが1ブロック)で、ライブラリ依存なし・クラス名は skp- で始まるため既存ページと衝突しません。</p>
+    <div class="lib-howto">
+      <article>
+        <span>1</span>
+        <strong>パーツを選ぶ</strong>
+        <p>下のライブプレビューで動きを確認します。</p>
+      </article>
+      <article>
+        <span>2</span>
+        <strong>コードをコピー</strong>
+        <p>「コードをコピー」を押すと1ブロック丸ごとコピーされます。</p>
+      </article>
+      <article>
+        <span>3</span>
+        <strong>貼り付けて調整</strong>
+        <p>制作ページの &lt;/body&gt; 直前に貼り付け、文言・色を差し替えます。</p>
+      </article>
+    </div>
+  </header>
+
+  <main id="parts"></main>
+
+  <footer class="lib-footer">
+    <p>© サクッとHP — 制作用内部ツール / <a href="index.html">販売サイトへ戻る</a></p>
+  </footer>
+
+  <script>
+    const PARTS = [
+      {
+        file: 'parts/particle-text.html',
+        title: 'パーティクル文字ヒーロー',
+        desc: '数千個の粒子が文字を描き、マウスで散り、クリックで爆発する看板演出。data-skp-text で文字を変更できます。',
+        tags: ['Canvas', 'インタラクティブ', '看板向け'],
+        height: 460,
+      },
+      {
+        file: 'parts/constellation.html',
+        title: 'コンステレーション背景',
+        desc: '漂う星がマウスと繋がるネットワーク背景。どんなセクションの下にも敷けます。',
+        tags: ['Canvas', 'インタラクティブ', '背景'],
+        height: 420,
+      },
+      {
+        file: 'parts/aurora-hero.html',
+        title: 'オーロラグラデーションヒーロー',
+        desc: '光の帯がゆっくり流れるCSSのみのヒーロー。JS不使用で超軽量、失敗しない鉄板演出。',
+        tags: ['CSSのみ', '超軽量', 'ヒーロー'],
+        height: 480,
+      },
+      {
+        file: 'parts/tilt-cards.html',
+        title: '3Dチルト + グレアカード',
+        desc: 'マウスに合わせてカードが立体的に傾き、光の反射が走ります。タッチ端末では自動オフ。',
+        tags: ['JS', 'カード', 'ホバー演出'],
+        height: 380,
+      },
+      {
+        file: 'parts/spotlight-cards.html',
+        title: 'スポットライトカード',
+        desc: 'マウス位置を中心に「枠線そのもの」が発光するSaaS風カード。グリッド全体が連動します。',
+        tags: ['JS', 'カード', 'SaaS風'],
+        height: 380,
+      },
+      {
+        file: 'parts/magnetic-button.html',
+        title: 'マグネットボタン',
+        desc: 'カーソルに吸い付くように動くCTAボタン + 光のスイープ。押したくなる導線に。',
+        tags: ['JS', 'CTA', 'ボタン'],
+        height: 300,
+      },
+      {
+        file: 'parts/text-scramble.html',
+        title: 'テキストスクランブル',
+        desc: '文字がノイズから解読されるように現れる演出。class="skp-ts-target" を付けるだけ。',
+        tags: ['JS', '見出し', 'スクロール連動'],
+        height: 420,
+      },
+      {
+        file: 'parts/countup-stats.html',
+        title: 'カウントアップ実績バー',
+        desc: '画面に入った瞬間、数字が駆け上がる実績表示。data-skp-count で目標値を指定。',
+        tags: ['JS', '実績', 'スクロール連動'],
+        height: 320,
+      },
+      {
+        file: 'parts/marquee.html',
+        title: '無限ループマーキー',
+        desc: 'キーワードやロゴが流れ続ける帯。CSSのみで滑らか、ホバーで一時停止します。',
+        tags: ['CSSのみ', '帯', '超軽量'],
+        height: 320,
+      },
+      {
+        file: 'parts/before-after.html',
+        title: 'ビフォーアフター比較スライダー',
+        desc: 'ドラッグで2枚を見比べるスライダー。中身を<img>に差し替えれば写真比較になります。',
+        tags: ['JS', '比較', '実績見せ'],
+        height: 520,
+      },
+      {
+        file: 'parts/gradient-border.html',
+        title: '回転グラデーションボーダー',
+        desc: '光の線がカードの縁を周回し続けるCSSのみの演出。おすすめプランの強調に。',
+        tags: ['CSSのみ', 'カード', '強調'],
+        height: 420,
+      },
+      {
+        file: 'parts/scroll-reveal.html',
+        title: 'ブラー・スクロールリビール',
+        desc: 'にじみながら浮かび上がる出現アニメ一式。data-skp-sr を付けるだけで時間差表示。',
+        tags: ['JS', '出現アニメ', '汎用'],
+        height: 460,
+      },
+    ];
+
+    const main = document.getElementById('parts');
+    const sources = new Map();
+
+    const extractSnippet = (html) => {
+      const start = html.indexOf('<!-- ▼▼▼ COPY START ▼▼▼ -->');
+      const end = html.indexOf('<!-- ▲▲▲ COPY END ▲▲▲ -->');
+      if (start === -1 || end === -1) return html;
+      return html.slice(start + '<!-- ▼▼▼ COPY START ▼▼▼ -->'.length, end).trim();
+    };
+
+    const getSource = async (file) => {
+      if (sources.has(file)) return sources.get(file);
+      const res = await fetch(file);
+      if (!res.ok) throw new Error(`fetch failed: ${file}`);
+      const snippet = extractSnippet(await res.text());
+      sources.set(file, snippet);
+      return snippet;
+    };
+
+    PARTS.forEach((part, i) => {
+      const num = String(i + 1).padStart(2, '0');
+      const card = document.createElement('section');
+      card.className = 'part-card';
+      card.innerHTML = `
+        <div class="part-head">
+          <span class="part-num">PART ${num}</span>
+          <h2></h2>
+          <div class="part-tags"></div>
+          <div class="part-actions">
+            <button type="button" class="copy-btn">コードをコピー</button>
+            <button type="button" class="code-btn">コードを見る</button>
+            <a href="${part.file}" target="_blank" rel="noopener">別タブで開く</a>
+          </div>
+        </div>
+        <p class="part-desc"></p>
+        <div class="part-frame">
+          <iframe src="${part.file}" title="" loading="lazy" height="${part.height}"></iframe>
+        </div>
+        <div class="part-code"><pre><code></code></pre></div>
+      `;
+      card.querySelector('h2').textContent = part.title;
+      card.querySelector('.part-desc').textContent = part.desc;
+      card.querySelector('iframe').title = `${part.title} のプレビュー`;
+      const tagBox = card.querySelector('.part-tags');
+      part.tags.forEach((tag) => {
+        const span = document.createElement('span');
+        span.textContent = tag;
+        tagBox.appendChild(span);
+      });
+
+      const copyBtn = card.querySelector('.copy-btn');
+      copyBtn.addEventListener('click', async () => {
+        try {
+          const code = await getSource(part.file);
+          await navigator.clipboard.writeText(code);
+          copyBtn.textContent = 'コピーしました!';
+        } catch {
+          copyBtn.textContent = 'コピー失敗(別タブで開いてコピー)';
+        }
+        setTimeout(() => {
+          copyBtn.textContent = 'コードをコピー';
+        }, 2200);
+      });
+
+      const codeBtn = card.querySelector('.code-btn');
+      const codeBox = card.querySelector('.part-code');
+      codeBtn.addEventListener('click', async () => {
+        const isOpen = codeBox.classList.toggle('is-open');
+        codeBtn.textContent = isOpen ? 'コードを閉じる' : 'コードを見る';
+        if (isOpen && !codeBox.dataset.loaded) {
+          try {
+            codeBox.querySelector('code').textContent = await getSource(part.file);
+            codeBox.dataset.loaded = '1';
+          } catch {
+            codeBox.querySelector('code').textContent = '読み込みに失敗しました。別タブで開いてソースを確認してください。';
+          }
+        }
+      });
+
+      main.appendChild(card);
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PARTS 12 — ブラー・スクロールリビール</title>
+<style>body { margin: 0; }</style>
+</head>
+<body>
+<!-- ▼▼▼ COPY START ▼▼▼ -->
+<!-- ============================================================
+  SAKUTTO PARTS 12: ブラー付きスクロールリビール
+  使い方: このブロックを丸ごと <body> 内に貼り付け。
+  出現させたい要素に data-skp-sr を付けるだけ。
+  兄弟要素は自動で時間差(スタッガー)表示になります。
+  依存: なし(バニラJS)
+============================================================ -->
+<section class="skp-sr-demo">
+  <h2 data-skp-sr>スクロールで、にじみながら現れる。</h2>
+  <p data-skp-sr>ぼかし + 浮き上がりを組み合わせた、いま主流の出現アニメーションです。</p>
+  <div class="skp-sr-cards">
+    <article data-skp-sr>Card 01</article>
+    <article data-skp-sr>Card 02</article>
+    <article data-skp-sr>Card 03</article>
+  </div>
+</section>
+<style>
+  .skp-sr-demo {
+    min-height: 60vh;
+    display: grid;
+    place-content: center;
+    gap: 18px;
+    padding: 90px 24px;
+    text-align: center;
+    background: #090a12;
+    color: #eef0ff;
+    font-family: 'Inter', 'Noto Sans JP', system-ui, sans-serif;
+  }
+
+  .skp-sr-demo h2 {
+    margin: 0;
+    font-size: clamp(1.5rem, 3.6vw, 2.4rem);
+    font-weight: 900;
+  }
+
+  .skp-sr-demo > p {
+    margin: 0;
+    color: rgba(212, 216, 245, 0.7);
+  }
+
+  .skp-sr-cards {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 14px;
+    margin-top: 16px;
+  }
+
+  .skp-sr-cards article {
+    padding: 26px 34px;
+    border: 1px solid rgba(140, 125, 255, 0.3);
+    border-radius: 16px;
+    background: rgba(255, 255, 255, 0.04);
+    font-weight: 800;
+  }
+
+  /* ---- リビール本体(どのページでも使い回せる) ---- */
+  [data-skp-sr] {
+    opacity: 0;
+    transform: translateY(30px) scale(0.985);
+    filter: blur(8px);
+    transition:
+      opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1),
+      transform 0.8s cubic-bezier(0.22, 1, 0.36, 1),
+      filter 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+    transition-delay: var(--skp-sr-delay, 0ms);
+  }
+
+  [data-skp-sr].skp-sr-in {
+    opacity: 1;
+    transform: none;
+    filter: blur(0);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    [data-skp-sr] {
+      opacity: 1;
+      transform: none;
+      filter: none;
+      transition: none;
+    }
+  }
+</style>
+<script>
+(() => {
+  const targets = document.querySelectorAll('[data-skp-sr]');
+  if (!targets.length) return;
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches || !('IntersectionObserver' in window)) {
+    targets.forEach((el) => el.classList.add('skp-sr-in'));
+    return;
+  }
+
+  const delayCounts = new Map();
+  targets.forEach((el) => {
+    const parent = el.parentElement;
+    const index = delayCounts.get(parent) || 0;
+    el.style.setProperty('--skp-sr-delay', `${Math.min(index, 6) * 90}ms`);
+    delayCounts.set(parent, index + 1);
+  });
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('skp-sr-in');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -36px 0px' });
+
+  targets.forEach((el) => observer.observe(el));
+})();
+</script>
+<!-- ▲▲▲ COPY END ▲▲▲ -->
+</body>
+</html>

@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PARTS 07 — テキストスクランブル</title>
+<style>body { margin: 0; }</style>
+</head>
+<body>
+<!-- ▼▼▼ COPY START ▼▼▼ -->
+<!-- ============================================================
+  SAKUTTO PARTS 07: テキストスクランブル(解読演出)
+  使い方: このブロックを丸ごと <body> 内に貼り付け。
+  演出を付けたい要素に class="skp-ts-target" を付けるだけ。
+  画面に入った瞬間、文字がノイズから解読されるように現れます。
+  依存: なし(バニラJS)
+============================================================ -->
+<section class="skp-ts">
+  <p class="skp-ts-label skp-ts-target">DECRYPTING MESSAGE</p>
+  <h2 class="skp-ts-target">圧倒的な技術力を、そのまま見せる。</h2>
+  <p class="skp-ts-sub skp-ts-target">スクロールして画面に入るたびに、文字が解読されるように出現します。</p>
+</section>
+<style>
+  .skp-ts {
+    min-height: 50vh;
+    display: grid;
+    place-content: center;
+    gap: 14px;
+    padding: 80px 24px;
+    text-align: center;
+    background: #07080f;
+    color: #eef0ff;
+    font-family: 'Inter', 'Noto Sans JP', system-ui, sans-serif;
+  }
+
+  .skp-ts-label {
+    margin: 0;
+    font-size: 0.72rem;
+    font-weight: 900;
+    letter-spacing: 0.3em;
+    color: #8f7bff;
+  }
+
+  .skp-ts h2 {
+    margin: 0;
+    font-size: clamp(1.6rem, 4vw, 2.8rem);
+    font-weight: 900;
+  }
+
+  .skp-ts-sub {
+    margin: 0;
+    color: rgba(214, 218, 248, 0.7);
+  }
+</style>
+<script>
+(() => {
+  const CHARS = 'アイウエオカキクケコサシスセソABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789#$%&<>*+=-';
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const targets = document.querySelectorAll('.skp-ts-target');
+  if (reduceMotion || !('IntersectionObserver' in window) || !targets.length) return;
+
+  const run = (el) => {
+    const original = el.dataset.skpTsText || '';
+    const total = original.length;
+    const duration = 500 + total * 32;
+    const start = performance.now();
+    const tick = (now) => {
+      const t = Math.min((now - start) / duration, 1);
+      const fixed = Math.floor(t * total);
+      let out = original.slice(0, fixed);
+      for (let i = fixed; i < total; i += 1) {
+        out += original[i] === ' ' ? ' ' : CHARS[(Math.random() * CHARS.length) | 0];
+      }
+      el.textContent = out;
+      if (t < 1) {
+        requestAnimationFrame(tick);
+      } else {
+        el.textContent = original;
+      }
+    };
+    requestAnimationFrame(tick);
+  };
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        run(entry.target);
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.6 });
+
+  targets.forEach((el) => {
+    if (!el.textContent.trim() || el.children.length) return;
+    el.dataset.skpTsText = el.textContent;
+    observer.observe(el);
+  });
+})();
+</script>
+<!-- ▲▲▲ COPY END ▲▲▲ -->
+</body>
+</html>

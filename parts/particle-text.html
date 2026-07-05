@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PARTS 01 — パーティクル文字</title>
+<style>body { margin: 0; }</style>
+</head>
+<body>
+<!-- ▼▼▼ COPY START ▼▼▼ -->
+<!-- ============================================================
+  SAKUTTO PARTS 01: パーティクル文字ヒーロー
+  使い方: このブロックを丸ごと <body> 内に貼り付けるだけ。
+  カスタマイズ: data-skp-text="表示したい文字" を変更。
+  依存: なし(バニラJS)
+============================================================ -->
+<section class="skp-pt" data-skp-text="TECH">
+  <canvas class="skp-pt-canvas" aria-hidden="true"></canvas>
+  <p class="skp-pt-caption">MOUSE で散らす / CLICK で爆発</p>
+</section>
+<style>
+  .skp-pt {
+    position: relative;
+    height: 70vh;
+    min-height: 420px;
+    overflow: hidden;
+    background:
+      radial-gradient(ellipse 80% 60% at 50% 40%, rgba(46, 40, 110, 0.5), transparent 70%),
+      #06060f;
+  }
+
+  .skp-pt-canvas {
+    display: block;
+    width: 100%;
+    height: 100%;
+    cursor: crosshair;
+  }
+
+  .skp-pt-caption {
+    position: absolute;
+    left: 50%;
+    bottom: 22px;
+    transform: translateX(-50%);
+    margin: 0;
+    color: rgba(200, 205, 255, 0.55);
+    font-family: 'Inter', 'Noto Sans JP', system-ui, sans-serif;
+    font-size: 0.7rem;
+    font-weight: 800;
+    letter-spacing: 0.22em;
+    pointer-events: none;
+  }
+</style>
+<script>
+(() => {
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  document.querySelectorAll('.skp-pt').forEach((root) => {
+    const canvas = root.querySelector('.skp-pt-canvas');
+    const ctx = canvas.getContext('2d');
+    if (!ctx) return;
+    const text = root.dataset.skpText || 'TECH';
+    const DPR = Math.min(window.devicePixelRatio || 1, 2);
+    let W = 0;
+    let H = 0;
+    let particles = [];
+    const mouse = { x: -9999, y: -9999, r: 120 };
+    let rafId = 0;
+    let visible = true;
+
+    const build = () => {
+      W = root.clientWidth;
+      H = root.clientHeight;
+      canvas.width = Math.round(W * DPR);
+      canvas.height = Math.round(H * DPR);
+      ctx.setTransform(DPR, 0, 0, DPR, 0, 0);
+
+      const off = document.createElement('canvas');
+      off.width = W;
+      off.height = H;
+      const octx = off.getContext('2d', { willReadFrequently: true });
+      const size = Math.min((W * 0.9) / Math.max(text.length * 0.68, 1), H * 0.52);
+      octx.fillStyle = '#fff';
+      octx.font = `900 ${size}px 'Inter', 'Noto Sans JP', system-ui, sans-serif`;
+      octx.textAlign = 'center';
+      octx.textBaseline = 'middle';
+      octx.fillText(text, W / 2, H / 2);
+      const data = octx.getImageData(0, 0, W, H).data;
+      const gap = Math.max(3, Math.round(size / 34));
+
+      particles = [];
+      for (let y = 0; y < H; y += gap) {
+        for (let x = 0; x < W; x += gap) {
+          if (data[(y * W + x) * 4 + 3] > 128) {
+            particles.push({
+              x: Math.random() * W,
+              y: Math.random() * H,
+              hx: x,
+              hy: y,
+              vx: 0,
+              vy: 0,
+              s: gap * 0.45,
+              hue: 238 + Math.random() * 50,
+            });
+          }
+        }
+      }
+    };
+
+    const frame = () => {
+      rafId = 0;
+      if (!visible) return;
+      ctx.clearRect(0, 0, W, H);
+      for (const p of particles) {
+        const dx = p.x - mouse.x;
+        const dy = p.y - mouse.y;
+        const d = Math.hypot(dx, dy);
+        if (d < mouse.r) {
+          const f = (mouse.r - d) / mouse.r;
+          p.vx += (dx / (d || 1)) * f * 2.6;
+          p.vy += (dy / (d || 1)) * f * 2.6;
+        }
+        p.vx += (p.hx - p.x) * 0.05;
+        p.vy += (p.hy - p.y) * 0.05;
+        p.vx *= 0.85;
+        p.vy *= 0.85;
+        p.x += p.vx;
+        p.y += p.vy;
+        const speed = Math.min(Math.hypot(p.vx, p.vy) * 0.06, 0.35);
+        ctx.fillStyle = `hsl(${p.hue} 92% ${68 + speed * 60}%)`;
+        ctx.fillRect(p.x, p.y, p.s, p.s);
+      }
+      rafId = requestAnimationFrame(frame);
+    };
+
+    const schedule = () => {
+      if (!rafId && visible) rafId = requestAnimationFrame(frame);
+    };
+
+    build();
+    if (document.fonts && document.fonts.ready) {
+      document.fonts.ready.then(build);
+    }
+
+    if (reduceMotion) {
+      particles.forEach((p) => {
+        p.x = p.hx;
+        p.y = p.hy;
+      });
+      visible = false;
+      ctx.clearRect(0, 0, W, H);
+      particles.forEach((p) => {
+        ctx.fillStyle = `hsl(${p.hue} 92% 70%)`;
+        ctx.fillRect(p.x, p.y, p.s, p.s);
+      });
+      return;
+    }
+
+    window.addEventListener('resize', build);
+
+    canvas.addEventListener('pointermove', (event) => {
+      const rect = canvas.getBoundingClientRect();
+      mouse.x = event.clientX - rect.left;
+      mouse.y = event.clientY - rect.top;
+    });
+
+    canvas.addEventListener('pointerleave', () => {
+      mouse.x = -9999;
+      mouse.y = -9999;
+    });
+
+    canvas.addEventListener('pointerdown', (event) => {
+      const rect = canvas.getBoundingClientRect();
+      const cx = event.clientX - rect.left;
+      const cy = event.clientY - rect.top;
+      for (const p of particles) {
+        const dx = p.x - cx;
+        const dy = p.y - cy;
+        const d = Math.hypot(dx, dy) || 1;
+        const f = Math.max(0, 1 - d / 340);
+        p.vx += (dx / d) * f * 26;
+        p.vy += (dy / d) * f * 26;
+      }
+    });
+
+    if ('IntersectionObserver' in window) {
+      new IntersectionObserver((entries) => {
+        visible = entries[0].isIntersecting;
+        schedule();
+      }).observe(root);
+    }
+
+    schedule();
+  });
+})();
+</script>
+<!-- ▲▲▲ COPY END ▲▲▲ -->
+</body>
+</html>

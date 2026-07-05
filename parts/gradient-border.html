@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PARTS 11 — 回転グラデーションボーダー</title>
+<style>body { margin: 0; }</style>
+</head>
+<body>
+<!-- ▼▼▼ COPY START ▼▼▼ -->
+<!-- ============================================================
+  SAKUTTO PARTS 11: 回転グラデーションボーダーカード(CSSのみ)
+  使い方: このブロックを丸ごと <body> 内に貼り付け。
+  光の線がカードの縁を周回し続ける「いま風」の演出。
+  依存: なし(JS不使用)
+============================================================ -->
+<section class="skp-gb">
+  <article class="skp-gb-card">
+    <p class="skp-gb-tag">RECOMMENDED</p>
+    <h3>おすすめプラン</h3>
+    <p>縁を光が周回するカード。料金表やイチオシ商品を目立たせるのに最適です。</p>
+  </article>
+</section>
+<style>
+  @property --skp-gb-angle {
+    syntax: '<angle>';
+    initial-value: 0deg;
+    inherits: false;
+  }
+
+  .skp-gb {
+    display: grid;
+    place-items: center;
+    padding: 90px 24px;
+    background: #0a0a13;
+    font-family: 'Inter', 'Noto Sans JP', system-ui, sans-serif;
+  }
+
+  .skp-gb-card {
+    position: relative;
+    max-width: 420px;
+    padding: 36px 32px;
+    border-radius: 22px;
+    overflow: hidden;
+    background: linear-gradient(160deg, rgba(34, 32, 66, 0.9), rgba(14, 14, 28, 0.96));
+    color: #eef0ff;
+  }
+
+  .skp-gb-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    padding: 2px;
+    background: conic-gradient(
+      from var(--skp-gb-angle, 0deg),
+      rgba(115, 87, 255, 0) 0%,
+      rgba(115, 87, 255, 1) 12%,
+      rgba(110, 231, 255, 1) 24%,
+      rgba(115, 87, 255, 0) 40%
+    );
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    mask-composite: exclude;
+    animation: skp-gb-rotate 4.5s linear infinite;
+    pointer-events: none;
+  }
+
+  @keyframes skp-gb-rotate {
+    to {
+      --skp-gb-angle: 360deg;
+    }
+  }
+
+  .skp-gb-tag {
+    margin: 0 0 12px;
+    font-size: 0.68rem;
+    font-weight: 900;
+    letter-spacing: 0.26em;
+    color: #8f7bff;
+  }
+
+  .skp-gb-card h3 {
+    margin: 0 0 10px;
+    font-size: 1.35rem;
+    font-weight: 900;
+  }
+
+  .skp-gb-card p:last-child {
+    margin: 0;
+    color: rgba(214, 218, 248, 0.72);
+    font-size: 0.9rem;
+    line-height: 1.9;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .skp-gb-card::before {
+      animation: none;
+    }
+  }
+</style>
+<!-- ▲▲▲ COPY END ▲▲▲ -->
+</body>
+</html>

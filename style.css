@@ -3781,3 +3781,384 @@ img {
     transition-duration: 0.01ms !important;
   }
 }
+
+/* ============================================================
+   2026 Modern Tech Layer
+   既存デザインの上に重ねる最新演出レイヤー
+   ============================================================ */
+
+/* ---- スクロール進捗バー ---- */
+.scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  z-index: 90;
+  background: linear-gradient(90deg, var(--brand), var(--hot) 55%, #6ee7ff);
+  box-shadow: 0 0 14px rgba(115, 87, 255, 0.55);
+  transform: scaleX(0);
+  transform-origin: left;
+  pointer-events: none;
+}
+
+/* ---- ヘッダー挙動 ---- */
+.site-header {
+  transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.4s ease, background 0.4s ease;
+}
+
+.site-header.is-scrolled {
+  background: rgba(251, 250, 255, 0.86);
+  box-shadow: 0 12px 42px rgba(25, 22, 65, 0.1);
+}
+
+.site-header.is-hidden {
+  transform: translateY(-110%);
+}
+
+/* ---- カスタムカーソル ---- */
+.cursor-dot,
+.cursor-ring {
+  display: none;
+}
+
+body.has-cursor .cursor-dot {
+  display: block;
+  position: fixed;
+  top: -4px;
+  left: -4px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--brand);
+  box-shadow: 0 0 12px rgba(115, 87, 255, 0.9);
+  z-index: 998;
+  pointer-events: none;
+}
+
+body.has-cursor .cursor-ring {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  top: -19px;
+  left: -19px;
+  width: 38px;
+  height: 38px;
+  border: 1.5px solid rgba(115, 87, 255, 0.55);
+  border-radius: 50%;
+  z-index: 997;
+  pointer-events: none;
+  transition: width 0.25s ease, height 0.25s ease, top 0.25s ease, left 0.25s ease, border-color 0.25s ease, background-color 0.25s ease;
+}
+
+body.has-cursor .cursor-ring span {
+  font-size: 0.55rem;
+  font-weight: 900;
+  letter-spacing: 0.16em;
+  color: var(--white);
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+body.has-cursor .cursor-ring.is-active {
+  top: -27px;
+  left: -27px;
+  width: 54px;
+  height: 54px;
+  border-color: rgba(115, 87, 255, 0.85);
+  background: rgba(115, 87, 255, 0.12);
+}
+
+body.has-cursor .cursor-ring.is-drag {
+  top: -33px;
+  left: -33px;
+  width: 66px;
+  height: 66px;
+  border-color: transparent;
+  background: rgba(115, 87, 255, 0.32);
+  backdrop-filter: blur(2px);
+}
+
+body.has-cursor .cursor-ring.is-drag span {
+  opacity: 1;
+}
+
+body.cursor-out .cursor-dot,
+body.cursor-out .cursor-ring {
+  opacity: 0;
+}
+
+body.has-cursor,
+body.has-cursor a,
+body.has-cursor button,
+body.has-cursor summary,
+body.has-cursor .hero-canvas {
+  cursor: none;
+}
+
+/* ---- マグネットボタン ---- */
+.is-magnetic {
+  transform: translate(var(--mag-x, 0px), var(--mag-y, 0px));
+  transition: transform 0.28s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: transform;
+}
+
+/* ---- ボタンのモダン化 ---- */
+.button,
+.nav-cta,
+.pricing-cta {
+  position: relative;
+  overflow: hidden;
+  border-radius: 999px;
+}
+
+.button.primary {
+  box-shadow: 0 10px 32px rgba(78, 50, 212, 0.36);
+}
+
+.button.primary::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: -80%;
+  width: 55%;
+  background: linear-gradient(105deg, transparent, rgba(255, 255, 255, 0.38), transparent);
+  transform: skewX(-20deg);
+  transition: left 0.55s ease;
+  pointer-events: none;
+}
+
+.button.primary:hover::after {
+  left: 125%;
+}
+
+/* ---- セクションラベルのピル化 ---- */
+.section-label,
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 14px;
+  border: 1px solid rgba(115, 87, 255, 0.3);
+  border-radius: 999px;
+  background: rgba(115, 87, 255, 0.07);
+}
+
+.section-label::before,
+.eyebrow::before {
+  content: '';
+  flex: none;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--brand);
+  box-shadow: 0 0 10px var(--brand);
+  animation: label-pulse 2.4s ease-in-out infinite;
+}
+
+.hero .eyebrow {
+  border-color: rgba(148, 130, 255, 0.45);
+  background: rgba(115, 87, 255, 0.16);
+  color: #cfc6ff;
+}
+
+@keyframes label-pulse {
+  50% {
+    opacity: 0.35;
+  }
+}
+
+/* ---- ヒーロー見出しのグラデーション & 入場アニメ ---- */
+.hero h1 {
+  background: linear-gradient(125deg, #ffffff 38%, #c9d2ff 68%, #a08bff 96%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: #ffffff;
+}
+
+@keyframes hero-rise {
+  from {
+    opacity: 0;
+    transform: translateY(34px);
+    filter: blur(10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: none;
+    filter: none;
+  }
+}
+
+.hero-copy > * {
+  animation: hero-rise 0.9s cubic-bezier(0.22, 1, 0.36, 1) backwards;
+}
+
+.hero-copy > *:nth-child(1) { animation-delay: 0.05s; }
+.hero-copy > *:nth-child(2) { animation-delay: 0.16s; }
+.hero-copy > *:nth-child(3) { animation-delay: 0.3s; }
+.hero-copy > *:nth-child(4) { animation-delay: 0.44s; }
+.hero-copy > *:nth-child(5) { animation-delay: 0.58s; }
+
+/* ---- スクロール出現をブラー付きに強化 ---- */
+.reveal {
+  opacity: 0;
+  transform: translateY(30px) scale(0.985);
+  filter: blur(8px);
+  transition:
+    opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.8s cubic-bezier(0.22, 1, 0.36, 1),
+    filter 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.reveal.is-visible {
+  opacity: 1;
+  transform: none;
+  filter: blur(0);
+}
+
+/* ---- 3Dチルト + グレア ---- */
+@media (hover: hover) and (pointer: fine) {
+  .is-tilt {
+    transform: perspective(1000px) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg));
+    transition: transform 0.18s ease-out, box-shadow 0.25s ease, border-color 0.25s ease;
+    will-change: transform;
+  }
+
+  .template-product-card.is-tilt:hover {
+    transform: perspective(1000px) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg)) translateY(-5px);
+  }
+}
+
+.template-product-card {
+  position: relative;
+}
+
+.template-product-card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  background: radial-gradient(560px circle at var(--gx, 50%) var(--gy, 30%), rgba(255, 255, 255, 0.26), transparent 55%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  mix-blend-mode: soft-light;
+  pointer-events: none;
+}
+
+.template-product-card:hover::after {
+  opacity: 1;
+}
+
+/* ---- マウス追従スポットライト ---- */
+.has-spotlight {
+  position: relative;
+}
+
+.has-spotlight::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: radial-gradient(420px circle at var(--gx, 50%) var(--gy, 50%), rgba(115, 87, 255, 0.13), transparent 55%);
+  opacity: 0;
+  transition: opacity 0.35s ease;
+  pointer-events: none;
+}
+
+.has-spotlight:hover::after {
+  opacity: 1;
+}
+
+.hero .has-spotlight::after {
+  background: radial-gradient(320px circle at var(--gx, 50%) var(--gy, 50%), rgba(255, 255, 255, 0.16), transparent 60%);
+}
+
+/* ---- 料金カード: 回転グラデーションボーダー ---- */
+@property --beam {
+  syntax: '<angle>';
+  initial-value: 0deg;
+  inherits: false;
+}
+
+.pricing-card {
+  position: relative;
+  overflow: hidden;
+  border-radius: 20px;
+}
+
+.pricing-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 2px;
+  background: conic-gradient(
+    from var(--beam, 0deg),
+    rgba(115, 87, 255, 0) 0%,
+    rgba(115, 87, 255, 0.9) 12%,
+    rgba(63, 140, 255, 0.9) 24%,
+    rgba(115, 87, 255, 0) 40%
+  );
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask-composite: exclude;
+  animation: beam-rotate 5s linear infinite;
+  pointer-events: none;
+}
+
+@keyframes beam-rotate {
+  to {
+    --beam: 360deg;
+  }
+}
+
+/* ---- カード角丸の統一(ソフトモダン) ---- */
+.motion-option-grid article,
+.price-option-grid article,
+.monitor-proof-grid article,
+.deliverables-list article,
+.compare-grid article,
+.flow-list article,
+.quick-stats div,
+.scope-note,
+.line-chat-card,
+.message-builder-panel,
+.faq-list details {
+  border-radius: 18px;
+}
+
+/* ---- フォーカスリング ---- */
+a:focus-visible,
+button:focus-visible,
+summary:focus-visible,
+textarea:focus-visible {
+  outline: 2px solid var(--hot);
+  outline-offset: 3px;
+}
+
+/* ---- 演出の減速設定対応 ---- */
+@media (prefers-reduced-motion: reduce) {
+  .hero-copy > * {
+    animation: none;
+  }
+
+  .reveal {
+    opacity: 1;
+    transform: none;
+    filter: none;
+    transition: none;
+  }
+
+  .pricing-card::before {
+    animation: none;
+  }
+
+  .scroll-progress {
+    display: none;
+  }
+}

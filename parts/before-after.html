@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PARTS 10 — ビフォーアフター スライダー</title>
+<style>body { margin: 0; }</style>
+</head>
+<body>
+<!-- ▼▼▼ COPY START ▼▼▼ -->
+<!-- ============================================================
+  SAKUTTO PARTS 10: ビフォーアフター比較スライダー
+  使い方: このブロックを丸ごと <body> 内に貼り付け。
+  .skp-ba-before / .skp-ba-after の中身を画像 <img> に
+  差し替えれば、写真の比較スライダーになります。
+  依存: なし(バニラJS / range input使用でキーボード操作も可)
+============================================================ -->
+<section class="skp-ba-wrap">
+  <div class="skp-ba" style="--skp-pos: 50%;">
+    <div class="skp-ba-after">
+      <div class="skp-ba-demo skp-ba-demo-after">
+        <strong>AFTER</strong>
+        <p>演出と導線が整った状態</p>
+      </div>
+    </div>
+    <div class="skp-ba-before">
+      <div class="skp-ba-demo skp-ba-demo-before">
+        <strong>BEFORE</strong>
+        <p>情報だけが並んだ状態</p>
+      </div>
+    </div>
+    <div class="skp-ba-handle" aria-hidden="true"><span>◀ ▶</span></div>
+    <input class="skp-ba-range" type="range" min="0" max="100" value="50" aria-label="ビフォーアフターの比較位置">
+  </div>
+</section>
+<style>
+  .skp-ba-wrap {
+    padding: 70px clamp(20px, 6vw, 80px);
+    background: #0a0b14;
+    font-family: 'Inter', 'Noto Sans JP', system-ui, sans-serif;
+  }
+
+  .skp-ba {
+    position: relative;
+    max-width: 860px;
+    margin: 0 auto;
+    aspect-ratio: 16 / 9;
+    border-radius: 20px;
+    overflow: hidden;
+    border: 1px solid rgba(140, 125, 255, 0.25);
+  }
+
+  .skp-ba-before,
+  .skp-ba-after {
+    position: absolute;
+    inset: 0;
+  }
+
+  .skp-ba-before {
+    clip-path: inset(0 calc(100% - var(--skp-pos)) 0 0);
+  }
+
+  .skp-ba-before img,
+  .skp-ba-after img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  /* ↓ デモ用ダミー(画像に差し替えたら削除OK) */
+  .skp-ba-demo {
+    height: 100%;
+    display: grid;
+    place-content: center;
+    text-align: center;
+    color: #fff;
+  }
+
+  .skp-ba-demo strong {
+    font-size: clamp(1.6rem, 4vw, 2.6rem);
+    font-weight: 900;
+    letter-spacing: 0.14em;
+  }
+
+  .skp-ba-demo p {
+    margin: 8px 0 0;
+    font-size: 0.85rem;
+    opacity: 0.8;
+  }
+
+  .skp-ba-demo-before {
+    background: linear-gradient(140deg, #3a3d4d, #23242e);
+  }
+
+  .skp-ba-demo-after {
+    background:
+      radial-gradient(ellipse 70% 60% at 60% 30%, rgba(115, 87, 255, 0.55), transparent 65%),
+      linear-gradient(140deg, #1c1640, #0c0a1e);
+  }
+  /* ↑ デモ用ダミーここまで */
+
+  .skp-ba-handle {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: var(--skp-pos);
+    width: 2px;
+    background: rgba(255, 255, 255, 0.85);
+    box-shadow: 0 0 18px rgba(140, 120, 255, 0.9);
+    pointer-events: none;
+  }
+
+  .skp-ba-handle span {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: grid;
+    place-items: center;
+    width: 46px;
+    height: 46px;
+    border-radius: 50%;
+    background: #fff;
+    color: #4e32d4;
+    font-size: 0.6rem;
+    font-weight: 900;
+    letter-spacing: 0.05em;
+    box-shadow: 0 6px 22px rgba(0, 0, 0, 0.35);
+  }
+
+  .skp-ba-range {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    opacity: 0;
+    cursor: ew-resize;
+  }
+</style>
+<script>
+(() => {
+  document.querySelectorAll('.skp-ba').forEach((root) => {
+    const range = root.querySelector('.skp-ba-range');
+    if (!range) return;
+    range.addEventListener('input', () => {
+      root.style.setProperty('--skp-pos', `${range.value}%`);
+    });
+  });
+})();
+</script>
+<!-- ▲▲▲ COPY END ▲▲▲ -->
+</body>
+</html>

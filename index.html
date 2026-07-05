@@ -111,6 +111,9 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
+  <div class="scroll-progress" data-scroll-progress aria-hidden="true"></div>
+  <div class="cursor-dot" data-cursor-dot aria-hidden="true"></div>
+  <div class="cursor-ring" data-cursor-ring aria-hidden="true"><span>DRAG</span></div>
   <header class="site-header">
     <a class="brand" href="#top" aria-label="サクッとHP トップへ">
       <span class="brand-mark">S</span>
@@ -1026,14 +1029,17 @@
         attribute vec3 aShapeA;
         attribute vec3 aShapeB;
         attribute vec3 aShapeC;
+        attribute vec3 aShapeD;
         attribute vec4 aSeed;
         uniform mat4 uProj;
-        uniform vec3 uWeights;
+        uniform vec4 uWeights;
         uniform float uTime;
         uniform float uScatter;
         uniform vec2 uRot;
         uniform vec2 uMouse;
         uniform float uMouseForce;
+        uniform vec3 uClick;
+        uniform float uClickForce;
         uniform vec2 uShift;
         uniform float uCamZ;
         uniform float uPointScale;
@@ -1042,7 +1048,7 @@
         varying float vPush;
 
         void main() {
-          vec3 pos = aShapeA * uWeights.x + aShapeB * uWeights.y + aShapeC * uWeights.z;
+          vec3 pos = aShapeA * uWeights.x + aShapeB * uWeights.y + aShapeC * uWeights.z + aShapeD * uWeights.w;
           pos.y += uWeights.z * 0.12 * sin(aShapeC.x * 3.2 + uTime * 1.5);
           pos += aSeed.xyz * uScatter * (0.4 + aSeed.w);
           pos *= 1.0 + 0.03 * sin(uTime * 0.7 + aSeed.w * 6.2831);
@@ -1061,13 +1067,17 @@
           float dist = length(toMouse);
           float push = smoothstep(0.42, 0.0, dist) * uMouseForce;
           ndc += (toMouse / max(dist, 0.001)) * push * 0.17;
+          vec2 toClick = ndc - uClick.xy;
+          float clickDist = length(toClick);
+          float ring = smoothstep(0.3, 0.0, abs(clickDist - uClick.z)) * uClickForce;
+          ndc += (toClick / max(clickDist, 0.001)) * ring * 0.24;
           clip = vec4(ndc * clip.w, clip.z, clip.w);
 
           gl_Position = clip;
           vSeed = aSeed.w;
           vDepth = clamp((view.z + uCamZ + 1.6) / 3.2, 0.0, 1.0);
-          vPush = push;
-          gl_PointSize = uPointScale * (0.5 + aSeed.w) * (1.0 + push * 2.4) / clip.w;
+          vPush = min(push + ring, 1.0);
+          gl_PointSize = uPointScale * (0.5 + aSeed.w) * (1.0 + push * 2.4 + ring * 2.0) / clip.w;
         }
       `;
 
@@ -1165,6 +1175,7 @@
         const location = gl.getAttribLocation(program, name);
         gl.enableVertexAttribArray(location);
         gl.vertexAttribPointer(location, size, gl.FLOAT, false, 0, 0);
+        return buffer;
       };
 
       bindAttribute('aShapeA', shapeA, 3);
@@ -1172,8 +1183,51 @@
       bindAttribute('aShapeC', shapeC, 3);
       bindAttribute('aSeed', seeds, 4);
 
+      // 形状4: 文字「HP」— オフスクリーンcanvasの文字ピクセルを3D点群化
+      const shapeD = new Float32Array(COUNT * 3);
+      shapeD.set(shapeB.subarray(0, COUNT * 3));
+      const shapeDBuffer = bindAttribute('aShapeD', shapeD, 3);
+
+      const buildTextShape = () => {
+        const textCanvas = document.createElement('canvas');
+        const tw = 360;
+        const th = 200;
+        textCanvas.width = tw;
+        textCanvas.height = th;
+        const ctx = textCanvas.getContext('2d', { willReadFrequently: true });
+        if (!ctx) return;
+        ctx.clearRect(0, 0, tw, th);
+        ctx.fillStyle = '#fff';
+        ctx.font = '900 150px Inter, "Noto Sans JP", system-ui, sans-serif';
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'middle';
+        ctx.fillText('HP', tw / 2, th / 2 + 8);
+        const pixels = ctx.getImageData(0, 0, tw, th).data;
+        const points = [];
+        for (let y = 0; y < th; y += 2) {
+          for (let x = 0; x < tw; x += 2) {
+            if (pixels[(y * tw + x) * 4 + 3] > 128) points.push([x, y]);
+          }
+        }
+        if (!points.length) return;
+        const scale = 2.6 / tw;
+        for (let i = 0; i < COUNT; i += 1) {
+          const p = points[(Math.random() * points.length) | 0];
+          shapeD[i * 3] = (p[0] - tw / 2) * scale + (Math.random() - 0.5) * 0.02;
+          shapeD[i * 3 + 1] = -(p[1] - th / 2) * scale + (Math.random() - 0.5) * 0.02;
+          shapeD[i * 3 + 2] = (Math.random() - 0.5) * 0.18;
+        }
+        gl.bindBuffer(gl.ARRAY_BUFFER, shapeDBuffer);
+        gl.bufferData(gl.ARRAY_BUFFER, shapeD, gl.STATIC_DRAW);
+      };
+
+      buildTextShape();
+      if (document.fonts && document.fonts.ready) {
+        document.fonts.ready.then(() => buildTextShape());
+      }
+
       const uniforms = {};
-      ['uProj', 'uWeights', 'uTime', 'uScatter', 'uRot', 'uMouse', 'uMouseForce', 'uShift', 'uCamZ', 'uPointScale'].forEach((name) => {
+      ['uProj', 'uWeights', 'uTime', 'uScatter', 'uRot', 'uMouse', 'uMouseForce', 'uClick', 'uClickForce', 'uShift', 'uCamZ', 'uPointScale'].forEach((name) => {
         uniforms[name] = gl.getUniformLocation(program, name);
       });
 
@@ -1216,6 +1270,7 @@
       const CYCLE = HOLD + MORPH;
 
       const mouse = { x: 0, y: 0, tx: 0, ty: 0, force: 0, targetForce: 0 };
+      const clickWave = { x: 10, y: 10, r: 0, force: 0 };
       let drag = 0;
       let dragVel = 0;
       let dragging = false;
@@ -1230,18 +1285,25 @@
         if (!visible) return;
         const time = (now - startTime) * 0.001;
 
-        const cycleT = (time / CYCLE) % 3;
+        const cycleT = (time / CYCLE) % 4;
         const index = Math.floor(cycleT);
         const frac = cycleT - index;
         const holdPortion = HOLD / CYCLE;
         const morph = frac < holdPortion ? 0 : ease((frac - holdPortion) / (1 - holdPortion));
-        const weights = [0, 0, 0];
+        const weights = [0, 0, 0, 0];
         weights[index] = 1 - morph;
-        weights[(index + 1) % 3] = morph;
+        weights[(index + 1) % 4] = morph;
 
         mouse.x += (mouse.tx - mouse.x) * 0.07;
         mouse.y += (mouse.ty - mouse.y) * 0.07;
         mouse.force += (mouse.targetForce - mouse.force) * 0.06;
+
+        if (clickWave.force > 0.004) {
+          clickWave.r += 0.05;
+          clickWave.force *= 0.94;
+        } else {
+          clickWave.force = 0;
+        }
 
         if (!dragging) {
           drag += dragVel;
@@ -1252,12 +1314,14 @@
         const rotY = time * 0.13 + drag + mouse.x * 0.24;
         const rotX = -0.16 + mouse.y * 0.2 + scrollFactor * 0.55;
 
-        gl.uniform3f(uniforms.uWeights, weights[0], weights[1], weights[2]);
+        gl.uniform4f(uniforms.uWeights, weights[0], weights[1], weights[2], weights[3]);
         gl.uniform1f(uniforms.uTime, time);
         gl.uniform1f(uniforms.uScatter, burst + scrollFactor * 1.7);
         gl.uniform2f(uniforms.uRot, rotY, rotX);
         gl.uniform2f(uniforms.uMouse, mouse.x, mouse.y);
         gl.uniform1f(uniforms.uMouseForce, mouse.force);
+        gl.uniform3f(uniforms.uClick, clickWave.x, clickWave.y, clickWave.r);
+        gl.uniform1f(uniforms.uClickForce, clickWave.force);
 
         gl.clear(gl.COLOR_BUFFER_BIT);
         gl.drawArrays(gl.POINTS, 0, COUNT);
@@ -1272,12 +1336,14 @@
       resize();
 
       if (reduceMotion) {
-        gl.uniform3f(uniforms.uWeights, 1, 0, 0);
+        gl.uniform4f(uniforms.uWeights, 1, 0, 0, 0);
         gl.uniform1f(uniforms.uTime, 4);
         gl.uniform1f(uniforms.uScatter, 0);
         gl.uniform2f(uniforms.uRot, 0.7, -0.16);
         gl.uniform2f(uniforms.uMouse, 10, 10);
         gl.uniform1f(uniforms.uMouseForce, 0);
+        gl.uniform3f(uniforms.uClick, 10, 10, 0);
+        gl.uniform1f(uniforms.uClickForce, 0);
         gl.clear(gl.COLOR_BUFFER_BIT);
         gl.drawArrays(gl.POINTS, 0, COUNT);
         window.addEventListener('resize', () => {
@@ -1317,6 +1383,12 @@
         dragLastX = event.clientX;
         hero.classList.add('is-dragging');
         canvas.setPointerCapture(event.pointerId);
+        const rect = hero.getBoundingClientRect();
+        clickWave.x = ((event.clientX - rect.left) / rect.width) * 2 - 1;
+        clickWave.y = -(((event.clientY - rect.top) / rect.height) * 2 - 1);
+        clickWave.r = 0;
+        clickWave.force = 1;
+        schedule();
       });
 
       window.addEventListener('pointerup', () => {
@@ -1340,6 +1412,217 @@
       });
 
       schedule();
+    })();
+  </script>
+  <script>
+    (() => {
+      const finePointer = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+      const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      /* ---- スクロール進捗バー & ヘッダー挙動 ---- */
+      const progressBar = document.querySelector('[data-scroll-progress]');
+      const header = document.querySelector('.site-header');
+      const nav = document.querySelector('.nav-links');
+      let lastY = window.scrollY;
+      let scrollTicking = false;
+      const onScroll = () => {
+        scrollTicking = false;
+        const doc = document.documentElement;
+        const max = Math.max(doc.scrollHeight - window.innerHeight, 1);
+        const y = window.scrollY;
+        if (progressBar) progressBar.style.transform = `scaleX(${Math.min(y / max, 1)})`;
+        if (header) {
+          header.classList.toggle('is-scrolled', y > 60);
+          const delta = y - lastY;
+          if (Math.abs(delta) > 8) {
+            const navOpen = nav && nav.classList.contains('is-open');
+            header.classList.toggle('is-hidden', delta > 0 && y > 380 && !navOpen);
+            lastY = y;
+          }
+        }
+      };
+      window.addEventListener('scroll', () => {
+        if (!scrollTicking) {
+          scrollTicking = true;
+          requestAnimationFrame(onScroll);
+        }
+      }, { passive: true });
+      onScroll();
+
+      /* ---- カスタムカーソル ---- */
+      const cursorDot = document.querySelector('[data-cursor-dot]');
+      const cursorRing = document.querySelector('[data-cursor-ring]');
+      if (finePointer && !reduceMotion && cursorDot && cursorRing) {
+        document.body.classList.add('has-cursor');
+        const pos = { x: window.innerWidth / 2, y: window.innerHeight / 2 };
+        const ringPos = { x: pos.x, y: pos.y };
+        let cursorRaf = 0;
+        const renderCursor = () => {
+          ringPos.x += (pos.x - ringPos.x) * 0.18;
+          ringPos.y += (pos.y - ringPos.y) * 0.18;
+          cursorDot.style.transform = `translate(${pos.x}px, ${pos.y}px)`;
+          cursorRing.style.transform = `translate(${ringPos.x}px, ${ringPos.y}px)`;
+          cursorRaf = requestAnimationFrame(renderCursor);
+        };
+        window.addEventListener('pointermove', (event) => {
+          pos.x = event.clientX;
+          pos.y = event.clientY;
+          if (!cursorRaf) cursorRaf = requestAnimationFrame(renderCursor);
+          const target = event.target instanceof Element ? event.target : null;
+          const onCanvas = target && target.closest('[data-hero-canvas]');
+          const interactive = target && target.closest('a, button, summary, textarea, input, select, label');
+          cursorRing.classList.toggle('is-drag', Boolean(onCanvas));
+          cursorRing.classList.toggle('is-active', Boolean(interactive) && !onCanvas);
+        }, { passive: true });
+        document.documentElement.addEventListener('mouseleave', () => {
+          document.body.classList.add('cursor-out');
+        });
+        document.documentElement.addEventListener('mouseenter', () => {
+          document.body.classList.remove('cursor-out');
+        });
+      }
+
+      /* ---- マグネットボタン ---- */
+      if (finePointer && !reduceMotion) {
+        document.querySelectorAll('.button, .nav-cta, .pricing-cta, [data-copy-message]').forEach((el) => {
+          el.classList.add('is-magnetic');
+          el.addEventListener('pointermove', (event) => {
+            const rect = el.getBoundingClientRect();
+            const dx = event.clientX - (rect.left + rect.width / 2);
+            const dy = event.clientY - (rect.top + rect.height / 2);
+            el.style.setProperty('--mag-x', `${dx * 0.16}px`);
+            el.style.setProperty('--mag-y', `${dy * 0.3}px`);
+          });
+          el.addEventListener('pointerleave', () => {
+            el.style.setProperty('--mag-x', '0px');
+            el.style.setProperty('--mag-y', '0px');
+          });
+        });
+      }
+
+      /* ---- 3Dチルト + グレア ---- */
+      if (finePointer && !reduceMotion) {
+        document.querySelectorAll('.template-product-card, .line-chat-card, .pricing-card').forEach((card) => {
+          card.classList.add('is-tilt');
+          card.addEventListener('pointermove', (event) => {
+            const rect = card.getBoundingClientRect();
+            const px = (event.clientX - rect.left) / rect.width;
+            const py = (event.clientY - rect.top) / rect.height;
+            card.style.setProperty('--rx', `${(0.5 - py) * 6}deg`);
+            card.style.setProperty('--ry', `${(px - 0.5) * 8}deg`);
+            card.style.setProperty('--gx', `${px * 100}%`);
+            card.style.setProperty('--gy', `${py * 100}%`);
+          });
+          card.addEventListener('pointerleave', () => {
+            card.style.setProperty('--rx', '0deg');
+            card.style.setProperty('--ry', '0deg');
+          });
+        });
+      }
+
+      /* ---- マウス追従スポットライトカード ---- */
+      if (finePointer) {
+        const spotTargets = document.querySelectorAll([
+          '.motion-option-grid article',
+          '.price-option-grid article',
+          '.monitor-proof-grid article',
+          '.deliverables-list article',
+          '.compare-grid article',
+          '.flow-list article',
+          '.quick-stats div',
+        ].join(','));
+        spotTargets.forEach((el) => {
+          el.classList.add('has-spotlight');
+          el.addEventListener('pointermove', (event) => {
+            const rect = el.getBoundingClientRect();
+            el.style.setProperty('--gx', `${((event.clientX - rect.left) / rect.width) * 100}%`);
+            el.style.setProperty('--gy', `${((event.clientY - rect.top) / rect.height) * 100}%`);
+          }, { passive: true });
+        });
+      }
+
+      /* ---- セクションラベルのデコード(スクランブル)演出 ---- */
+      const scrambleChars = 'アイウエオカキクケコサシスセソABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789#$%&<>*+=-';
+      const scrambleTargets = document.querySelectorAll('.section-label, .eyebrow');
+      if (!reduceMotion && 'IntersectionObserver' in window && scrambleTargets.length) {
+        const runScramble = (el) => {
+          const original = el.dataset.scrambleText || '';
+          const total = original.length;
+          const duration = 480 + total * 30;
+          const start = performance.now();
+          const tick = (now) => {
+            const t = Math.min((now - start) / duration, 1);
+            const fixed = Math.floor(t * total);
+            let out = original.slice(0, fixed);
+            for (let i = fixed; i < total; i += 1) {
+              out += original[i] === ' ' ? ' ' : scrambleChars[(Math.random() * scrambleChars.length) | 0];
+            }
+            el.textContent = out;
+            if (t < 1) {
+              requestAnimationFrame(tick);
+            } else {
+              el.textContent = original;
+            }
+          };
+          requestAnimationFrame(tick);
+        };
+        const scrambleObserver = new IntersectionObserver((entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              runScramble(entry.target);
+              scrambleObserver.unobserve(entry.target);
+            }
+          });
+        }, { threshold: 0.6 });
+        scrambleTargets.forEach((el) => {
+          const text = el.textContent.trim();
+          if (!text || el.children.length) return;
+          el.dataset.scrambleText = el.textContent;
+          scrambleObserver.observe(el);
+        });
+      }
+
+      /* ---- 数字カウントアップ ---- */
+      const countTargets = document.querySelectorAll('.quick-stats strong, .price-summary strong');
+      if (!reduceMotion && 'IntersectionObserver' in window && countTargets.length) {
+        const runCount = (el) => {
+          const original = el.dataset.countText || '';
+          const match = original.match(/([\d,]+)/);
+          if (!match) return;
+          const target = parseInt(match[1].replace(/,/g, ''), 10);
+          if (!Number.isFinite(target)) return;
+          const prefix = original.slice(0, match.index);
+          const suffix = original.slice(match.index + match[1].length);
+          const useComma = match[1].includes(',');
+          const duration = 1100;
+          const start = performance.now();
+          const tick = (now) => {
+            const t = Math.min((now - start) / duration, 1);
+            const eased = 1 - Math.pow(1 - t, 3);
+            const value = Math.round(target * eased);
+            el.textContent = prefix + (useComma ? value.toLocaleString('ja-JP') : String(value)) + suffix;
+            if (t < 1) {
+              requestAnimationFrame(tick);
+            } else {
+              el.textContent = original;
+            }
+          };
+          requestAnimationFrame(tick);
+        };
+        const countObserver = new IntersectionObserver((entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              runCount(entry.target);
+              countObserver.unobserve(entry.target);
+            }
+          });
+        }, { threshold: 0.7 });
+        countTargets.forEach((el) => {
+          if (el.children.length || !/\d/.test(el.textContent)) return;
+          el.dataset.countText = el.textContent;
+          countObserver.observe(el);
+        });
+      }
     })();
   </script>
 </body>

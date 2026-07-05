@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PARTS 06 — マグネットボタン</title>
+<style>body { margin: 0; }</style>
+</head>
+<body>
+<!-- ▼▼▼ COPY START ▼▼▼ -->
+<!-- ============================================================
+  SAKUTTO PARTS 06: マグネットボタン + シャインスイープ
+  使い方: このブロックを丸ごと <body> 内に貼り付け。
+  ボタンを増やす場合は class="skp-mg-btn" を付けるだけ。
+  依存: なし(バニラJS / タッチ端末では自動オフ)
+============================================================ -->
+<section class="skp-mg">
+  <a class="skp-mg-btn skp-mg-primary" href="#">
+    <span>無料で相談する</span>
+  </a>
+  <a class="skp-mg-btn skp-mg-ghost" href="#">
+    <span>実例を見る</span>
+  </a>
+</section>
+<style>
+  .skp-mg {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    align-items: center;
+    justify-content: center;
+    padding: 90px 24px;
+    background: #0b0c16;
+    font-family: 'Inter', 'Noto Sans JP', system-ui, sans-serif;
+  }
+
+  .skp-mg-btn {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 54px;
+    padding: 14px 38px;
+    border-radius: 999px;
+    overflow: hidden;
+    font-weight: 900;
+    font-size: 0.95rem;
+    text-decoration: none;
+    transform: translate(var(--skp-mx, 0px), var(--skp-my, 0px));
+    transition: transform 0.28s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.3s ease;
+    will-change: transform;
+  }
+
+  .skp-mg-btn > span {
+    position: relative;
+    z-index: 1;
+    display: inline-block;
+    transform: translate(calc(var(--skp-mx, 0px) * 0.35), calc(var(--skp-my, 0px) * 0.35));
+    transition: transform 0.28s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .skp-mg-primary {
+    color: #fff;
+    background: linear-gradient(135deg, #7357ff, #3f8cff);
+    box-shadow: 0 12px 36px rgba(90, 70, 255, 0.4);
+  }
+
+  .skp-mg-primary:hover {
+    box-shadow: 0 16px 48px rgba(90, 70, 255, 0.55);
+  }
+
+  .skp-mg-primary::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: -80%;
+    width: 55%;
+    background: linear-gradient(105deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+    transform: skewX(-20deg);
+    transition: left 0.55s ease;
+  }
+
+  .skp-mg-primary:hover::after {
+    left: 125%;
+  }
+
+  .skp-mg-ghost {
+    color: #dfe3ff;
+    border: 1px solid rgba(160, 150, 255, 0.4);
+    background: rgba(255, 255, 255, 0.03);
+  }
+
+  .skp-mg-ghost:hover {
+    border-color: rgba(160, 150, 255, 0.85);
+    background: rgba(120, 100, 255, 0.12);
+  }
+</style>
+<script>
+(() => {
+  if (!window.matchMedia('(hover: hover) and (pointer: fine)').matches) return;
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  document.querySelectorAll('.skp-mg-btn').forEach((btn) => {
+    btn.addEventListener('pointermove', (event) => {
+      const rect = btn.getBoundingClientRect();
+      const dx = event.clientX - (rect.left + rect.width / 2);
+      const dy = event.clientY - (rect.top + rect.height / 2);
+      btn.style.setProperty('--skp-mx', `${dx * 0.25}px`);
+      btn.style.setProperty('--skp-my', `${dy * 0.45}px`);
+    });
+    btn.addEventListener('pointerleave', () => {
+      btn.style.setProperty('--skp-mx', '0px');
+      btn.style.setProperty('--skp-my', '0px');
+    });
+  });
+})();
+</script>
+<!-- ▲▲▲ COPY END ▲▲▲ -->
+</body>
+</html>
