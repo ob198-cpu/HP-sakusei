@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PARTS 16 — グーイ(液体)ブロブ</title>
+<style>body { margin: 0; }</style>
+</head>
+<body>
+<!-- ▼▼▼ COPY START ▼▼▼ -->
+<!-- ============================================================
+  SAKUTTO PARTS 16: グーイ(液体)ブロブ
+  水滴のように「融合して、ちぎれる」球がカーソルを追いかけます。
+  SVGフィルタによる本物のメタボール表現。
+  使い方: このブロックを丸ごと <body> 内に貼り付け。
+  依存: なし(SVGフィルタ + バニラJS)
+============================================================ -->
+<section class="skp-gy">
+  <svg class="skp-gy-defs" width="0" height="0" aria-hidden="true">
+    <filter id="skp-gy-goo">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="14" result="blur"></feGaussianBlur>
+      <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 24 -10" result="goo"></feColorMatrix>
+      <feBlend in="SourceGraphic" in2="goo"></feBlend>
+    </filter>
+  </svg>
+  <div class="skp-gy-stage" aria-hidden="true">
+    <i></i><i></i><i></i><i></i><i></i><i></i>
+  </div>
+  <div class="skp-gy-inner">
+    <p class="skp-gy-label">GOOEY PHYSICS</p>
+    <h2>液体のように融合し、ちぎれる。</h2>
+  </div>
+</section>
+<style>
+  .skp-gy {
+    position: relative;
+    height: 62vh;
+    min-height: 400px;
+    overflow: hidden;
+    background:
+      radial-gradient(ellipse 70% 60% at 50% 20%, rgba(38, 34, 90, 0.55), transparent 70%),
+      #07070f;
+  }
+
+  .skp-gy-defs {
+    position: absolute;
+  }
+
+  .skp-gy-stage {
+    position: absolute;
+    inset: 0;
+    filter: url(#skp-gy-goo);
+  }
+
+  .skp-gy-stage i {
+    position: absolute;
+    top: 0;
+    left: 0;
+    border-radius: 50%;
+    background: radial-gradient(circle at 32% 30%, #a08bff, #6a48ff 55%, #4325d6);
+    will-change: transform;
+  }
+
+  .skp-gy-stage i:nth-child(1) { width: 110px; height: 110px; }
+  .skp-gy-stage i:nth-child(2) { width: 78px; height: 78px; }
+  .skp-gy-stage i:nth-child(3) { width: 60px; height: 60px; }
+  .skp-gy-stage i:nth-child(4) { width: 46px; height: 46px; }
+  .skp-gy-stage i:nth-child(5) { width: 34px; height: 34px; }
+  .skp-gy-stage i:nth-child(6) { width: 26px; height: 26px; }
+
+  .skp-gy-inner {
+    position: absolute;
+    inset: 0;
+    display: grid;
+    place-content: center;
+    text-align: center;
+    color: #f0f2ff;
+    font-family: 'Inter', 'Noto Sans JP', system-ui, sans-serif;
+    pointer-events: none;
+  }
+
+  .skp-gy-label {
+    margin: 0 0 12px;
+    font-size: 0.7rem;
+    font-weight: 900;
+    letter-spacing: 0.34em;
+    color: rgba(170, 185, 255, 0.8);
+  }
+
+  .skp-gy-inner h2 {
+    margin: 0;
+    font-size: clamp(1.5rem, 3.8vw, 2.6rem);
+    font-weight: 900;
+    text-shadow: 0 4px 30px rgba(0, 0, 0, 0.6);
+  }
+</style>
+<script>
+(() => {
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  document.querySelectorAll('.skp-gy').forEach((root) => {
+    const blobs = Array.from(root.querySelectorAll('.skp-gy-stage i')).map((el, i) => ({
+      el,
+      x: root.clientWidth / 2,
+      y: root.clientHeight / 2,
+      ease: 0.14 - i * 0.017,   // 後ろの球ほど遅れて付いてくる → ちぎれる
+      angle: (i / 6) * Math.PI * 2,
+      radius: 40 + i * 22,
+      speed: 0.6 + i * 0.14,
+    }));
+    const pointer = { x: root.clientWidth / 2, y: root.clientHeight / 2, active: false };
+    let rafId = 0;
+    let visible = true;
+    let t = 0;
+
+    const place = () => {
+      blobs.forEach((b) => {
+        const half = b.el.offsetWidth / 2;
+        b.el.style.transform = `translate(${b.x - half}px, ${b.y - half}px)`;
+      });
+    };
+
+    const frame = () => {
+      rafId = 0;
+      if (!visible) return;
+      t += 0.016;
+      const W = root.clientWidth;
+      const H = root.clientHeight;
+
+      // 触っていない間は中央をゆっくり周回
+      const target = pointer.active
+        ? pointer
+        : { x: W / 2 + Math.sin(t * 0.8) * W * 0.22, y: H / 2 + Math.cos(t * 1.1) * H * 0.2 };
+
+      blobs.forEach((b) => {
+        const ox = Math.cos(b.angle + t * b.speed) * b.radius * (pointer.active ? 0.35 : 1);
+        const oy = Math.sin(b.angle + t * b.speed) * b.radius * (pointer.active ? 0.35 : 1);
+        b.x += (target.x + ox - b.x) * b.ease;
+        b.y += (target.y + oy - b.y) * b.ease;
+      });
+      place();
+      rafId = requestAnimationFrame(frame);
+    };
+
+    const schedule = () => {
+      if (!rafId && visible) rafId = requestAnimationFrame(frame);
+    };
+
+    if (reduceMotion) {
+      blobs.forEach((b, i) => {
+        b.x = root.clientWidth / 2 + Math.cos(b.angle) * (30 + i * 18);
+        b.y = root.clientHeight / 2 + Math.sin(b.angle) * (24 + i * 14);
+      });
+      place();
+      return;
+    }
+
+    root.addEventListener('pointermove', (event) => {
+      const rect = root.getBoundingClientRect();
+      pointer.x = event.clientX - rect.left;
+      pointer.y = event.clientY - rect.top;
+      pointer.active = true;
+    });
+
+    root.addEventListener('pointerleave', () => {
+      pointer.active = false;
+    });
+
+    if ('IntersectionObserver' in window) {
+      new IntersectionObserver((entries) => {
+        visible = entries[0].isIntersecting;
+        schedule();
+      }).observe(root);
+    }
+
+    schedule();
+  });
+})();
+</script>
+<!-- ▲▲▲ COPY END ▲▲▲ -->
+</body>
+</html>

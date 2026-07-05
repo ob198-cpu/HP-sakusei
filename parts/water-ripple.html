@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PARTS 13 — インタラクティブ水面(波紋)</title>
+<style>body { margin: 0; }</style>
+</head>
+<body>
+<!-- ▼▼▼ COPY START ▼▼▼ -->
+<!-- ============================================================
+  SAKUTTO PARTS 13: インタラクティブ水面(波紋シミュレーション)
+  画像でも動画でもなく、コードがリアルタイムに水を計算しています。
+  使い方: このブロックを丸ごと <body> 内に貼り付け。
+  マウスを動かすと波紋、クリックで大きな波。雨も自動で降ります。
+  依存: なし(Canvas 2D / 波動方程式シミュレーション)
+============================================================ -->
+<section class="skp-wr">
+  <canvas class="skp-wr-canvas" aria-hidden="true"></canvas>
+  <div class="skp-wr-inner">
+    <p class="skp-wr-label">REALTIME WATER</p>
+    <h2>この水は、コードが<br>リアルタイムに描いています。</h2>
+  </div>
+  <p class="skp-wr-caption">MOVE で波紋 / CLICK で大波</p>
+</section>
+<style>
+  .skp-wr {
+    position: relative;
+    height: 72vh;
+    min-height: 420px;
+    overflow: hidden;
+    background: #050612;
+  }
+
+  .skp-wr-canvas {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    cursor: crosshair;
+  }
+
+  .skp-wr-inner {
+    position: absolute;
+    inset: 0;
+    display: grid;
+    place-content: center;
+    text-align: center;
+    color: #f0f2ff;
+    font-family: 'Inter', 'Noto Sans JP', system-ui, sans-serif;
+    pointer-events: none;
+  }
+
+  .skp-wr-label {
+    margin: 0 0 14px;
+    font-size: 0.7rem;
+    font-weight: 900;
+    letter-spacing: 0.34em;
+    color: rgba(160, 175, 255, 0.8);
+  }
+
+  .skp-wr-inner h2 {
+    margin: 0;
+    font-size: clamp(1.6rem, 4.2vw, 3rem);
+    font-weight: 900;
+    line-height: 1.4;
+    text-shadow: 0 4px 30px rgba(0, 0, 0, 0.55);
+  }
+
+  .skp-wr-caption {
+    position: absolute;
+    left: 50%;
+    bottom: 20px;
+    transform: translateX(-50%);
+    margin: 0;
+    color: rgba(190, 200, 255, 0.5);
+    font-family: 'Inter', 'Noto Sans JP', system-ui, sans-serif;
+    font-size: 0.68rem;
+    font-weight: 800;
+    letter-spacing: 0.22em;
+    pointer-events: none;
+  }
+</style>
+<script>
+(() => {
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  document.querySelectorAll('.skp-wr').forEach((root) => {
+    const canvas = root.querySelector('.skp-wr-canvas');
+    const ctx = canvas.getContext('2d', { willReadFrequently: true });
+    if (!ctx) return;
+    const SCALE = 2; // シミュレーション解像度(表示の1/2)
+    let W = 0;
+    let H = 0;
+    let buf1;
+    let buf2;
+    let bg;
+    let out;
+    let rafId = 0;
+    let visible = true;
+
+    const build = () => {
+      W = Math.max(2, Math.round(root.clientWidth / SCALE));
+      H = Math.max(2, Math.round(root.clientHeight / SCALE));
+      canvas.width = W;
+      canvas.height = H;
+      buf1 = new Int16Array(W * H);
+      buf2 = new Int16Array(W * H);
+      bg = ctx.createImageData(W, H);
+      out = ctx.createImageData(W, H);
+      const d = bg.data;
+      for (let y = 0; y < H; y += 1) {
+        for (let x = 0; x < W; x += 1) {
+          const i = (y * W + x) * 4;
+          const gx = x / W - 0.5;
+          const gy = y / H - 0.5;
+          const glow1 = Math.max(0, 1 - Math.hypot(gx + 0.22, gy + 0.28) * 2.1);
+          const glow2 = Math.max(0, 1 - Math.hypot(gx - 0.3, gy - 0.32) * 2.3);
+          d[i] = 7 + glow1 * 62 + glow2 * 18;
+          d[i + 1] = 9 + glow1 * 42 + glow2 * 62;
+          d[i + 2] = 24 + glow1 * 150 + glow2 * 145;
+          d[i + 3] = 255;
+        }
+      }
+      out.data.set(d);
+    };
+
+    const drop = (px, py, strength, radius) => {
+      const cx = Math.round(px / SCALE);
+      const cy = Math.round(py / SCALE);
+      for (let y = cy - radius; y <= cy + radius; y += 1) {
+        for (let x = cx - radius; x <= cx + radius; x += 1) {
+          if (x > 0 && x < W - 1 && y > 0 && y < H - 1) {
+            buf1[y * W + x] = strength;
+          }
+        }
+      }
+    };
+
+    const frame = () => {
+      rafId = 0;
+      if (!visible) return;
+
+      // 波動方程式(隣接4点の平均 - 前フレーム)
+      for (let i = W; i < W * H - W; i += 1) {
+        let v = ((buf1[i - 1] + buf1[i + 1] + buf1[i - W] + buf1[i + W]) >> 1) - buf2[i];
+        v -= v >> 5;
+        buf2[i] = v;
+      }
+      const tmp = buf1;
+      buf1 = buf2;
+      buf2 = tmp;
+
+      // 自動の雨
+      if (Math.random() < 0.06) {
+        drop(Math.random() * W * SCALE, Math.random() * H * SCALE, 900, 1);
+      }
+
+      // 屈折レンダリング(高さの勾配で背景をずらす + ハイライト)
+      const src = bg.data;
+      const dst = out.data;
+      for (let y = 1; y < H - 1; y += 1) {
+        const row = y * W;
+        for (let x = 1; x < W - 1; x += 1) {
+          const i = row + x;
+          const dx = buf1[i - 1] - buf1[i + 1];
+          const dy = buf1[i - W] - buf1[i + W];
+          let sx = x + (dx >> 4);
+          let sy = y + (dy >> 4);
+          if (sx < 0) sx = 0; else if (sx >= W) sx = W - 1;
+          if (sy < 0) sy = 0; else if (sy >= H) sy = H - 1;
+          const si = (sy * W + sx) * 4;
+          const di = i * 4;
+          let spec = dx >> 2;
+          if (spec < 0) spec = 0; else if (spec > 110) spec = 110;
+          dst[di] = src[si] + spec;
+          dst[di + 1] = src[si + 1] + spec;
+          dst[di + 2] = src[si + 2] + spec;
+        }
+      }
+      ctx.putImageData(out, 0, 0);
+      rafId = requestAnimationFrame(frame);
+    };
+
+    const schedule = () => {
+      if (!rafId && visible) rafId = requestAnimationFrame(frame);
+    };
+
+    build();
+
+    if (reduceMotion) {
+      ctx.putImageData(bg, 0, 0);
+      window.addEventListener('resize', () => {
+        build();
+        ctx.putImageData(bg, 0, 0);
+      });
+      return;
+    }
+
+    window.addEventListener('resize', build);
+
+    root.addEventListener('pointermove', (event) => {
+      const rect = root.getBoundingClientRect();
+      drop(event.clientX - rect.left, event.clientY - rect.top, 480, 1);
+    });
+
+    root.addEventListener('pointerdown', (event) => {
+      const rect = root.getBoundingClientRect();
+      drop(event.clientX - rect.left, event.clientY - rect.top, 2600, 3);
+    });
+
+    if ('IntersectionObserver' in window) {
+      new IntersectionObserver((entries) => {
+        visible = entries[0].isIntersecting;
+        schedule();
+      }).observe(root);
+    }
+
+    schedule();
+  });
+})();
+</script>
+<!-- ▲▲▲ COPY END ▲▲▲ -->
+</body>
+</html>

@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PARTS 15 — プラズマフルイドトレイル</title>
+<style>body { margin: 0; }</style>
+</head>
+<body>
+<!-- ▼▼▼ COPY START ▼▼▼ -->
+<!-- ============================================================
+  SAKUTTO PARTS 15: プラズマフルイドトレイル
+  マウスの軌跡が、発光する流体のように渦を巻いて流れます。
+  触っていない間も自動で描き続けるので、放置でも絵になります。
+  使い方: このブロックを丸ごと <body> 内に貼り付け。
+  依存: なし(Canvas 2D / 加算合成 + 渦場シミュレーション)
+============================================================ -->
+<section class="skp-ft">
+  <canvas class="skp-ft-canvas" aria-hidden="true"></canvas>
+  <div class="skp-ft-inner">
+    <p class="skp-ft-label">FLUID TRAIL</p>
+    <h2>軌跡が、流体になる。</h2>
+  </div>
+</section>
+<style>
+  .skp-ft {
+    position: relative;
+    height: 66vh;
+    min-height: 400px;
+    overflow: hidden;
+    background: #06070f;
+  }
+
+  .skp-ft-canvas {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    cursor: crosshair;
+  }
+
+  .skp-ft-inner {
+    position: absolute;
+    inset: 0;
+    display: grid;
+    place-content: center;
+    text-align: center;
+    color: #f0f2ff;
+    font-family: 'Inter', 'Noto Sans JP', system-ui, sans-serif;
+    pointer-events: none;
+    mix-blend-mode: screen;
+  }
+
+  .skp-ft-label {
+    margin: 0 0 12px;
+    font-size: 0.7rem;
+    font-weight: 900;
+    letter-spacing: 0.34em;
+    color: rgba(170, 185, 255, 0.8);
+  }
+
+  .skp-ft-inner h2 {
+    margin: 0;
+    font-size: clamp(1.7rem, 4.2vw, 3rem);
+    font-weight: 900;
+  }
+</style>
+<script>
+(() => {
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  document.querySelectorAll('.skp-ft').forEach((root) => {
+    const canvas = root.querySelector('.skp-ft-canvas');
+    const ctx = canvas.getContext('2d');
+    if (!ctx) return;
+    let W = 0;
+    let H = 0;
+    const particles = [];
+    const MAX = 420;
+    const pointer = { x: 0, y: 0, px: 0, py: 0, active: false };
+    let rafId = 0;
+    let visible = true;
+    let t = 0;
+
+    const resize = () => {
+      W = root.clientWidth;
+      H = root.clientHeight;
+      canvas.width = W;
+      canvas.height = H;
+      ctx.fillStyle = '#06070f';
+      ctx.fillRect(0, 0, W, H);
+    };
+
+    const spawn = (x, y, vx, vy, count) => {
+      for (let i = 0; i < count; i += 1) {
+        if (particles.length >= MAX) particles.shift();
+        particles.push({
+          x: x + (Math.random() - 0.5) * 6,
+          y: y + (Math.random() - 0.5) * 6,
+          vx: vx * 0.25 + (Math.random() - 0.5) * 1.4,
+          vy: vy * 0.25 + (Math.random() - 0.5) * 1.4,
+          life: 1,
+          size: 12 + Math.random() * 26,
+          hue: 232 + 55 * Math.sin(t * 0.35) + Math.random() * 26,
+        });
+      }
+    };
+
+    const frame = () => {
+      rafId = 0;
+      if (!visible) return;
+      t += 0.016;
+
+      // 触っていない間は自動エミッタが8の字を描く
+      if (!pointer.active) {
+        const ax = W * (0.5 + 0.3 * Math.sin(t * 0.7) + 0.1 * Math.sin(t * 1.9));
+        const ay = H * (0.5 + 0.27 * Math.sin(t * 1.4) * Math.cos(t * 0.6));
+        spawn(ax, ay, 0, 0, 2);
+      }
+
+      // 残像フェード
+      ctx.globalCompositeOperation = 'source-over';
+      ctx.fillStyle = 'rgba(6, 7, 15, 0.16)';
+      ctx.fillRect(0, 0, W, H);
+
+      // 加算合成で発光
+      ctx.globalCompositeOperation = 'lighter';
+      for (let i = particles.length - 1; i >= 0; i -= 1) {
+        const p = particles[i];
+        // 渦場(サイン波の流れ)に沿って曲がる
+        const a = Math.sin(p.y * 0.011 + t * 1.2) + Math.cos(p.x * 0.013 - t * 0.8);
+        p.vx += Math.cos(a * Math.PI) * 0.07;
+        p.vy += Math.sin(a * Math.PI) * 0.07;
+        p.vx *= 0.985;
+        p.vy *= 0.985;
+        p.x += p.vx;
+        p.y += p.vy;
+        p.life -= 0.011;
+        p.size += 0.22;
+        if (p.life <= 0) {
+          particles.splice(i, 1);
+          continue;
+        }
+        const r = p.size * p.life;
+        const grad = ctx.createRadialGradient(p.x, p.y, 0, p.x, p.y, r);
+        grad.addColorStop(0, `hsla(${p.hue}, 95%, 66%, ${p.life * 0.34})`);
+        grad.addColorStop(1, `hsla(${p.hue}, 95%, 66%, 0)`);
+        ctx.fillStyle = grad;
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, r, 0, Math.PI * 2);
+        ctx.fill();
+      }
+
+      rafId = requestAnimationFrame(frame);
+    };
+
+    const schedule = () => {
+      if (!rafId && visible) rafId = requestAnimationFrame(frame);
+    };
+
+    resize();
+
+    if (reduceMotion) {
+      // 減速設定時は静的なグロウのみ
+      const grad = ctx.createRadialGradient(W / 2, H / 2, 0, W / 2, H / 2, Math.min(W, H) * 0.45);
+      grad.addColorStop(0, 'rgba(115, 90, 255, 0.35)');
+      grad.addColorStop(1, 'rgba(115, 90, 255, 0)');
+      ctx.fillStyle = grad;
+      ctx.fillRect(0, 0, W, H);
+      return;
+    }
+
+    window.addEventListener('resize', resize);
+
+    root.addEventListener('pointermove', (event) => {
+      const rect = root.getBoundingClientRect();
+      pointer.px = pointer.x;
+      pointer.py = pointer.y;
+      pointer.x = event.clientX - rect.left;
+      pointer.y = event.clientY - rect.top;
+      pointer.active = true;
+      spawn(pointer.x, pointer.y, pointer.x - pointer.px, pointer.y - pointer.py, 3);
+    });
+
+    root.addEventListener('pointerleave', () => {
+      pointer.active = false;
+    });
+
+    if ('IntersectionObserver' in window) {
+      new IntersectionObserver((entries) => {
+        visible = entries[0].isIntersecting;
+        schedule();
+      }).observe(root);
+    }
+
+    schedule();
+  });
+})();
+</script>
+<!-- ▲▲▲ COPY END ▲▲▲ -->
+</body>
+</html>
